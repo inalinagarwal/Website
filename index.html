@@ -3,23 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nalin Agarwal | AI & Robotics Portfolio</title>
+<title>Nalin Agarwal | Funky Portfolio</title>
 
 <!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Slab:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Slab:wght@500;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 
-<!-- Animate.css for animations -->
+<!-- Animate.css -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
 <style>
-/* ---------- Root & Colors ---------- */
 :root {
-  --primary: #00bfff;
-  --accent: #ff4c60;
+  --primary: #00f0ff;
+  --accent: #ff00c8;
   --bg: #121212;
   --card-bg: #1f1f1f;
   --text: #e0e0e0;
-  --shadow: rgba(0, 0, 0, 0.5);
+  --shadow: rgba(0,0,0,0.5);
 }
 
 body {
@@ -30,17 +29,41 @@ body {
   scroll-behavior: smooth;
 }
 
-/* ---------- Header ---------- */
 header {
   text-align: center;
-  padding: 60px 20px;
+  padding: 80px 20px;
   background: linear-gradient(135deg, var(--primary), var(--accent));
   color: #fff;
+  position: relative;
+  overflow: hidden;
 }
-header h1 { font-family: 'Roboto Slab', serif; font-size: 3rem; margin: 0; }
-header p { font-size: 1.2rem; margin-top: 10px; }
 
-/* ---------- Navigation ---------- */
+header h1 {
+  font-family: 'Roboto Slab', serif;
+  font-size: 3rem;
+  margin: 0;
+}
+
+#buzzwords {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.2rem;
+  margin-top: 15px;
+  color: #fff;
+}
+
+header h1:hover {
+  background: linear-gradient(45deg, #00f0ff, #ff00c8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
+
+/* Nav */
 nav {
   display: flex;
   justify-content: center;
@@ -49,67 +72,70 @@ nav {
   background: var(--bg);
   z-index: 100;
   border-bottom: 1px solid #222;
+  transition: 0.3s;
 }
 nav a {
   padding: 15px 20px;
   color: var(--text);
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
   transition: all 0.3s;
 }
-nav a.active, nav a:hover { color: var(--primary); }
+nav a.active, nav a:hover { color: var(--primary); transform: scale(1.05); }
 
-/* ---------- Sections ---------- */
-section {
-  padding: 60px 20px;
-  max-width: 1000px;
-  margin: auto;
-}
+/* Sections */
+section { padding: 70px 20px; max-width: 1000px; margin: auto; }
 section h2 {
   font-family: 'Roboto Slab', serif;
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   margin-bottom: 20px;
-  color: var(--primary);
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* ---------- Cards ---------- */
+/* Cards */
 .card {
   background: var(--card-bg);
   padding: 25px;
   border-radius: 12px;
   margin-bottom: 25px;
-  box-shadow: 0 4px 15px var(--shadow);
-  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 20px var(--shadow);
+  transition: all 0.3s;
+  cursor: pointer;
 }
 .card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 10px 25px var(--shadow);
+  transform: scale(1.05) rotate(-1deg);
+  box-shadow: 0 12px 30px var(--shadow);
+  border-left: 3px solid var(--primary);
 }
 
-/* ---------- Grid Layout ---------- */
+/* Grid */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px;
 }
 
-/* ---------- Blog Post Button ---------- */
+/* Blog Button */
 .blog-post button {
   margin-top: 12px;
   padding: 8px 16px;
   border-radius: 6px;
   border: none;
-  background: var(--primary);
+  background: linear-gradient(45deg, var(--primary), var(--accent));
   color: #fff;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 700;
   transition: all 0.3s;
 }
 .blog-post button:hover {
-  background: var(--accent);
+  background: linear-gradient(45deg, var(--accent), var(--primary));
+  transform: scale(1.05);
+  box-shadow: 0 0 10px var(--accent);
 }
 
-/* ---------- Footer ---------- */
+/* Footer */
 footer {
   text-align: center;
   padding: 40px 20px;
@@ -118,10 +144,10 @@ footer {
   color: #999;
 }
 
-/* ---------- Animations ---------- */
-.animate { visibility: hidden; } /* fade-in on scroll handled via JS */
+/* Animate */
+.animate { visibility: hidden; }
 
-/* ---------- Responsive ---------- */
+/* Responsive */
 @media (max-width: 600px){
   nav { flex-direction: column; }
   nav a { padding: 12px; }
@@ -133,7 +159,7 @@ footer {
 <!-- Header -->
 <header>
   <h1 class="animate">Nalin Agarwal</h1>
-  <p class="animate">AI & Robotics • Research • Full-Stack Developer</p>
+  <div id="buzzwords" class="animate"></div>
 </header>
 
 <!-- Navigation -->
@@ -146,84 +172,65 @@ footer {
   <a href="#contact" class="nav-link">Contact</a>
 </nav>
 
-<!-- About Section -->
-<section id="about" class="animate">
-  <h2>About Me</h2>
-  <div class="card">
-    <p>Graduate student at University of Edinburgh specializing in AI, Robotics, and Reinforcement Learning. Passionate about research, building impactful systems, and clean code.</p>
-  </div>
-</section>
+<!-- Sections -->
+<section id="about" class="animate"><h2>About Me</h2>
+<div class="card">AI, Robotics, Reinforcement Learning enthusiast. Self-taught coder. Passionate about building impactful systems.</div></section>
 
-<!-- Education Section -->
-<section id="education" class="animate">
-  <h2>Education</h2>
-  <div class="card">
-    <p><strong>M.Sc. AI</strong> – University of Edinburgh</p>
-    <p><strong>B.Tech Engineering Physics</strong> – Delhi Technological University</p>
-  </div>
-</section>
+<section id="education" class="animate"><h2>Education</h2>
+<div class="card"><strong>M.Sc. AI</strong> – University of Edinburgh</div>
+<div class="card"><strong>B.Tech Engineering Physics</strong> – Delhi Technological University</div></section>
 
-<!-- Research Section -->
-<section id="research" class="animate">
-  <h2>Research Experience</h2>
-  <div class="grid">
-    <div class="card">C-DAC: Quantum AI & QML</div>
-    <div class="card">IIT Delhi: Oceanic Data Analysis</div>
-    <div class="card">ISRO SAC: Marine Heatwave Detection</div>
-  </div>
-</section>
+<section id="research" class="animate"><h2>Research Experience</h2>
+<div class="grid">
+<div class="card">C-DAC: Quantum AI & QML</div>
+<div class="card">IIT Delhi: Oceanic Data Analysis</div>
+<div class="card">ISRO SAC: Marine Heatwave Detection</div>
+</div></section>
 
-<!-- Projects Section -->
-<section id="projects" class="animate">
-  <h2>Projects</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Cricket Scorecard DBMS</h3>
-      <p>C++ DBMS to store/manage cricket scorecards with CRUD functionalities.</p>
-    </div>
-    <div class="card">
-      <h3>Gamer’s Paradise</h3>
-      <p>Web app using HTML, CSS, Flask, SQL to manage personalized gaming playlists.</p>
-    </div>
-  </div>
-</section>
+<section id="projects" class="animate"><h2>Projects</h2>
+<div class="grid">
+<div class="card">Cricket Scorecard DBMS (C++)</div>
+<div class="card">Gamer's Paradise (Flask & SQL)</div>
+</div></section>
 
-<!-- Blog Section -->
-<section id="blog" class="animate">
-  <h2>Blog</h2>
-  <div class="grid">
-    <div class="card blog-post">
-      <h3>Hybrid Quantum CNNs for Wildfire Detection</h3>
-      <p class="summary">Hybrid quantum-classical CNN for forest wildfire detection using IBM Qiskit.</p>
-      <p class="more">Focused on combining classical convolutional layers with quantum layers to improve pattern recognition. Early results show promise for wildfire early warning systems.</p>
-      <button onclick="toggleRead(this)">Read More</button>
-    </div>
-    <div class="card blog-post">
-      <h3>Marine Heatwave Analysis</h3>
-      <p class="summary">Analyzing 40 years of satellite data on marine heatwaves.</p>
-      <p class="more">Studied seasonal patterns, correlations with cyclones, and climate impact. Python plots and visualizations were used for research.</p>
-      <button onclick="toggleRead(this)">Read More</button>
-    </div>
-  </div>
-</section>
+<section id="blog" class="animate"><h2>Blog</h2>
+<div class="grid">
+<div class="card blog-post">
+<h3>Hybrid Quantum CNNs for Wildfire Detection</h3>
+<p class="summary">Hybrid quantum-classical CNN for forest wildfire detection using IBM Qiskit.</p>
+<button onclick="toggleRead(this)">Read More</button>
+<p class="more">Early results show promise for wildfire early warning systems. Full analysis includes data visualizations and accuracy metrics.</p>
+</div></div></section>
 
-<!-- Contact Section -->
-<section id="contact" class="animate">
-  <h2>Contact</h2>
-  <div class="card">
-    <p>Email: <a href="mailto:s2749986@ed.ac.uk">s2749986@ed.ac.uk</a></p>
-    <p>LinkedIn | GitHub | Edinburgh, UK</p>
-  </div>
-</section>
+<section id="contact" class="animate"><h2>Contact</h2>
+<div class="card">Email: <a href="mailto:s2749986@ed.ac.uk">s2749986@ed.ac.uk</a><br>LinkedIn | GitHub | Edinburgh, UK</div></section>
 
-<!-- Footer -->
-<footer>
-  &copy; 2026 Nalin Agarwal
-</footer>
+<footer>&copy; 2026 Nalin Agarwal</footer>
 
-<!-- JavaScript -->
 <script>
-// Blog Read More Toggle
+// Buzzwords typing effect
+const buzzwords = ["AI", "Robotics", "ML", "Quantum", "AR/VR"];
+let i=0, j=0;
+const target = document.getElementById("buzzwords");
+function typeBuzz() {
+  if(i >= buzzwords.length) i=0;
+  let word = buzzwords[i];
+  if(j < word.length){
+    target.textContent += word[j];
+    j++;
+    setTimeout(typeBuzz, 150);
+  } else {
+    setTimeout(() => {
+      target.textContent = '';
+      j=0;
+      i++;
+      typeBuzz();
+    }, 1000);
+  }
+}
+typeBuzz();
+
+// Blog Read More
 function toggleRead(btn){
   const card = btn.parentElement;
   const more = card.querySelector('.more');
@@ -231,14 +238,14 @@ function toggleRead(btn){
   btn.textContent = btn.textContent === 'Read More' ? 'Show Less' : 'Read More';
 }
 
-// Scroll highlight for nav links
+// Scroll highlight nav links
 const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('.nav-link');
 window.addEventListener('scroll', () => {
   let current = '';
   sections.forEach(section => {
-    const sectionTop = section.offsetTop - 70;
-    if (pageYOffset >= sectionTop) current = section.getAttribute('id');
+    const sectionTop = section.offsetTop - 80;
+    if(pageYOffset >= sectionTop) current = section.getAttribute('id');
   });
   navLinks.forEach(link => link.classList.remove('active'));
   if(current) document.querySelector(`nav a[href="#${current}"]`).classList.add('active');
@@ -250,11 +257,11 @@ const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if(entry.isIntersecting){
       entry.target.classList.add('animate__animated','animate__fadeInUp');
-      entry.target.style.visibility = 'visible';
+      entry.target.style.visibility='visible';
     }
   });
-}, { threshold: 0.2 });
-animateElements.forEach(el => observer.observe(el));
+},{threshold:0.2});
+animateElements.forEach(el=>observer.observe(el));
 </script>
 
 </body>
