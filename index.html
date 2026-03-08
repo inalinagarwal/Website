@@ -1,224 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nalin Agarwal | Portfolio & Blog</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    /* Global Styles */
-    body {
-      font-family: 'Roboto', sans-serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      color: #333;
-      background-color: #f9f9f9;
-    }
-    a { text-decoration: none; color: #007acc; }
-    a:hover { text-decoration: underline; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nalin Agarwal | AI & Robotics Portfolio</title>
 
-    /* Header */
-    header {
-      background: #007acc;
-      color: white;
-      padding: 20px 0;
-      text-align: center;
-    }
-    header h1 { margin: 0; font-size: 2rem; }
-    header p { margin: 5px 0; font-size: 1rem; }
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Slab:wght@500;700&display=swap" rel="stylesheet">
 
-    /* Navigation */
-    nav {
-      display: flex;
-      justify-content: center;
-      background: #005f99;
-      flex-wrap: wrap;
-    }
-    nav a {
-      color: white;
-      padding: 15px 20px;
-      display: inline-block;
-    }
-    nav a:hover { background: #004466; }
+<!-- Animate.css for animations -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
-    /* Sections */
-    section {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-    section h2 {
-      border-bottom: 2px solid #007acc;
-      padding-bottom: 5px;
-      margin-bottom: 15px;
-    }
+<style>
+/* ---------- Root & Colors ---------- */
+:root {
+  --primary: #00bfff;
+  --accent: #ff4c60;
+  --bg: #121212;
+  --card-bg: #1f1f1f;
+  --text: #e0e0e0;
+  --shadow: rgba(0, 0, 0, 0.5);
+}
 
-    /* Cards for projects/research/blog */
-    .card {
-      background: white;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      border-radius: 8px;
-    }
-    .card h3 { margin-top: 0; }
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  scroll-behavior: smooth;
+}
 
-    /* Blog specific */
-    .blog-post { margin-bottom: 15px; }
-    .blog-post p { margin: 5px 0; color: #555; }
-    .blog-post a { color: #007acc; }
+/* ---------- Header ---------- */
+header {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #fff;
+}
+header h1 { font-family: 'Roboto Slab', serif; font-size: 3rem; margin: 0; }
+header p { font-size: 1.2rem; margin-top: 10px; }
 
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 20px 0;
-      background: #007acc;
-      color: white;
-    }
+/* ---------- Navigation ---------- */
+nav {
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 100;
+  border-bottom: 1px solid #222;
+}
+nav a {
+  padding: 15px 20px;
+  color: var(--text);
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+nav a.active, nav a:hover { color: var(--primary); }
 
-    /* Responsive */
-    @media (max-width: 600px){
-      nav { flex-direction: column; }
-      nav a { padding: 10px; }
-    }
-  </style>
+/* ---------- Sections ---------- */
+section {
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+section h2 {
+  font-family: 'Roboto Slab', serif;
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px var(--shadow);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 10px 25px var(--shadow);
+}
+
+/* ---------- Grid Layout ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+/* ---------- Blog Post Button ---------- */
+.blog-post button {
+  margin-top: 12px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+.blog-post button:hover {
+  background: var(--accent);
+}
+
+/* ---------- Footer ---------- */
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  border-top: 1px solid #222;
+  font-size: 0.95rem;
+  color: #999;
+}
+
+/* ---------- Animations ---------- */
+.animate { visibility: hidden; } /* fade-in on scroll handled via JS */
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px){
+  nav { flex-direction: column; }
+  nav a { padding: 12px; }
+}
+</style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <h1>Nalin Agarwal</h1>
-    <p>AI & Robotics | Research | Full-stack Developer</p>
-    <p>
-      +44 7770025803 | 
-      <a href="mailto:s2749986@ed.ac.uk">s2749986@ed.ac.uk</a> | 
-      <a href="#">LinkedIn</a> | 
-      <a href="#">GitHub</a> | Edinburgh, Scotland, UK
-    </p>
-  </header>
+<!-- Header -->
+<header>
+  <h1 class="animate">Nalin Agarwal</h1>
+  <p class="animate">AI & Robotics • Research • Full-Stack Developer</p>
+</header>
 
-  <!-- Navigation -->
-  <nav>
-    <a href="#about">About</a>
-    <a href="#education">Education</a>
-    <a href="#research">Research</a>
-    <a href="#projects">Projects</a>
-    <a href="#blog">Blog</a>
-    <a href="#contact">Contact</a>
-  </nav>
+<!-- Navigation -->
+<nav>
+  <a href="#about" class="nav-link">About</a>
+  <a href="#education" class="nav-link">Education</a>
+  <a href="#research" class="nav-link">Research</a>
+  <a href="#projects" class="nav-link">Projects</a>
+  <a href="#blog" class="nav-link">Blog</a>
+  <a href="#contact" class="nav-link">Contact</a>
+</nav>
 
-  <!-- About -->
-  <section id="about">
-    <h2>About Me</h2>
-    <p>
-      Highly motivated graduate student specializing in Robotics, Reinforcement Learning, Artificial Intelligence,
-      and interdisciplinary fields like Neuroscience and AR/VR/Graphics. Skilled in self-learning, clean communication, adaptability, and teamwork.
-    </p>
-    <h3>Skills</h3>
-    <p>
-      <strong>Technical:</strong> C/C++, Python, MATLAB, HTML, CSS, JavaScript, SQL, Git, Linux, Flask, Jinja, Godot, LaTeX, Adobe Creative Suite, Silvaco TCAD, Pennylane<br>
-      <strong>Practical:</strong> Visual Design, Data Analysis, Data Visualization, Marketing, Leadership, Creativity, Management
-    </p>
-  </section>
+<!-- About Section -->
+<section id="about" class="animate">
+  <h2>About Me</h2>
+  <div class="card">
+    <p>Graduate student at University of Edinburgh specializing in AI, Robotics, and Reinforcement Learning. Passionate about research, building impactful systems, and clean code.</p>
+  </div>
+</section>
 
-  <!-- Education -->
-  <section id="education">
-    <h2>Education</h2>
-    <div class="card">
-      <h3>The University of Edinburgh</h3>
-      <p>M.Sc. in Artificial Intelligence | GPA: - | Sept 2025 – Present | Edinburgh, Scotland, UK</p>
-      <p>Specializing in Robotics & Reinforcement Learning. Coursework: Advanced Robotics, RL, Probabilistic Modeling, Machine Learning, Computational Neuroscience, Introduction to Quantum Computing.</p>
-    </div>
-    <div class="card">
-      <h3>Delhi Technological University</h3>
-      <p>B.Tech. in Engineering Physics | GPA: 9.18 | Dec 2020 – May 2024 | New Delhi, India</p>
-      <p>Major: Electronics & Communications Engineering, Minor: Computer Science. Coursework includes Physics, Mathematics, Semiconductors, Data Structures, OS, Computer Networks, Graphics.</p>
-    </div>
-  </section>
+<!-- Education Section -->
+<section id="education" class="animate">
+  <h2>Education</h2>
+  <div class="card">
+    <p><strong>M.Sc. AI</strong> – University of Edinburgh</p>
+    <p><strong>B.Tech Engineering Physics</strong> – Delhi Technological University</p>
+  </div>
+</section>
 
-  <!-- Research -->
-  <section id="research">
-    <h2>Research Experience</h2>
-    <div class="card">
-      <h3>Centre for Development of Advanced Computing (C-DAC)</h3>
-      <p>Research Assistant | Nov 2024 – Mar 2025 | Pune, India</p>
-      <ul>
-        <li>Quantum Computing with focus on Quantum AI & QML.</li>
-        <li>Studied QAOA & VQE algorithms.</li>
-        <li>Working on Hybrid Quantum CNNs for wildfire detection using IBM Qiskit.</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>IIT Delhi (CAS)</h3>
-      <p>Research Fellowship | Feb 2024 – Oct 2024 | New Delhi, India</p>
-      <ul>
-        <li>Computational analysis of oceanic events across Seychelles-Chagos Thermocline Ridge.</li>
-        <li>Python data analysis to identify heatwave hotspots; correlation with IOD/ENSO metrics.</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>ISRO Space Applications Centre</h3>
-      <p>Research Assistant | May 2022 – Jul 2022 & Jun 2023 – Aug 2023 | Ahmedabad, India</p>
-      <ul>
-        <li>Analyzed marine heatwaves using satellite data over 40 years.</li>
-        <li>Developed real-time detection tool; studied cyclone correlations.</li>
-      </ul>
-    </div>
-  </section>
+<!-- Research Section -->
+<section id="research" class="animate">
+  <h2>Research Experience</h2>
+  <div class="grid">
+    <div class="card">C-DAC: Quantum AI & QML</div>
+    <div class="card">IIT Delhi: Oceanic Data Analysis</div>
+    <div class="card">ISRO SAC: Marine Heatwave Detection</div>
+  </div>
+</section>
 
-  <!-- Projects -->
-  <section id="projects">
-    <h2>Projects</h2>
+<!-- Projects Section -->
+<section id="projects" class="animate">
+  <h2>Projects</h2>
+  <div class="grid">
     <div class="card">
       <h3>Cricket Scorecard DBMS</h3>
-      <p>C++ project to store and manage cricket scorecards like Cricbuzz, with full CRUD functionalities.</p>
+      <p>C++ DBMS to store/manage cricket scorecards with CRUD functionalities.</p>
     </div>
     <div class="card">
       <h3>Gamer’s Paradise</h3>
-      <p>Web app using HTML, CSS, Flask, SQL to organize gaming playlists, add, delete, and search games.</p>
+      <p>Web app using HTML, CSS, Flask, SQL to manage personalized gaming playlists.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Blog -->
-  <section id="blog">
-    <h2>Blog</h2>
-
+<!-- Blog Section -->
+<section id="blog" class="animate">
+  <h2>Blog</h2>
+  <div class="grid">
     <div class="card blog-post">
-      <h3>Exploring Hybrid Quantum CNNs for Wildfire Detection</h3>
-      <p><em>March 2025</em></p>
-      <p>This post discusses my research at C-DAC where I implemented a hybrid quantum-classical convolutional neural network to detect wildfires in forest imagery using IBM Qiskit.</p>
-      <a href="#">Read more →</a>
+      <h3>Hybrid Quantum CNNs for Wildfire Detection</h3>
+      <p class="summary">Hybrid quantum-classical CNN for forest wildfire detection using IBM Qiskit.</p>
+      <p class="more">Focused on combining classical convolutional layers with quantum layers to improve pattern recognition. Early results show promise for wildfire early warning systems.</p>
+      <button onclick="toggleRead(this)">Read More</button>
     </div>
-
     <div class="card blog-post">
-      <h3>Marine Heatwave Analysis with Satellite Data</h3>
-      <p><em>August 2023</em></p>
-      <p>A summary of my work at ISRO, analyzing global marine heatwave patterns over 40 years and their correlation with cyclone activity in the Indian Ocean.</p>
-      <a href="#">Read more →</a>
+      <h3>Marine Heatwave Analysis</h3>
+      <p class="summary">Analyzing 40 years of satellite data on marine heatwaves.</p>
+      <p class="more">Studied seasonal patterns, correlations with cyclones, and climate impact. Python plots and visualizations were used for research.</p>
+      <button onclick="toggleRead(this)">Read More</button>
     </div>
+  </div>
+</section>
 
-    <div class="card blog-post">
-      <h3>Computational Analysis of Oceanic Events</h3>
-      <p><em>Oct 2024</em></p>
-      <p>Insights from my fellowship at IIT Delhi on the Seychelles-Chagos Thermocline Ridge, identifying heatwave hotspots and correlating them with oceanic indices using Python and statistical modeling.</p>
-      <a href="#">Read more →</a>
-    </div>
+<!-- Contact Section -->
+<section id="contact" class="animate">
+  <h2>Contact</h2>
+  <div class="card">
+    <p>Email: <a href="mailto:s2749986@ed.ac.uk">s2749986@ed.ac.uk</a></p>
+    <p>LinkedIn | GitHub | Edinburgh, UK</p>
+  </div>
+</section>
 
-    <p><strong>Tip:</strong> To add more blog posts, just copy a `<div class="card blog-post">` block and update the content and date.</p>
-  </section>
+<!-- Footer -->
+<footer>
+  &copy; 2026 Nalin Agarwal
+</footer>
 
-  <!-- Contact -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Reach out via email: <a href="mailto:s2749986@ed.ac.uk">s2749986@ed.ac.uk</a></p>
-    <p>LinkedIn | GitHub | Edinburgh, Scotland, UK</p>
-  </section>
+<!-- JavaScript -->
+<script>
+// Blog Read More Toggle
+function toggleRead(btn){
+  const card = btn.parentElement;
+  const more = card.querySelector('.more');
+  more.style.display = more.style.display === 'block' ? 'none' : 'block';
+  btn.textContent = btn.textContent === 'Read More' ? 'Show Less' : 'Read More';
+}
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2026 Nalin Agarwal. All rights reserved.</p>
-  </footer>
+// Scroll highlight for nav links
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('.nav-link');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 70;
+    if (pageYOffset >= sectionTop) current = section.getAttribute('id');
+  });
+  navLinks.forEach(link => link.classList.remove('active'));
+  if(current) document.querySelector(`nav a[href="#${current}"]`).classList.add('active');
+});
+
+// Animate on scroll
+const animateElements = document.querySelectorAll('.animate');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('animate__animated','animate__fadeInUp');
+      entry.target.style.visibility = 'visible';
+    }
+  });
+}, { threshold: 0.2 });
+animateElements.forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
