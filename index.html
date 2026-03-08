@@ -3,95 +3,117 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nalin Agarwal | Funky Portfolio</title>
+<title>Nalin Agarwal | Nerdy Superhero Portfolio</title>
 
 <!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Slab:wght@500;700&family=Press+Start+2P&display=swap" rel="stylesheet">
-
-<!-- Animate.css -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --primary: #00f0ff;
-  --accent: #ff00c8;
-  --bg: #121212;
-  --card-bg: #1f1f1f;
+  --bg: #0a0a0a;
   --text: #e0e0e0;
+  --primary: #FFD700; /* yellow */
+  --accent: #FF8C00;  /* orange */
+  --card-bg: #1b1b1b;
   --shadow: rgba(0,0,0,0.5);
 }
 
 body {
-  margin: 0;
-  font-family: 'Roboto', sans-serif;
+  margin:0;
+  font-family: 'Orbitron', sans-serif;
   background: var(--bg);
   color: var(--text);
   scroll-behavior: smooth;
+  overflow-x:hidden;
+  cursor:none;
 }
 
+/* Custom Cursor Trail */
+#cursor-trail {
+  position:fixed;
+  top:0; left:0;
+  width:10px; height:10px;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:9999;
+  background: var(--primary);
+  box-shadow: 0 0 10px var(--primary), 0 0 20px var(--accent);
+  transition: transform 0.03s linear;
+}
+
+/* Hero */
 header {
-  text-align: center;
-  padding: 80px 20px;
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  color: #fff;
   position: relative;
+  text-align: center;
+  padding: 150px 20px;
   overflow: hidden;
 }
-
-header h1 {
-  font-family: 'Roboto Slab', serif;
-  font-size: 3rem;
-  margin: 0;
+#hero-name {
+  font-size:4rem;
+  color: var(--primary);
+  text-shadow: 0 0 10px var(--primary), 0 0 20px var(--accent);
+  transition: all 0.3s;
+  z-index:2;
+  position:relative;
 }
-
-#buzzwords {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 1.2rem;
+#hero-name:hover { transform: scale(1.05) rotate(-1deg); }
+#hero-tagline {
+  font-size:1.3rem;
   margin-top: 15px;
-  color: #fff;
+  color: var(--accent);
+  z-index:2;
+  position:relative;
 }
 
-header h1:hover {
-  background: linear-gradient(45deg, #00f0ff, #ff00c8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: pulse 1s infinite alternate;
+/* Background canvas for nodes/circuits */
+#hud-canvas {
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  z-index:0;
+  pointer-events:none;
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.05); }
-}
-
-/* Nav */
+/* Navigation */
 nav {
-  display: flex;
-  justify-content: center;
+  display:flex;
+  justify-content:center;
   position: sticky;
-  top: 0;
+  top:0;
   background: var(--bg);
-  z-index: 100;
-  border-bottom: 1px solid #222;
-  transition: 0.3s;
+  z-index:100;
+  border-bottom:1px solid #222;
 }
 nav a {
   padding: 15px 20px;
   color: var(--text);
   font-weight: 600;
-  text-decoration: none;
   transition: all 0.3s;
 }
 nav a.active, nav a:hover { color: var(--primary); transform: scale(1.05); }
 
 /* Sections */
-section { padding: 70px 20px; max-width: 1000px; margin: auto; }
+section { padding:70px 20px; max-width:1000px; margin:auto; }
 section h2 {
-  font-family: 'Roboto Slab', serif;
-  font-size: 2.4rem;
-  margin-bottom: 20px;
+  font-size:2.5rem;
+  margin-bottom:25px;
   background: linear-gradient(90deg, var(--primary), var(--accent));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* About */
+#about-content {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:20px;
+}
+#about-content img {
+  width:200px;
+  border-radius:50%;
+  border: 3px solid var(--accent);
+  box-shadow: 0 0 20px var(--accent);
 }
 
 /* Cards */
@@ -99,162 +121,180 @@ section h2 {
   background: var(--card-bg);
   padding: 25px;
   border-radius: 12px;
-  margin-bottom: 25px;
-  box-shadow: 0 4px 20px var(--shadow);
-  transition: all 0.3s;
-  cursor: pointer;
+  margin-bottom:25px;
+  box-shadow:0 4px 20px var(--shadow);
+  transition: transform 0.3s, box-shadow 0.3s, border-left 0.3s;
+  cursor:pointer;
+  border-left:3px solid transparent;
 }
 .card:hover {
-  transform: scale(1.05) rotate(-1deg);
-  box-shadow: 0 12px 30px var(--shadow);
-  border-left: 3px solid var(--primary);
+  transform: scale(1.1) rotate(-1deg);
+  box-shadow:0 12px 30px var(--shadow);
+  border-left:3px solid var(--accent);
 }
 
 /* Grid */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
 }
 
-/* Blog Button */
+/* Blog read button */
 .blog-post button {
-  margin-top: 12px;
-  padding: 8px 16px;
-  border-radius: 6px;
-  border: none;
-  background: linear-gradient(45deg, var(--primary), var(--accent));
-  color: #fff;
-  cursor: pointer;
-  font-weight: 700;
+  margin-top:12px;
+  padding:8px 16px;
+  border-radius:6px;
+  border:none;
+  background: linear-gradient(45deg,var(--primary),var(--accent));
+  color:#000;
+  font-weight:700;
+  cursor:pointer;
   transition: all 0.3s;
 }
 .blog-post button:hover {
-  background: linear-gradient(45deg, var(--accent), var(--primary));
+  background: linear-gradient(45deg,var(--accent),var(--primary));
   transform: scale(1.05);
-  box-shadow: 0 0 10px var(--accent);
+  box-shadow:0 0 10px var(--accent);
 }
+
+/* Modal */
+.modal {
+  display:none;
+  position:fixed;
+  z-index:200;
+  left:0; top:0;
+  width:100%; height:100%;
+  overflow:auto;
+  background: rgba(0,0,0,0.95);
+}
+.modal-content {
+  background: var(--card-bg);
+  margin:10% auto;
+  padding:25px;
+  border-radius:12px;
+  max-width:600px;
+  box-shadow:0 0 20px var(--shadow);
+  animation: animateModal 0.5s ease-out;
+}
+@keyframes animateModal {
+  from { transform: scale(0.8); opacity:0; }
+  to { transform: scale(1); opacity:1; }
+}
+.close {
+  color: var(--accent);
+  float:right;
+  font-size:28px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.close:hover { color: var(--primary); }
 
 /* Footer */
-footer {
-  text-align: center;
-  padding: 40px 20px;
-  border-top: 1px solid #222;
-  font-size: 0.95rem;
-  color: #999;
-}
+footer { text-align:center; padding:40px 20px; border-top:1px solid #222; font-size:0.95rem; color:#999; }
 
-/* Animate */
-.animate { visibility: hidden; }
+/* Animate elements on scroll */
+.animate { visibility:hidden; }
 
 /* Responsive */
-@media (max-width: 600px){
-  nav { flex-direction: column; }
-  nav a { padding: 12px; }
+@media(max-width:800px){
+  #about-content { flex-direction:column; text-align:center; }
+  #about-content img { margin:auto; }
 }
 </style>
 </head>
 <body>
 
-<!-- Header -->
+<!-- Custom Cursor Trail -->
+<div id="cursor-trail"></div>
+
+<!-- Hero -->
 <header>
-  <h1 class="animate">Nalin Agarwal</h1>
-  <div id="buzzwords" class="animate"></div>
+  <h1 class="animate" id="hero-name">Nalin Agarwal</h1>
+  <div id="hero-tagline" class="animate">Building robots to eventually replace myself 🤖</div>
+  <canvas id="hud-canvas"></canvas>
 </header>
 
 <!-- Navigation -->
 <nav>
   <a href="#about" class="nav-link">About</a>
-  <a href="#education" class="nav-link">Education</a>
-  <a href="#research" class="nav-link">Research</a>
   <a href="#projects" class="nav-link">Projects</a>
-  <a href="#blog" class="nav-link">Blog</a>
+  <a href="#blogs" class="nav-link">Blogs</a>
   <a href="#contact" class="nav-link">Contact</a>
 </nav>
 
-<!-- Sections -->
-<section id="about" class="animate"><h2>About Me</h2>
-<div class="card">AI, Robotics, Reinforcement Learning enthusiast. Self-taught coder. Passionate about building impactful systems.</div></section>
+<!-- About -->
+<section id="about" class="animate">
+  <h2>About Me</h2>
+  <div id="about-content">
+    <img src="https://via.placeholder.com/200" alt="Nalin Agarwal">
+    <p>Hi! I’m Nalin, a robotics & AI nerd obsessed with building tech to make life easier… and maybe replace myself someday. Multifaceted nerd exploring AI, RL, Quantum computing, and AR/VR technologies. 🤓</p>
+  </div>
+</section>
 
-<section id="education" class="animate"><h2>Education</h2>
-<div class="card"><strong>M.Sc. AI</strong> – University of Edinburgh</div>
-<div class="card"><strong>B.Tech Engineering Physics</strong> – Delhi Technological University</div></section>
+<!-- Projects -->
+<section id="projects" class="animate">
+  <h2>Projects</h2>
+  <div class="grid">
+    <div class="card project-card" onclick="openModal(0)">Cricket Scorecard DBMS</div>
+    <div class="card project-card" onclick="openModal(1)">Gamer's Paradise</div>
+    <div class="card project-card" onclick="openModal(2)">Quantum Wildfire Detection</div>
+    <div class="card project-card" onclick="openModal(3)">Marine Heatwave Analyzer</div>
+  </div>
+</section>
 
-<section id="research" class="animate"><h2>Research Experience</h2>
-<div class="grid">
-<div class="card">C-DAC: Quantum AI & QML</div>
-<div class="card">IIT Delhi: Oceanic Data Analysis</div>
-<div class="card">ISRO SAC: Marine Heatwave Detection</div>
-</div></section>
+<!-- Blogs -->
+<section id="blogs" class="animate">
+  <h2>Blog</h2>
+  <div class="grid">
+    <div class="card blog-post">
+      <h3>Cricket DBMS</h3>
+      <p class="summary">Managing cricket scores like a pro 🏏</p>
+      <button onclick="toggleRead(this)">Read More</button>
+      <p class="more">Building a fully-featured database for cricket scorecards. Multifaceted nerd vibes activated. 🧩</p>
+    </div>
+    <div class="card blog-post">
+      <h3>Gamer's Paradise</h3>
+      <p class="summary">Organizing your gaming universe 🎮</p>
+      <button onclick="toggleRead(this)">Read More</button>
+      <p class="more">A web app to streamline game organization and playlists. Multitasking nerd mode: ON.</p>
+    </div>
+    <div class="card blog-post">
+      <h3>Psycho-Thriller Book Coming Along</h3>
+      <p class="summary">Multifaceted nerd side project 🕵️‍♂️</p>
+      <button onclick="toggleRead(this)">Read More</button>
+      <p class="more">A dark, twisted psychological noir novel, blending AI, dreams, and detective work. Stay tuned…</p>
+    </div>
+  </div>
+</section>
 
-<section id="projects" class="animate"><h2>Projects</h2>
-<div class="grid">
-<div class="card">Cricket Scorecard DBMS (C++)</div>
-<div class="card">Gamer's Paradise (Flask & SQL)</div>
-</div></section>
-
-<section id="blog" class="animate"><h2>Blog</h2>
-<div class="grid">
-<div class="card blog-post">
-<h3>Hybrid Quantum CNNs for Wildfire Detection</h3>
-<p class="summary">Hybrid quantum-classical CNN for forest wildfire detection using IBM Qiskit.</p>
-<button onclick="toggleRead(this)">Read More</button>
-<p class="more">Early results show promise for wildfire early warning systems. Full analysis includes data visualizations and accuracy metrics.</p>
-</div></div></section>
-
-<section id="contact" class="animate"><h2>Contact</h2>
-<div class="card">Email: <a href="mailto:s2749986@ed.ac.uk">s2749986@ed.ac.uk</a><br>LinkedIn | GitHub | Edinburgh, UK</div></section>
+<!-- Contact -->
+<section id="contact" class="animate">
+  <h2>Contact</h2>
+  <div class="card">
+    Email: <a href="mailto:s2749986@ed.ac.uk">s2749986@ed.ac.uk</a><br>
+    LinkedIn: <a href="#">LinkedIn</a> | GitHub: <a href="#">GitHub</a>
+  </div>
+</section>
 
 <footer>&copy; 2026 Nalin Agarwal</footer>
 
+<!-- Project Modal -->
+<div id="projectModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h3 id="modalTitle"></h3>
+    <p id="modalDesc"></p>
+    <p><strong>Tech Stack:</strong> <span id="modalTech"></span></p>
+    <img id="modalImg" src="" alt="Project Screenshot" style="width:100%; margin-top:15px; border-radius:10px;">
+  </div>
+</div>
+
 <script>
-// Buzzwords typing effect
-const buzzwords = ["AI", "Robotics", "ML", "Quantum", "AR/VR"];
-let i=0, j=0;
-const target = document.getElementById("buzzwords");
-function typeBuzz() {
-  if(i >= buzzwords.length) i=0;
-  let word = buzzwords[i];
-  if(j < word.length){
-    target.textContent += word[j];
-    j++;
-    setTimeout(typeBuzz, 150);
-  } else {
-    setTimeout(() => {
-      target.textContent = '';
-      j=0;
-      i++;
-      typeBuzz();
-    }, 1000);
-  }
-}
-typeBuzz();
-
-// Blog Read More
-function toggleRead(btn){
-  const card = btn.parentElement;
-  const more = card.querySelector('.more');
-  more.style.display = more.style.display === 'block' ? 'none' : 'block';
-  btn.textContent = btn.textContent === 'Read More' ? 'Show Less' : 'Read More';
-}
-
-// Scroll highlight nav links
-const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('.nav-link');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop - 80;
-    if(pageYOffset >= sectionTop) current = section.getAttribute('id');
-  });
-  navLinks.forEach(link => link.classList.remove('active'));
-  if(current) document.querySelector(`nav a[href="#${current}"]`).classList.add('active');
-});
-
-// Animate on scroll
-const animateElements = document.querySelectorAll('.animate');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
+// Scroll Animation
+const animateElements=document.querySelectorAll('.animate');
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
     if(entry.isIntersecting){
       entry.target.classList.add('animate__animated','animate__fadeInUp');
       entry.target.style.visibility='visible';
@@ -262,6 +302,101 @@ const observer = new IntersectionObserver(entries => {
   });
 },{threshold:0.2});
 animateElements.forEach(el=>observer.observe(el));
+
+// Blog Read More
+function toggleRead(btn){
+  const card=btn.parentElement;
+  const more=card.querySelector('.more');
+  more.style.display=more.style.display==='block'?'none':'block';
+  btn.textContent=btn.textContent==='Read More'?'Show Less':'Read More';
+}
+
+// Projects Modal
+const projects=[
+  {title:"Cricket Scorecard DBMS", desc:"C++ DBMS to store/edit/access cricket scorecards.", tech:"C++", img:"https://via.placeholder.com/600x300?text=Cricket+DBMS"},
+  {title:"Gamer's Paradise", desc:"Web app to organize your games and playlists.", tech:"HTML, CSS, Flask, SQL", img:"https://via.placeholder.com/600x300?text=Gamers+Paradise"},
+  {title:"Quantum Wildfire Detection", desc:"Hybrid quantum-classical CNN for wildfire detection.", tech:"Python, Qiskit, TensorFlow", img:"https://via.placeholder.com/600x300?text=Quantum+Wildfire"},
+  {title:"Marine Heatwave Analyzer", desc:"Satellite data analysis tool for marine heatwaves.", tech:"Python, Matplotlib, Pandas", img:"https://via.placeholder.com/600x300?text=Marine+Heatwave"}
+];
+const modal=document.getElementById("projectModal");
+const modalTitle=document.getElementById("modalTitle");
+const modalDesc=document.getElementById("modalDesc");
+const modalTech=document.getElementById("modalTech");
+const modalImg=document.getElementById("modalImg");
+function openModal(index){
+  modal.style.display="block";
+  modalTitle.textContent=projects[index].title;
+  modalDesc.textContent=projects[index].desc;
+  modalTech.textContent=projects[index].tech;
+  modalImg.src=projects[index].img;
+}
+function closeModal(){ modal.style.display="none"; }
+window.onclick=function(event){ if(event.target===modal) closeModal(); }
+
+// Cursor trail
+const cursor=document.getElementById("cursor-trail");
+document.addEventListener("mousemove",e=>{
+  cursor.style.transform=`translate(${e.clientX-5}px,${e.clientY-5}px)`;
+});
+
+// HUD canvas
+const canvas=document.getElementById("hud-canvas");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let nodes=[];
+for(let i=0;i<60;i++){
+  nodes.push({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height,
+    vx: (Math.random()-0.5)*0.5,
+    vy: (Math.random()-0.5)*0.5,
+    radius:2+Math.random()*3
+  });
+}
+
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  // draw nodes
+  nodes.forEach(n=>{
+    ctx.beginPath();
+    ctx.arc(n.x,n.y,n.radius,0,Math.PI*2);
+    ctx.fillStyle=varColor(n.radius);
+    ctx.fill();
+  });
+  // draw connections
+  for(let i=0;i<nodes.length;i++){
+    for(let j=i+1;j<nodes.length;j++){
+      let dx=nodes[i].x-nodes[j].x;
+      let dy=nodes[i].y-nodes[j].y;
+      let dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<120){
+        ctx.strokeStyle=`rgba(255,215,0,${1-dist/120})`;
+        ctx.lineWidth=1;
+        ctx.beginPath();
+        ctx.moveTo(nodes[i].x,nodes[i].y);
+        ctx.lineTo(nodes[j].x,nodes[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+  // move nodes
+  nodes.forEach(n=>{
+    n.x+=n.vx; n.y+=n.vy;
+    if(n.x<0||n.x>canvas.width) n.vx*=-1;
+    if(n.y<0||n.y>canvas.height) n.vy*=-1;
+  });
+  requestAnimationFrame(draw);
+}
+function varColor(radius){ return radius>4?'#FFD700':'#FF8C00'; }
+draw();
+
+// Resize
+window.addEventListener("resize",()=>{
+  canvas.width=window.innerWidth;
+  canvas.height=window.innerHeight;
+});
 </script>
 
 </body>
