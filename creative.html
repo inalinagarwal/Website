@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nalin Agarwal — Creative</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700;900&family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #faf8f4; --bg2: #f2ede4; --ink: #1a1612; --ink2: #4a3f35;
+      --muted: #9a8e84; --orange: #e85d2f; --yellow: #f5c842;
+      --green: #2d9e6b; --border: rgba(26,22,18,0.1);
+      --font-display: 'Unbounded', sans-serif;
+      --font-serif: 'Lora', serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.6; overflow-x: hidden; cursor: none; }
+
+    .cursor { position: fixed; width: 10px; height: 10px; background: var(--orange); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); }
+    .cursor-ring { position: fixed; width: 36px; height: 36px; border: 2px solid var(--orange); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s; opacity: 0.4; }
+    .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--orange); z-index: 200; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 4rem; background: rgba(250,248,244,0.93); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+    .nav-left { display: flex; align-items: center; gap: 1.2rem; }
+    .nav-logo { font-family: var(--font-display); font-weight: 700; font-size: 0.82rem; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; }
+    .nav-pipe { color: var(--muted); font-size: 0.9rem; }
+    .nav-tag { font-family: var(--font-display); font-weight: 600; font-size: 0.68rem; letter-spacing: 0.04em; color: var(--orange); background: rgba(232,93,47,0.08); padding: 0.22rem 0.7rem; border-radius: 100px; border: 1px solid rgba(232,93,47,0.2); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-family: var(--font-body); font-size: 0.85rem; color: var(--ink2); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-back { font-family: var(--font-body); font-size: 0.82rem; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
+    .nav-back:hover { color: var(--ink); }
+
+    section { padding: 7rem 4rem; position: relative; }
+
+    /* HERO */
+    #hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 5rem; padding-top: 8rem; }
+    .hero-tag { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-body); font-size: 0.78rem; color: var(--orange); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.5rem; animation: fadeUp 0.5s ease both; }
+    .hero-tag::before { content: ''; width: 24px; height: 2px; background: var(--orange); }
+    h1.hero-title { font-family: var(--font-display); font-weight: 900; font-size: clamp(2.8rem, 5.5vw, 5.2rem); line-height: 1.0; letter-spacing: -0.04em; animation: fadeUp 0.6s 0.1s ease both; }
+    h1.hero-title .accent { color: var(--orange); }
+    h1.hero-title .outline { color: transparent; -webkit-text-stroke: 2px var(--ink); }
+    .hero-desc { margin-top: 1.8rem; font-family: var(--font-serif); font-style: italic; font-size: 1.05rem; color: var(--ink2); line-height: 1.75; max-width: 480px; animation: fadeUp 0.6s 0.2s ease both; }
+    .hero-desc strong { font-style: normal; color: var(--ink); font-weight: 600; }
+    .hero-ctas { margin-top: 2.2rem; display: flex; gap: 1rem; animation: fadeUp 0.6s 0.3s ease both; }
+    .btn-fill { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--ink); color: var(--bg); font-family: var(--font-display); font-weight: 600; font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.9rem 1.8rem; text-decoration: none; border-radius: 2px; transition: background 0.2s, transform 0.2s; }
+    .btn-fill:hover { background: var(--orange); transform: translateY(-2px); }
+    .btn-outline { display: inline-flex; align-items: center; gap: 0.5rem; border: 2px solid var(--ink); color: var(--ink); font-family: var(--font-display); font-weight: 600; font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.9rem 1.8rem; text-decoration: none; border-radius: 2px; transition: all 0.2s; }
+    .btn-outline:hover { border-color: var(--orange); color: var(--orange); transform: translateY(-2px); }
+
+    /* Hero collage */
+    .hero-right { position: relative; height: 580px; animation: fadeUp 0.8s 0.4s ease both; }
+    .hci { position: absolute; border-radius: 6px; box-shadow: 0 8px 40px rgba(0,0,0,0.13); overflow: hidden; transition: transform 0.3s, z-index 0s; }
+    .hci img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hci:hover { transform: scale(1.04) rotate(0deg) !important; z-index: 10; box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
+    .hci-1 { width: 255px; height: 195px; top: 20px; left: 10px; transform: rotate(-3deg); }
+    .hci-2 { width: 195px; height: 195px; top: 10px; right: 30px; transform: rotate(4deg); }
+    .hci-3 { width: 235px; height: 175px; bottom: 170px; left: 0; transform: rotate(2deg); }
+    .hci-4 { width: 215px; height: 215px; bottom: 60px; right: 15px; transform: rotate(-5deg); }
+    .hci-5 { width: 175px; height: 140px; bottom: 20px; left: 90px; transform: rotate(1.5deg); }
+    .hero-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 110px; height: 110px; background: var(--orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 5; animation: spinBadge 18s linear infinite; }
+    @keyframes spinBadge { to { transform: translate(-50%,-50%) rotate(360deg); } }
+    .hero-badge span { font-family: var(--font-display); font-weight: 700; font-size: 0.56rem; letter-spacing: 0.12em; text-transform: uppercase; color: white; text-align: center; line-height: 1.5; }
+
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);} }
+
+    .section-label { font-family: var(--font-display); font-weight: 700; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.8rem; }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); max-width: 60px; }
+    h2.section-title { font-family: var(--font-display); font-weight: 900; font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 1rem; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* GAMES — dark section */
+    #games { background: var(--ink); color: var(--bg); }
+    #games .section-label { color: var(--yellow); }
+    #games .section-label::after { background: rgba(255,255,255,0.08); }
+    #games h2.section-title { color: var(--bg); }
+    .games-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; gap: 2rem; flex-wrap: wrap; }
+    .games-header p { font-family: var(--font-serif); font-style: italic; font-size: 1rem; color: rgba(250,248,244,0.55); max-width: 380px; line-height: 1.7; }
+
+    /* Featured game with video */
+    .game-featured { display: grid; grid-template-columns: 1fr 1fr; border-radius: 8px; overflow: hidden; margin-bottom: 2rem; border: 1px solid rgba(255,255,255,0.07); }
+    .game-video-wrap { position: relative; background: #000; aspect-ratio: 16/10; }
+    .game-video-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .play-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.25); cursor: pointer; transition: background 0.2s; }
+    .play-overlay:hover { background: rgba(0,0,0,0.1); }
+    .play-btn { width: 68px; height: 68px; border-radius: 50%; background: var(--orange); display: flex; align-items: center; justify-content: center; transition: transform 0.2s; }
+    .play-btn:hover { transform: scale(1.1); }
+    .play-btn svg { width: 26px; height: 26px; fill: white; margin-left: 5px; }
+    .game-featured-info { background: #111; padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; gap: 1.1rem; }
+    .status-pill { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--font-display); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 100px; width: fit-content; }
+    .pill-released { background: rgba(45,158,107,0.15); color: #4ddb9a; border: 1px solid rgba(45,158,107,0.3); }
+    .pill-wip { background: rgba(245,200,66,0.12); color: var(--yellow); border: 1px solid rgba(245,200,66,0.3); animation: none; }
+    .pill-planned { background: rgba(59,111,212,0.12); color: #7eb3ff; border: 1px solid rgba(59,111,212,0.3); }
+    .pill-released::before { content: '●'; font-size: 0.4rem; }
+    .pill-wip::before { content: '●'; font-size: 0.4rem; animation: blink 1.5s ease infinite; }
+    .pill-planned::before { content: '●'; font-size: 0.4rem; opacity: 0.5; }
+    @keyframes blink { 0%,100%{opacity:1}50%{opacity:0.2} }
+    .game-featured-title { font-family: var(--font-display); font-weight: 900; font-size: 1.6rem; letter-spacing: -0.03em; line-height: 1.1; color: white; }
+    .game-featured-desc { font-family: var(--font-body); font-size: 0.88rem; color: rgba(255,255,255,0.45); line-height: 1.7; }
+    .game-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .gtag { font-family: var(--font-display); font-size: 0.56rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.22rem 0.6rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.45); border-radius: 2px; }
+
+    .game-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .game-card { background: #111; border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 2rem; transition: border-color 0.2s, transform 0.2s; }
+    .game-card:hover { border-color: rgba(232,93,47,0.35); transform: translateY(-3px); }
+    .game-card-img { width: 100%; height: 155px; object-fit: cover; border-radius: 4px; margin-bottom: 1.2rem; }
+    .game-card-title { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; letter-spacing: -0.02em; color: white; margin: 0.8rem 0 0.6rem; line-height: 1.2; }
+    .game-card-desc { font-family: var(--font-body); font-size: 0.85rem; color: rgba(255,255,255,0.4); line-height: 1.65; margin-bottom: 1rem; }
+
+    /* BOOK */
+    #book { background: var(--bg2); }
+    .book-inner { display: grid; grid-template-columns: 280px 1fr; gap: 6rem; align-items: center; }
+    .book-cover-wrap { perspective: 800px; }
+    .book-face { width: 240px; border-radius: 3px 8px 8px 3px; background: linear-gradient(150deg, #1c0505, #2e0a0a, #180404); padding: 2.8rem 2.2rem 2.2rem; box-shadow: -6px 6px 0 #0a0202, 8px 16px 48px rgba(0,0,0,0.35), 0 0 0 1px rgba(200,50,50,0.15); position: relative; overflow: hidden; min-height: 360px; display: flex; flex-direction: column; justify-content: space-between; animation: bookFloat 5s ease-in-out infinite alternate; }
+    @keyframes bookFloat { from{transform:rotateY(-6deg) translateY(0);} to{transform:rotateY(-12deg) translateY(-10px);} }
+    .book-face::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 10px; background: linear-gradient(90deg, #060101, #2a0606); }
+    .book-face::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-35deg, transparent, transparent 5px, rgba(200,40,40,0.025) 5px, rgba(200,40,40,0.025) 6px); }
+    .book-wip-badge { position: absolute; top: 1rem; right: 1rem; font-family: var(--font-display); font-size: 0.48rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--yellow); border: 1px solid rgba(245,200,66,0.3); padding: 0.2rem 0.55rem; z-index: 3; }
+    .book-genre { font-family: var(--font-body); font-size: 0.62rem; color: rgba(220,100,80,0.6); letter-spacing: 0.12em; text-transform: uppercase; margin-left: 0.8rem; position: relative; z-index: 2; }
+    .book-cover-title { font-family: var(--font-display); font-weight: 900; font-size: 2.5rem; letter-spacing: -0.02em; line-height: 0.9; color: #f5d0c0; margin-left: 0.8rem; position: relative; z-index: 2; }
+    .book-cover-title span { display: block; color: #e84c3c; font-size: 1.9rem; }
+    .book-cover-author { font-family: var(--font-serif); font-style: italic; font-size: 0.72rem; color: rgba(245,208,192,0.4); margin-left: 0.8rem; position: relative; z-index: 2; }
+    .book-info {}
+    .book-big-title { font-family: var(--font-display); font-weight: 900; font-size: clamp(2.5rem, 5vw, 4.5rem); letter-spacing: -0.04em; line-height: 0.95; margin-bottom: 1.5rem; }
+    .book-big-title span { color: var(--orange); }
+    .book-tagline { font-family: var(--font-serif); font-style: italic; font-size: 1.05rem; color: var(--ink2); line-height: 1.7; border-left: 3px solid var(--orange); padding-left: 1.2rem; margin-bottom: 1.8rem; }
+    .book-body p { font-family: var(--font-body); font-size: 0.95rem; color: var(--ink2); line-height: 1.8; margin-bottom: 1rem; }
+    .book-body p strong { color: var(--ink); }
+    .book-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+    .book-pill { font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 100px; border: 1.5px solid var(--ink); color: var(--ink); transition: all 0.15s; cursor: default; }
+    .book-pill:hover { background: var(--ink); color: var(--bg); }
+
+    /* DESIGN GALLERY */
+    #design { background: var(--bg); }
+    .design-intro { font-family: var(--font-serif); font-style: italic; font-size: 1.05rem; color: var(--ink2); line-height: 1.75; max-width: 560px; margin-bottom: 2.5rem; }
+    .design-intro strong { font-style: normal; color: var(--ink); }
+    .gallery-tabs { display: flex; gap: 0.5rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+    .gtb { font-family: var(--font-display); font-weight: 600; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.55rem 1.2rem; border-radius: 2px; border: 1.5px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; transition: all 0.15s; }
+    .gtb:hover { border-color: var(--ink); color: var(--ink); }
+    .gtb.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+    /* Masonry */
+    .masonry { columns: 3; column-gap: 1rem; display: none; }
+    .masonry.active { display: block; }
+    .mitem { break-inside: avoid; margin-bottom: 1rem; border-radius: 6px; overflow: hidden; cursor: zoom-in; position: relative; }
+    .mitem img { width: 100%; display: block; border-radius: 6px; transition: transform 0.3s; }
+    .mitem:hover img { transform: scale(1.03); }
+    .mitem-overlay { position: absolute; inset: 0; background: rgba(26,22,18,0); transition: background 0.2s; border-radius: 6px; display: flex; align-items: flex-end; }
+    .mitem:hover .mitem-overlay { background: rgba(26,22,18,0.3); }
+    .mitem-label { font-family: var(--font-display); font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: white; padding: 0.6rem 0.8rem; opacity: 0; transition: opacity 0.2s; }
+    .mitem:hover .mitem-label { opacity: 1; }
+
+    /* Logo grid */
+    .logo-grid { display: none; grid-template-columns: repeat(auto-fill, minmax(155px,1fr)); gap: 1.2rem; }
+    .logo-grid.active { display: grid; }
+    .logo-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; text-align: center; transition: transform 0.2s, border-color 0.2s; cursor: zoom-in; }
+    .logo-card:hover { transform: translateY(-3px); border-color: rgba(232,93,47,0.3); }
+    .logo-card img { width: 100%; max-height: 90px; object-fit: contain; border-radius: 4px; }
+    .logo-card-name { font-family: var(--font-display); font-weight: 600; font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink2); }
+
+    /* Lightbox */
+    .lightbox { position: fixed; inset: 0; background: rgba(10,8,6,0.96); z-index: 10000; display: none; align-items: center; justify-content: center; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 6px; }
+    .lb-close { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 1.2rem; color: white; cursor: pointer; background: rgba(255,255,255,0.1); border: none; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+    .lb-close:hover { background: rgba(255,255,255,0.2); }
+
+    /* CONTACT */
+    #creative-contact { background: var(--orange); }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .contact-big { font-family: var(--font-display); font-weight: 900; font-size: clamp(3rem, 7vw, 7rem); line-height: 0.9; letter-spacing: -0.05em; color: white; }
+    .contact-big span { color: var(--ink); }
+    .contact-right p { font-family: var(--font-serif); font-style: italic; font-size: 1.05rem; color: rgba(255,255,255,0.85); line-height: 1.75; margin-bottom: 2rem; }
+    .contact-right p strong { font-style: normal; color: white; }
+    .c-links { display: flex; flex-direction: column; }
+    .c-link { display: flex; align-items: center; justify-content: space-between; font-family: var(--font-display); font-weight: 600; font-size: 0.88rem; color: white; text-decoration: none; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.2); transition: padding-left 0.2s; }
+    .c-link:first-child { border-top: 1px solid rgba(255,255,255,0.2); }
+    .c-link:hover { padding-left: 0.6rem; }
+
+    footer { padding: 1.5rem 4rem; background: var(--ink); color: var(--muted); display: flex; align-items: center; justify-content: space-between; font-family: var(--font-display); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .f-back { color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
+    .f-back:hover { color: var(--bg); }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 5rem 1.5rem; }
+      #hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 4rem; }
+      .hero-right { display: none; }
+      .game-featured, .book-inner, .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .game-cards { grid-template-columns: 1fr; }
+      .masonry { columns: 2; }
+      footer { flex-direction: column; gap: 0.8rem; padding: 1.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose">✕</button>
+  <img id="lbImg" src="" alt=""/>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-left">
+    <a href="creative.html" class="nav-logo">NALIN AGARWAL</a>
+    <span class="nav-pipe">|</span>
+    <span class="nav-tag">The Other Life</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#games">Games</a></li>
+    <li><a href="#book">Book</a></li>
+    <li><a href="#design">Design</a></li>
+    <li><a href="#creative-contact">Contact</a></li>
+  </ul>
+  <a href="index.html" class="nav-back">← back to the lab</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Game Dev · Design · Writing</div>
+    <h1 class="hero-title">
+      The <span class="accent">other</span><br>
+      <span class="outline">side</span><br>
+      of me.
+    </h1>
+    <p class="hero-desc">By day I teach robots to move. By night I build <strong>worlds people escape into</strong> — games, stories, and visuals born from a compulsion to create.</p>
+    <div class="hero-ctas">
+      <a href="#games" class="btn-fill">See My Games ↓</a>
+      <a href="#design" class="btn-outline">Design Work</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hci hci-1"><img src="media/robo_soccer.png" alt="Robo Soccer"/></div>
+    <div class="hci hci-2"><img src="media/celestial_flare.png" alt="Celestial Flare"/></div>
+    <div class="hci hci-3"><img src="media/diwali.png" alt="Diwali"/></div>
+    <div class="hci hci-4"><img src="media/quidditch.png" alt="Quidditch"/></div>
+    <div class="hci hci-5"><img src="media/tgh_logo.png" alt="TGH logo"/></div>
+    <div class="hero-badge"><span>GAME<br>DEV &<br>DESIGN</span></div>
+  </div>
+</section>
+
+<!-- GAMES -->
+<section id="games">
+  <div class="section-label">Game Development</div>
+  <div class="games-header">
+    <h2 class="section-title reveal">Building<br>worlds.</h2>
+    <p class="reveal">Lifelong gamer turned creator. Every project is a chance to build something people can get lost in — from dungeons to horror corridors.</p>
+  </div>
+
+  <div class="game-featured reveal">
+    <div class="game-video-wrap">
+      <video id="gameVid" src="media/mariox-2-2.mov" loop muted playsinline preload="metadata"></video>
+      <div class="play-overlay" id="playOverlay">
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+    </div>
+    <div class="game-featured-info">
+      <div class="status-pill pill-released">● Released · 2023</div>
+      <div class="game-featured-title">Sharpie's Dungeon Adventure</div>
+      <div class="game-featured-desc">A 2D platformer built entirely in Godot Engine. Navigate dungeons, collect coins, dodge enemies. A complete, fully playable solo project. Hit play to watch it in action.</div>
+      <div class="game-tags">
+        <span class="gtag">Godot Engine</span>
+        <span class="gtag">2D Platformer</span>
+        <span class="gtag">Solo Dev</span>
+        <span class="gtag">GDScript</span>
+        <span class="gtag">Pixel Art</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="game-cards reveal">
+    <div class="game-card">
+      <div class="status-pill pill-wip">● In Development</div>
+      <div class="game-card-title">Untitled 2D Turn-Based RPG</div>
+      <div class="game-card-desc">An original RPG with a handcrafted story, deep skill trees, diverse enemy roster, weapons and crafting systems. Every system designed from scratch — the kind of RPG I always wanted to play.</div>
+      <div class="game-tags">
+        <span class="gtag">Godot</span><span class="gtag">Turn-Based</span><span class="gtag">RPG</span><span class="gtag">Original Story</span>
+      </div>
+    </div>
+    <div class="game-card">
+      <img src="media/horror_corridor.png" alt="3D survival horror" class="game-card-img"/>
+      <div class="status-pill pill-planned">● Planned</div>
+      <div class="game-card-title">3D Survival Horror Action</div>
+      <div class="game-card-desc">Next after the RPG. Atmospheric, tense, deeply designed. A survival horror action game in 3D — the corridor is a preview of the vibe.</div>
+      <div class="game-tags">
+        <span class="gtag">3D</span><span class="gtag">Survival Horror</span><span class="gtag">Action</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK -->
+<section id="book">
+  <div class="section-label">Writing</div>
+  <div class="book-inner">
+    <div class="book-cover-wrap reveal">
+      <div class="book-face">
+        <span class="book-wip-badge">Writing</span>
+        <div class="book-genre">Psycho · Neo-Noir · Thriller</div>
+        <div class="book-cover-title">BROKE<span>STALKER</span></div>
+        <div class="book-cover-author">Nalin Agarwal</div>
+      </div>
+    </div>
+    <div class="book-info reveal">
+      <div class="section-label">The Book</div>
+      <div class="book-big-title">BROKE<span>—</span><br>STALKER</div>
+      <div class="book-tagline">"The kind of story I wanted to read and couldn't find — so I decided to write it myself."</div>
+      <div class="book-body">
+        <p>A <strong>psycho neo-noir thriller</strong> at the intersection of obsession, desperation, and moral collapse. Unreliable, tense, and relentlessly stylish.</p>
+        <p>Currently in active development alongside the game projects. Because apparently one creative obsession at a time isn't enough.</p>
+      </div>
+      <div class="book-pills">
+        <span class="book-pill">Neo-Noir</span>
+        <span class="book-pill">Psychological Thriller</span>
+        <span class="book-pill">Original Fiction</span>
+        <span class="book-pill">In Progress</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN GALLERY -->
+<section id="design">
+  <div class="section-label">Visual Design</div>
+  <h2 class="section-title reveal">3 years of<br>design work.</h2>
+  <p class="design-intro reveal">From event posters to brand logos, I designed for clubs, societies, and startups at DTU. <strong>100+ pieces</strong> — every style, every brief imaginable.</p>
+
+  <div class="gallery-tabs reveal">
+    <button class="gtb active" data-tab="posters">Posters & Events</button>
+    <button class="gtb" data-tab="logos">Logos</button>
+    <button class="gtb" data-tab="social">Social Media</button>
+  </div>
+
+  <!-- Posters -->
+  <div class="masonry active" id="tab-posters">
+    <div class="mitem" data-src="media/er.png"><img src="media/robo_soccer.png" alt="Robo Soccer"/><div class="mitem-overlay"><span class="mitem-label">Robo Soccer · 2023</span></div></div>
+    <div class="mitem" data-src="media/quidditch.png"><img src="media/quidditch.png" alt="Quidditch"/><div class="mitem-overlay"><span class="mitem-label">Quidditch · 2023</span></div></div>
+    <div class="mitem" data-src="media/independence_day.png"><img src="media/independence_day.png" alt="Independence Day"/><div class="mitem-overlay"><span class="mitem-label">Independence Day · 2021</span></div></div>
+    <div class="mitem" data-src="media/stratazenith.png"><img src="media/stratazenith.png" alt="Stratazenith"/><div class="mitem-overlay"><span class="mitem-label">Stratazenith · 2022</span></div></div>
+    <div class="mitem" data-src="media/quidditch2.png"><img src="media/quidditch2.png" alt="Quidditch Drone Race"/><div class="mitem-overlay"><span class="mitem-label">Quidditch Drone Race</span></div></div>
+    <div class="mitem" data-src="media/republic_day.png"><img src="media/republic_day.png" alt="Republic Day"/><div class="mitem-overlay"><span class="mitem-label">Republic Day · 2022</span></div></div>
+    <div class="mitem" data-src="media/codelocks.png"><img src="media/codelocks.png" alt="Code Locks"/><div class="mitem-overlay"><span class="mitem-label">Code Locks 2.0</span></div></div>
+    <div class="mitem" data-src="media/stratocalypse.png"><img src="media/stratocalypse.png" alt="Stratocalypse"/><div class="mitem-overlay"><span class="mitem-label">Stratocalypse</span></div></div>
+    <div class="mitem" data-src="media/igts_orientation.png"><img src="media/igts_orientation.png" alt="IGTS Orientation"/><div class="mitem-overlay"><span class="mitem-label">IGTS Orientation 2022</span></div></div>
+  </div>
+
+  <!-- Logos -->
+  <div class="logo-grid" id="tab-logos">
+    <div class="logo-card" data-src="media/celestial_flare.png"><img src="media/celestial_flare.png" alt="Celestial Flare"/><div class="logo-card-name">Celestial Flare</div></div>
+    <div class="logo-card" data-src="media/cosmos_logo.png"><img src="media/cosmos_logo.png" alt="Cosmos"/><div class="logo-card-name">Cosmos · TMC</div></div>
+    <div class="logo-card" data-src="media/tgh_logo.png"><img src="media/tgh_logo.png" alt="TGH"/><div class="logo-card-name">The Growth Hackers</div></div>
+    <div class="logo-card" data-src="media/heiv_logo.jpg"><img src="media/heiv_logo.jpg" alt="HEIV"/><div class="logo-card-name">HEIV</div></div>
+    <div class="logo-card" data-src="media/skillearn.png"><img src="media/skillearn.png" alt="SkilLearn"/><div class="logo-card-name">SkilLearn</div></div>
+    <div class="logo-card" data-src="media/igts_design_head.png"><img src="media/igts_design_head.png" alt="IGTS Design Head"/><div class="logo-card-name">IGTS — Design Head</div></div>
+  </div>
+
+  <!-- Social -->
+  <div class="masonry" id="tab-social">
+    <div class="mitem" data-src="media/diwali.png"><img src="media/diwali.png" alt="Diwali"/><div class="mitem-overlay"><span class="mitem-label">Happy Diwali · SR-DTU</span></div></div>
+    <div class="mitem" data-src="media/janmashtami.png"><img src="media/janmashtami.png" alt="Janmashtami"/><div class="mitem-overlay"><span class="mitem-label">Janmashtami · SR-DTU</span></div></div>
+    <div class="mitem" data-src="media/muharram.png"><img src="media/muharram.png" alt="Muharram"/><div class="mitem-overlay"><span class="mitem-label">Muharram · SR-DTU</span></div></div>
+    <div class="mitem" data-src="media/eid_milad.png"><img src="media/eid_milad.png" alt="Eid Milad"/><div class="mitem-overlay"><span class="mitem-label">Eid Milad-un-Nabi · IGTS</span></div></div>
+    <div class="mitem" data-src="media/igts_congrats.png"><img src="media/igts_congrats.png" alt="IGTS Congrats"/><div class="mitem-overlay"><span class="mitem-label">IGTS Congratulations</span></div></div>
+    <div class="mitem" data-src="media/au_revoir.png"><img src="media/au_revoir.png" alt="Au Revoir"/><div class="mitem-overlay"><span class="mitem-label">Au Revoir · IGTS</span></div></div>
+    <div class="mitem" data-src="media/igts_recruiting.png"><img src="media/igts_recruiting.png" alt="IGTS Recruiting"/><div class="mitem-overlay"><span class="mitem-label">IGTS Recruiting 2022</span></div></div>
+    <div class="mitem" data-src="media/heiv_orientation.png"><img src="media/heiv_orientation.png" alt="HEIV Orientation"/><div class="mitem-overlay"><span class="mitem-label">HEIV Orientation</span></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="creative-contact">
+  <div class="contact-inner">
+    <div class="contact-big reveal">LET'S<br><span>CREATE.</span></div>
+    <div class="contact-right reveal">
+      <p>Game collab, beta reading <strong>Broke-Stalker</strong>, design commissions, or just talking games and stories — I'm here for all of it.</p>
+      <div class="c-links">
+        <a href="mailto:nalinagarwal2002@gmail.com" class="c-link">nalinagarwal2002@gmail.com <span>↗</span></a>
+        <a href="https://linkedin.com" target="_blank" class="c-link">LinkedIn <span>↗</span></a>
+        <a href="https://github.com" target="_blank" class="c-link">GitHub <span>↗</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Nalin Agarwal — The Creative Side</span>
+  <a href="index.html" class="f-back">← back to the lab</a>
+</footer>
+
+<script>
+  // Cursor
+  const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+  (function anim(){rx+=(mx-rx)*0.1;ry+=(my-ry)*0.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim);})();
+  document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{ring.style.width='52px';ring.style.height='52px';});el.addEventListener('mouseleave',()=>{ring.style.width='36px';ring.style.height='36px';});});
+
+  // Progress
+  window.addEventListener('scroll',()=>{document.getElementById('progressBar').style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';});
+
+  // Reveal
+  const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  // Video
+  const vid=document.getElementById('gameVid'),overlay=document.getElementById('playOverlay');
+  overlay.addEventListener('click',()=>{if(vid.paused){vid.play();overlay.style.opacity='0';overlay.style.pointerEvents='none';}else{vid.pause();overlay.style.opacity='1';overlay.style.pointerEvents='auto';}});
+  vid.addEventListener('click',()=>{vid.pause();overlay.style.opacity='1';overlay.style.pointerEvents='auto';});
+
+  // Gallery tabs
+  document.querySelectorAll('.gtb').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.gtb').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.masonry,.logo-grid').forEach(g=>g.classList.remove('active'));
+      document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // Lightbox
+  const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg');
+  document.querySelectorAll('.mitem,.logo-card').forEach(el=>{el.addEventListener('click',()=>{lbImg.src=el.dataset.src;lb.classList.add('open');});});
+  document.getElementById('lbClose').addEventListener('click',()=>lb.classList.remove('open'));
+  lb.addEventListener('click',e=>{if(e.target===lb)lb.classList.remove('open');});
+</script>
+</body>
+</html>

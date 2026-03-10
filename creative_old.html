@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nalin Agarwal — The Other Side</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0c0806;
+      --surface: #110e0b;
+      --surface2: #1a1410;
+      --red: #c0392b;
+      --red2: #e74c3c;
+      --gold: #d4a843;
+      --cream: #e8dcc8;
+      --muted: #6b5a4a;
+      --border: rgba(192,57,43,0.15);
+      --font-display: 'Bebas Neue', cursive;
+      --font-serif: 'Playfair Display', serif;
+      --font-body: 'Crimson Pro', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* Film grain */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 1000; opacity: 1;
+      mix-blend-mode: overlay;
+    }
+
+    /* Vignette */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%);
+      pointer-events: none; z-index: 999;
+    }
+
+    /* Cursor */
+    .cursor {
+      position: fixed; width: 6px; height: 6px;
+      background: var(--red2); border-radius: 50%;
+      pointer-events: none; z-index: 9999;
+      transform: translate(-50%,-50%);
+      box-shadow: 0 0 10px var(--red2);
+    }
+    .cursor-ring {
+      position: fixed; width: 28px; height: 28px;
+      border: 1px solid rgba(192,57,43,0.6); border-radius: 50%;
+      pointer-events: none; z-index: 9998;
+      transform: translate(-50%,-50%);
+      transition: transform 0.3s, width 0.2s, height 0.2s;
+    }
+
+    /* Progress */
+    .progress-bar {
+      position: fixed; top: 0; left: 0; height: 2px;
+      background: linear-gradient(90deg, var(--red), var(--gold));
+      z-index: 200;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 4rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(12,8,6,0.85);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.4rem; letter-spacing: 0.08em;
+      color: var(--cream); text-decoration: none;
+    }
+    .nav-logo span { color: var(--red2); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--font-body); font-style: italic;
+      font-size: 0.95rem; color: var(--muted);
+      text-decoration: none; transition: color 0.2s;
+      letter-spacing: 0.04em;
+    }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-back {
+      font-family: var(--font-body); font-size: 0.82rem;
+      color: var(--muted); text-decoration: none;
+      letter-spacing: 0.06em; display: flex; align-items: center; gap: 0.4rem;
+      border: 1px solid rgba(107,90,74,0.3); padding: 0.35rem 0.9rem;
+      transition: color 0.2s, border-color 0.2s;
+      font-style: italic;
+    }
+    .nav-back:hover { color: var(--cream); border-color: var(--muted); }
+
+    section { padding: 7rem 4rem; position: relative; z-index: 1; }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding-top: 8rem; position: relative; overflow: hidden;
+    }
+
+    /* Rain effect */
+    .rain-canvas {
+      position: absolute; inset: 0;
+      pointer-events: none; opacity: 0.08; z-index: 0;
+    }
+
+    /* Big atmospheric number */
+    .hero-bg-text {
+      position: absolute; right: -2rem; top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-display);
+      font-size: clamp(18rem, 30vw, 32rem);
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(192,57,43,0.08);
+      line-height: 1; pointer-events: none;
+      letter-spacing: -0.05em;
+      user-select: none;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-body); font-style: italic;
+      font-size: 0.9rem; color: var(--red2);
+      letter-spacing: 0.15em; text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    h1.hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 9vw, 9rem);
+      line-height: 0.88; letter-spacing: 0.04em;
+      color: var(--cream);
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    h1.hero-title .red { color: var(--red2); }
+    h1.hero-title .stroke {
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(232,220,200,0.4);
+    }
+    .hero-sub {
+      margin-top: 2rem; max-width: 560px;
+      font-size: 1.15rem; font-style: italic;
+      color: var(--muted); line-height: 1.75;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+    .hero-sub strong { color: var(--cream); font-style: normal; font-weight: 400; }
+    .hero-ctas {
+      margin-top: 2.5rem; display: flex; gap: 1.2rem;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+    .btn-noir {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--red); color: var(--cream);
+      font-family: var(--font-display); font-size: 1rem;
+      letter-spacing: 0.12em; padding: 0.85rem 2rem;
+      text-decoration: none; transition: background 0.2s, transform 0.2s;
+    }
+    .btn-noir:hover { background: var(--red2); transform: translateY(-2px); }
+    .btn-ghost-noir {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      border: 1px solid rgba(232,220,200,0.2); color: var(--cream);
+      font-family: var(--font-display); font-size: 1rem;
+      letter-spacing: 0.12em; padding: 0.85rem 2rem;
+      text-decoration: none; transition: border-color 0.2s;
+    }
+    .btn-ghost-noir:hover { border-color: var(--cream); }
+
+    @keyframes fadeUp { from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);} }
+
+    /* DIVIDER */
+    .divider {
+      display: flex; align-items: center; gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border));
+    }
+    .divider::before { background: linear-gradient(90deg, var(--border), transparent); }
+    .divider-symbol { color: var(--red); font-size: 1.2rem; }
+
+    /* SECTION LABELS */
+    .section-label {
+      font-family: var(--font-body); font-style: italic;
+      font-size: 0.82rem; color: var(--red2);
+      letter-spacing: 0.18em; text-transform: uppercase;
+      margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.8rem;
+    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); max-width: 80px; }
+
+    h2.section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      letter-spacing: 0.06em; line-height: 1;
+      margin-bottom: 2rem;
+    }
+
+    /* ABOUT */
+    #about { background: var(--surface); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .about-quote {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: 1.6rem; line-height: 1.5;
+      color: var(--cream); margin-bottom: 2rem;
+      border-left: 3px solid var(--red); padding-left: 1.5rem;
+    }
+    .about-text p {
+      font-size: 1.05rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.1rem;
+    }
+    .about-text p strong { color: var(--cream); font-weight: 400; }
+    .about-text p em { color: var(--gold); font-style: normal; }
+    .about-visual {
+      position: relative; display: flex; align-items: center; justify-content: center;
+    }
+    .about-card-stack { position: relative; width: 100%; max-width: 340px; margin: 0 auto; }
+    .stack-card {
+      background: var(--surface2); border: 1px solid var(--border);
+      padding: 2rem; position: relative;
+    }
+    .stack-card:nth-child(2) {
+      position: absolute; top: -12px; left: -12px; right: 12px; bottom: 12px;
+      z-index: 0; opacity: 0.5;
+    }
+    .stack-card:nth-child(3) {
+      position: absolute; top: -24px; left: -24px; right: 24px; bottom: 24px;
+      z-index: -1; opacity: 0.25;
+    }
+    .stack-card:first-child { z-index: 2; }
+    .card-label {
+      font-family: var(--font-body); font-style: italic;
+      font-size: 0.75rem; color: var(--red2);
+      letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .card-title {
+      font-family: var(--font-display); font-size: 1.8rem;
+      letter-spacing: 0.05em; margin-bottom: 0.5rem;
+    }
+    .card-sub { font-size: 0.9rem; font-style: italic; color: var(--muted); }
+
+    /* GAMES */
+    #games { }
+    .games-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1rem; }
+    .game-card {
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 0; overflow: hidden; position: relative;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .game-card:hover { border-color: rgba(192,57,43,0.4); transform: translateY(-4px); }
+    .game-card-body { padding: 2rem; }
+    .game-num {
+      font-family: var(--font-display); font-size: 4rem; letter-spacing: -0.02em;
+      color: transparent; -webkit-text-stroke: 1px rgba(192,57,43,0.2);
+      line-height: 1; margin-bottom: 1rem; display: block;
+    }
+    .game-status {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: var(--font-body); font-style: italic; font-size: 0.75rem;
+      color: var(--gold); letter-spacing: 0.1em; margin-bottom: 1rem;
+    }
+    .game-status::before {
+      content: ''; width: 5px; height: 5px; background: var(--gold);
+      border-radius: 50%; animation: blink 2s ease infinite;
+    }
+    .game-status.released { color: var(--red2); }
+    .game-status.released::before { background: var(--red2); animation: none; }
+    @keyframes blink { 0%,100%{opacity:1}50%{opacity:0.2} }
+
+    .game-title {
+      font-family: var(--font-display); font-size: 2rem;
+      letter-spacing: 0.05em; margin-bottom: 0.8rem; line-height: 1.1;
+    }
+    .game-desc { font-size: 0.95rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.2rem; }
+    .game-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .game-tag {
+      font-family: var(--font-body); font-style: italic; font-size: 0.75rem;
+      padding: 0.2rem 0.7rem; border: 1px solid var(--border); color: var(--muted);
+      transition: all 0.15s;
+    }
+    .game-tag:hover { color: var(--red2); border-color: rgba(192,57,43,0.3); }
+    .game-card.featured-game { grid-column: 1 / -1; }
+    .game-card.featured-game .game-card-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    }
+    .game-screenshot {
+      background: #0a0806;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden; position: relative; min-height: 180px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .game-screenshot-placeholder {
+      font-family: var(--font-display); font-size: 0.8rem;
+      letter-spacing: 0.2em; color: var(--muted); opacity: 0.4;
+    }
+    .game-card.featured-game .game-card-body { padding: 2.5rem; display: flex; flex-direction: column; justify-content: center; }
+
+    /* BOOK */
+    #book { background: var(--surface); }
+    .book-layout { display: grid; grid-template-columns: auto 1fr; gap: 5rem; align-items: start; }
+    .book-cover {
+      width: 220px; flex-shrink: 0;
+      background: linear-gradient(160deg, #1a0a08 0%, #0c0202 60%, #200808 100%);
+      border: 1px solid rgba(192,57,43,0.3);
+      padding: 2.5rem 2rem;
+      position: relative; overflow: hidden;
+      box-shadow: 8px 8px 0 rgba(0,0,0,0.5), 16px 16px 40px rgba(192,57,43,0.08);
+      min-height: 320px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .book-cover::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        -45deg, transparent, transparent 3px,
+        rgba(192,57,43,0.03) 3px, rgba(192,57,43,0.03) 4px
+      );
+    }
+    .book-cover::after {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0; width: 8px;
+      background: linear-gradient(180deg, #c0392b, #8b1a14);
+    }
+    .book-cover-label {
+      font-family: var(--font-body); font-style: italic;
+      font-size: 0.65rem; color: var(--red2); letter-spacing: 0.2em;
+      text-transform: uppercase; margin-left: 1rem;
+    }
+    .book-cover-title {
+      font-family: var(--font-display); font-size: 2.4rem;
+      letter-spacing: 0.06em; line-height: 0.95;
+      color: var(--cream); margin-left: 1rem;
+    }
+    .book-cover-title span { display: block; color: var(--red2); }
+    .book-cover-author {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: 0.8rem; color: var(--muted); margin-left: 1rem;
+    }
+    .book-wip {
+      position: absolute; top: 1rem; right: 1rem;
+      font-family: var(--font-body); font-style: italic; font-size: 0.6rem;
+      color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase;
+      border: 1px solid rgba(212,168,67,0.3); padding: 0.15rem 0.5rem;
+    }
+    .book-info { }
+    .book-genre {
+      font-family: var(--font-body); font-style: italic;
+      font-size: 0.85rem; color: var(--red2); letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 1.2rem;
+    }
+    .book-title-large {
+      font-family: var(--font-display); font-size: clamp(3rem, 5vw, 5rem);
+      letter-spacing: 0.05em; line-height: 0.9; margin-bottom: 1.5rem;
+    }
+    .book-title-large span { color: var(--red2); }
+    .book-desc p {
+      font-size: 1.05rem; color: var(--muted); line-height: 1.85; margin-bottom: 1.1rem; font-style: italic;
+    }
+    .book-desc p strong { color: var(--cream); font-style: normal; }
+    .book-desc p em { color: var(--gold); }
+    .book-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+    .book-tag {
+      font-family: var(--font-body); font-style: italic; font-size: 0.8rem;
+      padding: 0.3rem 0.9rem; border: 1px solid var(--border); color: var(--muted);
+      transition: all 0.15s;
+    }
+    .book-tag:hover { color: var(--red2); border-color: rgba(192,57,43,0.3); }
+
+    /* DESIGN */
+    #design { }
+    .design-intro { font-size: 1.05rem; color: var(--muted); line-height: 1.8; max-width: 600px; margin-bottom: 3rem; font-style: italic; }
+    .design-intro strong { color: var(--cream); font-style: normal; }
+    .design-categories { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+    .design-cat {
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 2rem; position: relative; overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .design-cat:hover { border-color: rgba(192,57,43,0.3); }
+    .design-cat::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--red), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .design-cat:hover::after { opacity: 1; }
+    .design-cat-num {
+      font-family: var(--font-display); font-size: 3.5rem;
+      color: transparent; -webkit-text-stroke: 1px rgba(192,57,43,0.15);
+      line-height: 1; margin-bottom: 1rem;
+    }
+    .design-cat-title {
+      font-family: var(--font-display); font-size: 1.4rem;
+      letter-spacing: 0.08em; margin-bottom: 0.7rem;
+    }
+    .design-cat-items {
+      list-style: none; display: flex; flex-direction: column; gap: 0.3rem;
+    }
+    .design-cat-items li {
+      font-family: var(--font-body); font-style: italic;
+      font-size: 0.85rem; color: var(--muted);
+      padding-left: 1rem; position: relative;
+    }
+    .design-cat-items li::before { content: '—'; position: absolute; left: 0; color: var(--red); }
+
+    /* SKILLS */
+    #cskills { background: var(--surface); }
+    .cskills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1.5rem; margin-top: 1rem; }
+    .cskill-group { padding: 1.5rem; border: 1px solid var(--border); }
+    .cskill-title {
+      font-family: var(--font-display); font-size: 1.1rem;
+      letter-spacing: 0.1em; color: var(--cream); margin-bottom: 1rem;
+    }
+    .cskill-list { display: flex; flex-direction: column; gap: 0.4rem; }
+    .cskill-list span {
+      font-family: var(--font-body); font-style: italic;
+      font-size: 0.88rem; color: var(--muted);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .cskill-list span::before { content: '›'; color: var(--red2); font-style: normal; }
+
+    /* CONTACT */
+    #creative-contact { }
+    .contact-split { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .contact-left .big-text {
+      font-family: var(--font-display); font-size: clamp(3rem, 6vw, 6rem);
+      letter-spacing: 0.05em; line-height: 0.9; color: var(--cream);
+      margin-bottom: 1.5rem;
+    }
+    .contact-left .big-text span { color: var(--red2); display: block; }
+    .contact-note {
+      font-family: var(--font-body); font-style: italic;
+      font-size: 1.05rem; color: var(--muted); line-height: 1.75; margin-bottom: 2rem;
+    }
+    .contact-note strong { color: var(--cream); font-style: normal; }
+    .contact-links-col { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 2rem; }
+    .c-link {
+      font-family: var(--font-serif); font-style: italic;
+      font-size: 1rem; color: var(--muted);
+      text-decoration: none; display: flex; align-items: center; gap: 0.8rem;
+      transition: color 0.2s; border-bottom: 1px solid transparent;
+      padding-bottom: 0.5rem; border-color: var(--border);
+    }
+    .c-link:hover { color: var(--cream); }
+    .c-link span { color: var(--red2); font-style: normal; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; min-width: 60px; }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem 4rem; border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      font-family: var(--font-body); font-style: italic;
+      font-size: 0.85rem; color: var(--muted);
+      position: relative; z-index: 1;
+    }
+    .f-back {
+      color: var(--muted); text-decoration: none;
+      display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s;
+    }
+    .f-back:hover { color: var(--cream); }
+
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      section { padding: 5rem 1.5rem; }
+      #hero { padding: 7rem 1.5rem 4rem; }
+      .about-grid, .book-layout, .contact-split { grid-template-columns: 1fr; gap: 3rem; }
+      .games-grid { grid-template-columns: 1fr; }
+      .game-card.featured-game .game-card-inner { grid-template-columns: 1fr; }
+      .design-categories { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      footer { flex-direction: column; gap: 0.8rem; padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="progress-bar" id="progressBar"></div>
+  <canvas class="rain-canvas" id="rainCanvas"></canvas>
+
+  <!-- NAV -->
+  <nav>
+    <a href="creative.html" class="nav-logo">N<span>.</span>A — CREATIVE</a>
+    <ul class="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#games">games</a></li>
+      <li><a href="#book">book</a></li>
+      <li><a href="#design">design</a></li>
+      <li><a href="#creative-contact">contact</a></li>
+    </ul>
+    <a href="index.html" class="nav-back">← back to the lab</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg-text">N</div>
+    <div class="hero-eyebrow">// the other side</div>
+    <h1 class="hero-title">
+      GAME DEV<br>
+      <span class="red">& CREATIVE</span><br>
+      <span class="stroke">WORLDS</span>
+    </h1>
+    <p class="hero-sub">
+      By day, I teach machines to move. By night, I build <strong>worlds people escape into</strong> —
+      games, stories, and visuals born from a compulsion to create.
+    </p>
+    <div class="hero-ctas">
+      <a href="#games" class="btn-noir">See the Games</a>
+      <a href="#book" class="btn-ghost-noir">The Book</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">Who else am I</div>
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <div class="about-quote">
+          "I want to create immersive worlds that can be a means of escape from reality through art and code."
+        </div>
+        <p>
+          I've been a gamer since I could hold a controller. That obsession didn't stay passive —
+          I started <strong>modding</strong>, then designing, then building. Games taught me
+          that the most powerful systems are the ones people don't notice — they just <em>feel</em>.
+        </p>
+        <p>
+          The same instinct drives the book. <strong>Broke-Stalker</strong> is a neo-noir
+          psychological thriller — the kind of story I wanted to read and couldn't find.
+          So I'm writing it.
+        </p>
+        <p>
+          Alongside that: logo design, poster work, illustration, video editing.
+          I believe <em>design and code are the same conversation</em> — both are about
+          shaping how something is experienced.
+        </p>
+      </div>
+      <div class="about-visual">
+        <div class="about-card-stack">
+          <div class="stack-card">
+            <div class="card-label">Currently building</div>
+            <div class="card-title">2D TURN-BASED RPG</div>
+            <div class="card-sub">Unique story · Skill trees · Enemy variety</div>
+          </div>
+          <div class="stack-card"></div>
+          <div class="stack-card"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GAMES -->
+  <section id="games">
+    <div class="section-label">Game Development</div>
+    <h2 class="section-title reveal">GAMES</h2>
+    <div class="games-grid reveal">
+
+      <!-- Featured: WIP RPG -->
+      <div class="game-card featured-game">
+        <div class="game-card-inner">
+          <div class="game-screenshot">
+            <span class="game-screenshot-placeholder">[ IN DEVELOPMENT ]</span>
+          </div>
+          <div class="game-card-body">
+            <span class="game-num">01</span>
+            <div class="game-status">In Development</div>
+            <div class="game-title">UNTITLED 2D TURN-BASED RPG</div>
+            <p class="game-desc">A hand-crafted RPG with its own original story, deep skill trees, diverse enemy roster, weapons and crafting systems. Built from scratch in Godot — every mechanic designed and coded by one person.</p>
+            <div class="game-tags">
+              <span class="game-tag">Godot</span>
+              <span class="game-tag">Turn-Based RPG</span>
+              <span class="game-tag">Original Story</span>
+              <span class="game-tag">Pixel Art</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sharpie's -->
+      <div class="game-card">
+        <div class="game-card-body">
+          <span class="game-num">02</span>
+          <div class="game-status released">Released — 2023</div>
+          <div class="game-title">SHARPIE'S DUNGEON ADVENTURE</div>
+          <p class="game-desc">A 2D platformer built entirely in the Godot game engine. Navigate dungeons, collect coins, and survive — a complete, playable game developed as a solo project.</p>
+          <div class="game-tags">
+            <span class="game-tag">Godot</span>
+            <span class="game-tag">2D Platformer</span>
+            <span class="game-tag">Solo Dev</span>
+            <span class="game-tag">2023</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Future 3D horror -->
+      <div class="game-card">
+        <div class="game-card-body">
+          <span class="game-num">03</span>
+          <div class="game-status">Planned</div>
+          <div class="game-title">3D SURVIVAL HORROR ACTION</div>
+          <p class="game-desc">The next ambitious project after the RPG. A 3D survival horror action game — atmospheric, tense, and deeply designed. Details TBA.</p>
+          <div class="game-tags">
+            <span class="game-tag">3D</span>
+            <span class="game-tag">Survival Horror</span>
+            <span class="game-tag">Action</span>
+            <span class="game-tag">Future</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BOOK -->
+  <section id="book">
+    <div class="section-label">Writing</div>
+    <div class="book-layout reveal">
+      <div class="book-cover">
+        <span class="book-wip">writing</span>
+        <div class="book-cover-label">A novel by</div>
+        <div>
+          <div class="book-cover-title">BROKE<span>STALKER</span></div>
+        </div>
+        <div class="book-cover-author">Nalin Agarwal</div>
+      </div>
+      <div class="book-info">
+        <div class="book-genre">Psycho · Neo-Noir · Thriller</div>
+        <div class="book-title-large">BROKE<span>—</span><br>STALKER</div>
+        <div class="book-desc">
+          <p>
+            A <strong>psycho neo-noir thriller</strong> set at the intersection of obsession, desperation, and moral collapse.
+            The kind of story that makes you uncomfortable in the best way —
+            <em>unreliable, tense, and relentlessly stylish</em>.
+          </p>
+          <p>
+            Currently in active development. This is the book I wanted to read and couldn't find
+            — so I decided to write it myself.
+          </p>
+        </div>
+        <div class="book-tags">
+          <span class="book-tag">Neo-Noir</span>
+          <span class="book-tag">Psychological Thriller</span>
+          <span class="book-tag">Original Fiction</span>
+          <span class="book-tag">In Progress</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN -->
+  <section id="design">
+    <div class="section-label">Visual Design</div>
+    <h2 class="section-title reveal">DESIGN WORK</h2>
+    <p class="design-intro reveal">
+      Over three years at DTU, I designed for clubs, societies, and events.
+      <strong>Logos, posters, social media graphics</strong> — hundreds of pieces across a wide range of styles and briefs.
+    </p>
+    <div class="design-categories reveal">
+      <div class="design-cat">
+        <div class="design-cat-num">01</div>
+        <div class="design-cat-title">LOGO DESIGN</div>
+        <ul class="design-cat-items">
+          <li>SkilLearn — personal startup</li>
+          <li>The Mysterious Cosmos — sci org</li>
+          <li>IGTS, CelestialFlare, HEIV</li>
+          <li>Multiple college clubs at DTU</li>
+        </ul>
+      </div>
+      <div class="design-cat">
+        <div class="design-cat-num">02</div>
+        <div class="design-cat-title">POSTER DESIGN</div>
+        <ul class="design-cat-items">
+          <li>Technical fest posters — Robo Soccer, Quidditch</li>
+          <li>Event posters for college clubs</li>
+          <li>Festival posters — Diwali, Republic Day</li>
+          <li>Social media graphics for societies</li>
+        </ul>
+      </div>
+      <div class="design-cat">
+        <div class="design-cat-num">03</div>
+        <div class="design-cat-title">GAME ART & MISC</div>
+        <ul class="design-cat-items">
+          <li>Pixel art for Sharpie's Dungeon</li>
+          <li>Game UI / interface design</li>
+          <li>Video editing — FCP, iMovie</li>
+          <li>Illustration & graphic work</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREATIVE SKILLS -->
+  <section id="cskills">
+    <div class="section-label">Creative Toolkit</div>
+    <h2 class="section-title reveal">SKILLS</h2>
+    <div class="cskills-grid reveal">
+      <div class="cskill-group">
+        <div class="cskill-title">GAME ENGINES</div>
+        <div class="cskill-list">
+          <span>Godot Engine</span>
+          <span>Unity</span>
+          <span>GDScript / C#</span>
+        </div>
+      </div>
+      <div class="cskill-group">
+        <div class="cskill-title">DESIGN</div>
+        <div class="cskill-list">
+          <span>Adobe Photoshop</span>
+          <span>Adobe Illustrator</span>
+          <span>After Effects</span>
+          <span>Animate</span>
+        </div>
+      </div>
+      <div class="cskill-group">
+        <div class="cskill-title">VIDEO</div>
+        <div class="cskill-list">
+          <span>Final Cut Pro</span>
+          <span>iMovie</span>
+          <span>Motion graphics</span>
+        </div>
+      </div>
+      <div class="cskill-group">
+        <div class="cskill-title">CODE FOR GAMES</div>
+        <div class="cskill-list">
+          <span>C / C++ / C#</span>
+          <span>Python</span>
+          <span>Java</span>
+          <span>GDScript</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="creative-contact">
+    <div class="contact-split">
+      <div class="contact-left reveal">
+        <div class="big-text">LET'S<span>CREATE.</span></div>
+        <p class="contact-note">
+          Game collab, beta reading <strong>Broke-Stalker</strong>, design commissions,
+          or just talking about games and stories — I'm here for all of it.
+        </p>
+        <div class="contact-links-col">
+          <a href="mailto:nalinagarwal2002@gmail.com" class="c-link">
+            <span>Email</span> nalinagarwal2002@gmail.com
+          </a>
+          <a href="https://linkedin.com" target="_blank" class="c-link">
+            <span>LinkedIn</span> Nalin Agarwal
+          </a>
+          <a href="https://github.com" target="_blank" class="c-link">
+            <span>GitHub</span> Game projects & more
+          </a>
+        </div>
+      </div>
+      <div class="reveal" style="display:flex;align-items:center;justify-content:center;">
+        <div style="font-family:var(--font-display);font-size:clamp(6rem,14vw,14rem);color:transparent;-webkit-text-stroke:1px rgba(192,57,43,0.12);line-height:1;user-select:none;letter-spacing:-0.03em;">NA</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Nalin Agarwal — The Creative Side</span>
+    <a href="index.html" class="f-back">← back to the lab</a>
+  </footer>
+
+  <script>
+    // Cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+    (function animRing(){rx+=(mx-rx)*0.1;ry+=(my-ry)*0.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);})();
+    document.querySelectorAll('a,button').forEach(el=>{
+      el.addEventListener('mouseenter',()=>{ring.style.width='48px';ring.style.height='48px';});
+      el.addEventListener('mouseleave',()=>{ring.style.width='28px';ring.style.height='28px';});
+    });
+
+    // Progress
+    const pb=document.getElementById('progressBar');
+    window.addEventListener('scroll',()=>{pb.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';});
+
+    // Reveal
+    const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+    // Rain
+    const canvas=document.getElementById('rainCanvas');
+    const ctx=canvas.getContext('2d');
+    let drops=[];
+    function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+    resizeCanvas();
+    window.addEventListener('resize',resizeCanvas);
+    for(let i=0;i<120;i++){drops.push({x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,len:Math.random()*20+8,speed:Math.random()*3+1,opacity:Math.random()*0.4+0.1});}
+    function drawRain(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      drops.forEach(d=>{
+        ctx.beginPath();
+        ctx.moveTo(d.x,d.y);
+        ctx.lineTo(d.x-d.len*0.2,d.y+d.len);
+        ctx.strokeStyle=`rgba(192,57,43,${d.opacity})`;
+        ctx.lineWidth=0.5;
+        ctx.stroke();
+        d.y+=d.speed;
+        if(d.y>canvas.height){d.y=-d.len;d.x=Math.random()*canvas.width;}
+      });
+      requestAnimationFrame(drawRain);
+    }
+    drawRain();
+  </script>
+</body>
+</html>
