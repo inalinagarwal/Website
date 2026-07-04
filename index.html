@@ -52,6 +52,11 @@
     .btn-primary:hover{box-shadow:0 0 24px rgba(0,255,157,0.4);transform:translateY(-2px);}
     .btn-ghost{display:inline-flex;align-items:center;gap:0.5rem;border:1px solid rgba(0,255,157,0.3);color:var(--accent);font-family:var(--font-tech);font-size:0.78rem;padding:0.9rem 1.8rem;text-decoration:none;letter-spacing:0.12em;text-transform:uppercase;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));transition:background 0.2s,border-color 0.2s;}
     .btn-ghost:hover{background:rgba(0,255,157,0.07);border-color:var(--accent);}
+    .hero-ctas-fun{margin-top:1rem;}
+    .hero-ctas-fun .btn-ghost{background:transparent;cursor:pointer;}
+    .hero-ctas-fun .btn-ghost.blue{border-color:rgba(0,200,255,0.3);color:var(--accent2);}
+    .hero-ctas-fun .btn-ghost.blue:hover{background:rgba(0,200,255,0.07);border-color:var(--accent2);}
+    @media(max-width:480px){.hero-ctas{flex-wrap:wrap;}}
     .hero-right{position:relative;z-index:2;animation:fadeUp 0.7s 0.4s ease both;}
     .terminal{background:var(--surface);border:1px solid var(--border);font-family:var(--font-tech);font-size:0.72rem;position:relative;overflow:hidden;}
     .terminal::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,255,157,0.03) 0%,transparent 40%);pointer-events:none;}
@@ -143,7 +148,93 @@
     .reveal.visible{opacity:1;transform:translateY(0);}
     #easterEgg{font-family:var(--font-tech);font-size:0.55rem;color:rgba(82,82,112,0.2);text-decoration:none;letter-spacing:0.08em;transition:color 0.4s,text-shadow 0.4s;}
     #easterEgg:hover{color:rgba(0,255,157,0.5)!important;text-shadow:0 0 8px rgba(0,255,157,0.3);}
-    @media(max-width:900px){nav{padding:1rem 1.5rem;}section{padding:5rem 1.5rem;}#hero{grid-template-columns:1fr;padding:7rem 1.5rem 4rem;}.hero-right{display:none;}.about-grid{grid-template-columns:1fr;gap:3rem;}.form-row{grid-template-columns:1fr;}footer{flex-direction:column;gap:0.8rem;text-align:center;padding:1.5rem;}.nav-links,.nav-status{display:none;}}
+    /* ===== HERO TERMINAL TYPING ===== */
+    #heroTermBody .tb{display:none;}
+    #heroTermBody .tb.on{display:block;}
+    #heroTermBody .tb .t-out{display:none;}
+    #heroTermBody .tb.done .t-out{display:block;animation:fadeUp 0.25s ease both;}
+    /* ===== PENDULUM PANEL ===== */
+    .pendulum-panel{margin-top:1rem;background:var(--surface);border:1px solid var(--border);overflow:hidden;}
+    .pendulum-panel .terminal-bar{display:flex;}
+    #pendCanvas{display:block;width:100%;height:190px;cursor:grab;touch-action:none;}
+    #pendCanvas.grabbing{cursor:grabbing;}
+    /* ===== GIT LOG TIMELINE ===== */
+    .gitlog{position:relative;margin-top:2.5rem;padding-left:2.2rem;max-width:820px;}
+    .gitlog::before{content:'';position:absolute;left:8px;top:8px;bottom:8px;width:1px;background:linear-gradient(180deg,var(--accent),rgba(0,255,157,0.08));}
+    .git-commit{position:relative;padding:0 0 2.2rem 0;}
+    .git-commit::before{content:'';position:absolute;left:-2.2rem;top:5px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);margin-left:3px;box-shadow:0 0 8px rgba(0,255,157,0.4);transition:background 0.2s;}
+    .git-commit:hover::before{background:var(--accent);}
+    .git-commit:first-child::before{background:var(--accent);animation:blink 2s ease infinite;}
+    .git-meta{display:flex;gap:0.8rem;flex-wrap:wrap;align-items:center;font-family:var(--font-tech);font-size:0.66rem;margin-bottom:0.35rem;}
+    .git-hash{color:var(--accent3);letter-spacing:0.05em;}
+    .git-date{color:var(--muted);letter-spacing:0.06em;}
+    .git-branch{color:var(--accent);border:1px solid rgba(0,255,157,0.3);padding:0.1rem 0.5rem;letter-spacing:0.05em;font-size:0.6rem;}
+    .git-branch.tag{color:var(--accent2);border-color:rgba(0,200,255,0.3);}
+    .git-title{font-family:var(--font-display);font-weight:700;font-size:0.95rem;letter-spacing:-0.01em;margin-bottom:0.3rem;}
+    .git-desc{font-family:var(--font-mono);font-size:0.78rem;color:var(--muted);line-height:1.7;max-width:640px;}
+    /* ===== KONAMI RAVE ===== */
+    /* filter on body would break position:fixed children (the floating bots), so target content instead */
+    body.rave nav,body.rave section,body.rave footer{animation:hueSpin 0.45s linear infinite,shake 0.3s linear infinite;}
+    @keyframes hueSpin{to{filter:hue-rotate(360deg);}}
+    @keyframes shake{0%,100%{transform:translate(0,0);}25%{transform:translate(-3px,2px);}50%{transform:translate(3px,-2px);}75%{transform:translate(-2px,-3px);}}
+    .rave-bot{position:fixed;bottom:-70px;z-index:2000;pointer-events:none;animation:botUp linear forwards;}
+    @keyframes botUp{to{transform:translateY(-115vh) rotate(720deg);}}
+    .rave-toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2001;background:rgba(5,5,8,0.95);border:1px solid var(--accent);color:var(--accent);font-family:var(--font-tech);font-size:0.85rem;letter-spacing:0.15em;padding:1.2rem 2.2rem;box-shadow:0 0 40px rgba(0,255,157,0.4);animation:termIn 0.3s ease both;text-align:center;pointer-events:none;}
+    /* ===== INTERACTIVE TERMINAL ===== */
+    .iterm{position:fixed;z-index:1000;width:min(640px,92vw);background:rgba(5,5,10,0.97);border:1px solid rgba(0,255,157,0.3);box-shadow:0 0 40px rgba(0,255,157,0.15),0 25px 60px rgba(0,0,0,0.6);display:none;flex-direction:column;font-family:var(--font-tech);backdrop-filter:blur(10px);}
+    .iterm.open{display:flex;animation:termIn 0.25s cubic-bezier(0.2,0.9,0.3,1.2) both;}
+    @keyframes termIn{from{opacity:0;transform:translateY(24px) scale(0.96);}to{opacity:1;transform:translateY(0) scale(1);}}
+    .iterm-bar{background:var(--surface2);border-bottom:1px solid var(--border);padding:0.55rem 1rem;display:flex;align-items:center;gap:0.6rem;cursor:grab;user-select:none;font-size:0.68rem;color:var(--muted);letter-spacing:0.08em;}
+    .iterm-bar:active{cursor:grabbing;}
+    .iterm-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;cursor:pointer;}
+    .iterm-dot.close{background:var(--accent3);}
+    .iterm-dot.min{background:#f5c842;}
+    .iterm-dot.max{background:var(--accent);}
+    .iterm-title{flex:1;text-align:center;}
+    .iterm-body{padding:1rem 1.2rem;height:380px;overflow-y:auto;font-size:0.74rem;line-height:1.75;scrollbar-width:thin;scrollbar-color:rgba(0,255,157,0.3) transparent;}
+    .iterm-body::-webkit-scrollbar{width:5px;}
+    .iterm-body::-webkit-scrollbar-thumb{background:rgba(0,255,157,0.3);}
+    .iterm-body .ln{white-space:pre-wrap;word-break:break-word;}
+    .iterm-body .ln .p{color:var(--accent);}
+    .iterm-body .ln .c{color:var(--text);}
+    .iterm-body .ok{color:var(--accent);}
+    .iterm-body .info{color:var(--accent2);}
+    .iterm-body .warn{color:var(--accent3);}
+    .iterm-body .dim{color:var(--muted);}
+    .iterm-body a{color:var(--accent2);}
+    .iterm-input-row{display:flex;gap:0.6rem;padding:0.7rem 1.2rem;border-top:1px solid var(--border);align-items:center;}
+    .iterm-input-row .p{color:var(--accent);font-size:0.74rem;flex-shrink:0;}
+    #itermInput{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:var(--font-tech);font-size:0.74rem;letter-spacing:0.03em;caret-color:var(--accent);}
+    /* ===== HINT BAR ===== */
+    .hintbar{position:fixed;bottom:1.2rem;left:1.2rem;z-index:150;display:flex;gap:0.5rem;font-family:var(--font-tech);font-size:0.6rem;color:var(--muted);letter-spacing:0.08em;align-items:center;}
+    .hintbar kbd{border:1px solid rgba(0,255,157,0.3);color:var(--accent);padding:0.15rem 0.45rem;background:rgba(0,255,157,0.05);font-family:var(--font-tech);font-size:0.6rem;}
+    .hintbar button{background:transparent;border:1px solid rgba(0,255,157,0.25);color:var(--muted);font-family:var(--font-tech);font-size:0.6rem;letter-spacing:0.08em;padding:0.35rem 0.7rem;cursor:pointer;transition:all 0.2s;}
+    .hintbar button:hover{color:var(--accent);border-color:var(--accent);background:rgba(0,255,157,0.06);}
+    /* ===== GAME MODAL ===== */
+    .game-overlay{position:fixed;inset:0;z-index:1100;background:rgba(3,3,6,0.85);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:1rem;}
+    .game-overlay.open{display:flex;}
+    .game-window{background:var(--surface);border:1px solid rgba(0,200,255,0.3);box-shadow:0 0 50px rgba(0,200,255,0.12);max-width:600px;width:100%;animation:termIn 0.25s ease both;}
+    .game-bar{background:var(--surface2);border-bottom:1px solid var(--border2);padding:0.6rem 1rem;display:flex;align-items:center;justify-content:space-between;font-family:var(--font-tech);font-size:0.68rem;color:var(--accent2);letter-spacing:0.1em;}
+    .game-close{background:transparent;border:1px solid rgba(255,77,106,0.4);color:var(--accent3);font-family:var(--font-tech);font-size:0.6rem;padding:0.2rem 0.6rem;cursor:pointer;letter-spacing:0.08em;transition:all 0.2s;}
+    .game-close:hover{background:rgba(255,77,106,0.12);}
+    .game-body{padding:1.2rem;display:flex;flex-direction:column;gap:0.9rem;align-items:center;}
+    #gameCanvas{border:1px solid var(--border);background:var(--bg);max-width:100%;image-rendering:pixelated;}
+    .game-hud{display:flex;gap:1.4rem;flex-wrap:wrap;justify-content:center;font-family:var(--font-tech);font-size:0.62rem;color:var(--muted);letter-spacing:0.08em;}
+    .game-hud b{color:var(--accent);font-weight:400;}
+    .game-controls{display:flex;gap:0.6rem;flex-wrap:wrap;justify-content:center;}
+    .game-btn{background:transparent;border:1px solid rgba(0,255,157,0.3);color:var(--accent);font-family:var(--font-tech);font-size:0.65rem;letter-spacing:0.1em;padding:0.5rem 1rem;cursor:pointer;text-transform:uppercase;transition:all 0.2s;}
+    .game-btn:hover{background:rgba(0,255,157,0.08);}
+    .game-btn.blue{border-color:rgba(0,200,255,0.3);color:var(--accent2);}
+    .game-btn.blue:hover{background:rgba(0,200,255,0.08);}
+    .game-msg{font-family:var(--font-tech);font-size:0.68rem;color:var(--accent2);letter-spacing:0.06em;min-height:1.2em;text-align:center;}
+    .dpad{display:none;grid-template-columns:repeat(3,44px);grid-template-rows:repeat(2,44px);gap:4px;}
+    .dpad button{background:var(--surface2);border:1px solid var(--border);color:var(--accent);font-size:1rem;cursor:pointer;}
+    .hero-right .terminal{cursor:pointer;transition:border-color 0.2s,box-shadow 0.2s;}
+    .hero-right .terminal:hover{border-color:rgba(0,255,157,0.35);box-shadow:0 0 30px rgba(0,255,157,0.08);}
+    .terminal-hint{font-family:var(--font-tech);font-size:0.6rem;color:var(--muted);text-align:right;margin-top:0.5rem;letter-spacing:0.08em;}
+    .terminal-hint span{color:var(--accent);}
+    @media(max-width:900px){nav{padding:1rem 1.5rem;}section{padding:5rem 1.5rem;}#hero{grid-template-columns:1fr;padding:7rem 1.5rem 4rem;}.hero-right{margin-top:1rem;}.reticle{display:none;}.about-grid{grid-template-columns:1fr;gap:3rem;}.form-row{grid-template-columns:1fr;}footer{flex-direction:column;gap:0.8rem;text-align:center;padding:1.5rem;}.nav-links,.nav-status{display:none;}.hintbar{display:none;}.iterm{left:4vw !important;top:10vh !important;width:92vw;}.iterm-body{height:50vh;}.dpad{display:grid;}}
+    @media(pointer:coarse){.dpad{display:grid;}}
   </style>
 </head>
 <body>
@@ -158,10 +249,12 @@
     </div>
     <ul class="nav-links">
       <li><a href="#about">about</a></li>
+      <li><a href="#timeline">log</a></li>
       <li><a href="#skills">skills</a></li>
       <li><a href="#projects">projects</a></li>
       <li><a href="#blog">blog</a></li>
       <li><a href="#contact">contact</a></li>
+      <li><a href="resume.pdf" target="_blank" style="color:var(--accent2)">resume</a></li>
     </ul>
     <div class="nav-status">OPEN TO ROLES</div>
   </nav>
@@ -172,17 +265,23 @@
       <h1 class="hero-name">Nalin<span class="line2">Agarwal</span></h1>
       <div class="hero-role">Robotics · Reinforcement Learning · AI Research</div>
       <p class="hero-desc"><strong>Physics-trained. Robot-focused.</strong> Building intelligent agents that move, sense, and adapt — from <em>robot kinematics</em> to <em>learned control policies</em>. MSc AI at Edinburgh. Research at IIT Delhi &amp; ISRO.</p>
-      <div class="hero-ctas"><a href="#projects" class="btn-primary">View Projects</a><a href="#contact" class="btn-ghost">Contact Me</a></div>
+      <div class="hero-ctas"><a href="#projects" class="btn-primary">View Projects</a><a href="resume.pdf" target="_blank" class="btn-ghost">Resume.pdf</a><a href="#contact" class="btn-ghost">Contact Me</a></div>
+      <div class="hero-ctas hero-ctas-fun"><button class="btn-ghost" id="heroTermBtn" type="button">&gt;_ Open Terminal</button><button class="btn-ghost blue" id="heroGameBtn" type="button">▶ Play RL-Gridworld</button></div>
     </div>
     <div class="hero-right">
       <div class="terminal">
         <div class="terminal-bar">nalin@robotics-lab ~ </div>
-        <div class="terminal-body">
-          <div><div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">&nbsp;whoami</span></div><div class="t-out">MSc AI student · Robotics &amp; RL focus<br>Edinburgh, Scotland 🏴󠁧󠁢󠁳󠁣󠁴󠁿</div></div>
-          <div><div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">&nbsp;cat research.txt</span></div><div class="t-out">Focus: <span>Robot Learning · RL Policies · Motion Planning</span><br>Tools: <span>Pinocchio · Python · C++ · Linux</span><br>Prior: <span>ISRO · IIT Delhi · C-DAC</span></div></div>
-          <div><div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">&nbsp;cat publications.txt</span></div><div class="t-out">[2024] IEEE ICITEICS — <span>Novel DG MOSFET</span><br>[2022] TROPMET — <span>Marine Heatwaves &amp; Cyclones</span></div></div>
-          <div><div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">&nbsp;status --jobs<span class="t-cursor"></span></span></div><div class="t-out"><span>AVAILABLE</span> — Robotics / RL roles, research positions</div></div>
+        <div class="terminal-body" id="heroTermBody">
+          <div class="tb" data-cmd="whoami"><div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">&nbsp;</span></div><div class="t-out">MSc AI student · Robotics &amp; RL focus<br>Edinburgh, Scotland 🏴󠁧󠁢󠁳󠁣󠁴󠁿</div></div>
+          <div class="tb" data-cmd="cat research.txt"><div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">&nbsp;</span></div><div class="t-out">Focus: <span>Robot Learning · RL Policies · Motion Planning</span><br>Tools: <span>Pinocchio · Python · C++ · Linux</span><br>Prior: <span>ISRO · IIT Delhi · C-DAC</span></div></div>
+          <div class="tb" data-cmd="cat publications.txt"><div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">&nbsp;</span></div><div class="t-out">[2024] IEEE ICITEICS — <span>Novel DG MOSFET</span><br>[2022] TROPMET — <span>Marine Heatwaves &amp; Cyclones</span></div></div>
+          <div class="tb" data-cmd="status --jobs"><div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">&nbsp;</span></div><div class="t-out"><span>AVAILABLE</span> — Robotics / RL roles, research positions</div></div>
         </div>
+      </div>
+      <div class="terminal-hint">click terminal or press <span>~</span> to go interactive</div>
+      <div class="pendulum-panel">
+        <div class="terminal-bar">physics_sim — double_pendulum.py<span style="margin-left:auto;opacity:0.55">drag a bob &amp; fling it</span></div>
+        <canvas id="pendCanvas" height="190"></canvas>
       </div>
     </div>
     <svg class="reticle" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="160" cy="160" r="155" stroke="#00ff9d" stroke-width="0.5"/><circle cx="160" cy="160" r="120" stroke="#00ff9d" stroke-width="0.3"/><circle cx="160" cy="160" r="80" stroke="#00ff9d" stroke-width="0.5"/><circle cx="160" cy="160" r="4" fill="#00ff9d"/><line x1="0" y1="160" x2="120" y2="160" stroke="#00ff9d" stroke-width="0.5"/><line x1="200" y1="160" x2="320" y2="160" stroke="#00ff9d" stroke-width="0.5"/><line x1="160" y1="0" x2="160" y2="120" stroke="#00ff9d" stroke-width="0.5"/><line x1="160" y1="200" x2="160" y2="320" stroke="#00ff9d" stroke-width="0.5"/><line x1="50" y1="50" x2="90" y2="90" stroke="#00ff9d" stroke-width="0.3"/><line x1="270" y1="50" x2="230" y2="90" stroke="#00ff9d" stroke-width="0.3"/><line x1="50" y1="270" x2="90" y2="230" stroke="#00ff9d" stroke-width="0.3"/><line x1="270" y1="270" x2="230" y2="230" stroke="#00ff9d" stroke-width="0.3"/><text x="168" y="148" fill="#00ff9d" font-family="monospace" font-size="7" opacity="0.6">NALIN AG.</text><text x="168" y="158" fill="#00ff9d" font-family="monospace" font-size="6" opacity="0.4">ROBOTICS · RL</text></svg>
@@ -206,6 +305,47 @@
           <div class="edu-card" data-idx="[02]" style="border-left-color:var(--accent2)"><div class="edu-degree">BTech Engineering Physics</div><div class="edu-school">Delhi Technological University, India</div><div class="edu-date">2020 – 2024 · GPA: 9.18 / 10</div></div>
           <div class="edu-card" data-idx="[03]" style="border-left-color:var(--muted)"><div class="edu-degree">CS50X — Harvard University</div><div class="edu-school">Online Certificate</div><div class="edu-date">Nov 2023</div></div>
         </div>
+      </div>
+    </div>
+  </section>
+  <section id="timeline">
+    <div class="section-label">Trajectory</div>
+    <h2 class="section-title reveal">$ git log --career</h2>
+    <div class="gitlog">
+      <div class="git-commit reveal">
+        <div class="git-meta"><span class="git-hash">f7c2a91</span><span class="git-branch head">HEAD → edinburgh/robotics-rl</span><span class="git-date">Sept 2025 — present</span></div>
+        <div class="git-title">feat: checkout -b robotics-rl @ University of Edinburgh</div>
+        <div class="git-desc">MSc Artificial Intelligence. Advanced Robotics, Robot &amp; Reinforcement Learning, Probabilistic Modelling, Computational Neuroscience.</div>
+      </div>
+      <div class="git-commit reveal">
+        <div class="git-meta"><span class="git-hash">d84b3e0</span><span class="git-date">Nov 2024 — Mar 2025</span></div>
+        <div class="git-title">feat(quantum): hybrid quantum CNNs for wildfire detection @ C-DAC Pune</div>
+        <div class="git-desc">Research Assistant. QAOA, VQE, IBM Qiskit &amp; PennyLane — quantum ML for image-based wildfire recognition.</div>
+      </div>
+      <div class="git-commit reveal">
+        <div class="git-meta"><span class="git-hash">9e1fa55</span><span class="git-branch tag">tag: IEEE-2024</span><span class="git-date">Jul 2024</span></div>
+        <div class="git-title">publish: novel DG charge-trapping MOSFET → IEEE ICITEICS-2024</div>
+        <div class="git-desc">Ferroelectric gate stack + Gaussian doped substrate. DOI: 10.1109/ICITEICS61368.2024.10625402</div>
+      </div>
+      <div class="git-commit reveal">
+        <div class="git-meta"><span class="git-hash">b52c7d8</span><span class="git-date">Feb — Oct 2024</span></div>
+        <div class="git-title">feat(ocean): Seychelles-Chagos thermocline ridge analysis @ IIT Delhi</div>
+        <div class="git-desc">Research fellowship, Centre for Atmospheric Sciences. Heatwave hotspots, IOD/ENSO correlations.</div>
+      </div>
+      <div class="git-commit reveal">
+        <div class="git-meta"><span class="git-hash">7a90c13</span><span class="git-branch tag">tag: TROPMET-2022</span><span class="git-date">May 2022 — Aug 2023</span></div>
+        <div class="git-title">feat(satellite): marine heatwave detection tool @ ISRO — Space Applications Centre</div>
+        <div class="git-desc">Two research stints. Real-time global MHW detection over 40 years of satellite data; cyclone correlation study presented at TROPMET-2022.</div>
+      </div>
+      <div class="git-commit reveal">
+        <div class="git-meta"><span class="git-hash">3c4e6b2</span><span class="git-branch tag">tag: CS50x</span><span class="git-date">Nov 2023</span></div>
+        <div class="git-title">cert: CS50x @ Harvard University</div>
+        <div class="git-desc">Because every roboticist should know how the stack actually works.</div>
+      </div>
+      <div class="git-commit reveal">
+        <div class="git-meta"><span class="git-hash">0000001</span><span class="git-date">Dec 2020 — May 2024</span></div>
+        <div class="git-title">init: BTech Engineering Physics @ Delhi Technological University</div>
+        <div class="git-desc">GPA 9.18/10. ECE major, CS minor. The physics foundation everything else is built on.</div>
       </div>
     </div>
   </section>
@@ -249,8 +389,8 @@
       </form>
       <div class="contact-links reveal">
         <a href="mailto:s2749986@ed.ac.uk" class="contact-link">s2749986@ed.ac.uk</a>
-        <a href="https://linkedin.com" target="_blank" class="contact-link">LinkedIn</a>
-        <a href="https://github.com" target="_blank" class="contact-link">GitHub</a>
+        <a href="https://www.linkedin.com/in/nalin-agarwal-b20495203/" target="_blank" class="contact-link">LinkedIn</a>
+        <a href="https://github.com/inalinagarwal" target="_blank" class="contact-link">GitHub</a>
         <span class="contact-link" style="cursor:default">Edinburgh, Scotland</span>
       </div>
     </div>
@@ -262,6 +402,57 @@
       <div class="f-right"><span class="f-online">ONLINE</span></div>
     </div>
   </footer>
+
+  <!-- Hint bar -->
+  <div class="hintbar">
+    <kbd>~</kbd> terminal
+    <kbd>G</kbd> game
+    <button id="hintTermBtn">&gt;_ open terminal</button>
+    <button id="hintGameBtn">▶ play rl-gridworld</button>
+  </div>
+
+  <!-- Interactive terminal -->
+  <div class="iterm" id="iterm" role="dialog" aria-label="Interactive terminal">
+    <div class="iterm-bar" id="itermBar">
+      <span class="iterm-dot close" id="itermClose" title="close"></span>
+      <span class="iterm-dot min"></span>
+      <span class="iterm-dot max"></span>
+      <span class="iterm-title">nalin@portfolio: ~ — type 'help'</span>
+    </div>
+    <div class="iterm-body" id="itermBody"></div>
+    <div class="iterm-input-row" onclick="document.getElementById('itermInput').focus()">
+      <span class="p">nalin@portfolio:~$</span>
+      <input id="itermInput" type="text" autocomplete="off" spellcheck="false" aria-label="terminal input"/>
+    </div>
+  </div>
+
+  <!-- RL Gridworld game -->
+  <div class="game-overlay" id="gameOverlay">
+    <div class="game-window">
+      <div class="game-bar"><span>RL-GRIDWORLD v1.0 — TRAIN THE ROBOT</span><button class="game-close" id="gameClose">✕ ESC</button></div>
+      <div class="game-body">
+        <div class="game-msg" id="gameMsg">Reach the goal ◆. Arrow keys / WASD to move — or press AUTO-TRAIN and watch Q-learning do it.</div>
+        <canvas id="gameCanvas" width="480" height="480"></canvas>
+        <div class="game-hud">
+          <span>EPISODE <b id="hudEp">0</b></span>
+          <span>STEPS <b id="hudSteps">0</b></span>
+          <span>REWARD <b id="hudReward">0</b></span>
+          <span>ε <b id="hudEps">1.00</b></span>
+          <span>MODE <b id="hudMode">HUMAN</b></span>
+        </div>
+        <div class="game-controls">
+          <button class="game-btn blue" id="btnTrain">⚡ Auto-train (Q-learning)</button>
+          <button class="game-btn" id="btnHuman">🕹 Human mode</button>
+          <button class="game-btn" id="btnReset">↺ Reset all</button>
+        </div>
+        <div class="dpad">
+          <span></span><button data-dir="0">▲</button><span></span>
+          <button data-dir="3">◀</button><button data-dir="1">▼</button><button data-dir="2">▶</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     const cursor=document.getElementById('cursor');
     const ring=document.getElementById('cursorRing');
@@ -274,6 +465,429 @@
     const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
     document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
     function handleSubmit(e){e.preventDefault();const btn=e.target.querySelector('button');btn.textContent='TRANSMITTED ✓';btn.style.background='var(--accent2)';setTimeout(()=>{btn.textContent='TRANSMIT →';btn.style.background='var(--accent)';e.target.reset();},3000);}
+
+    /* ================= INTERACTIVE TERMINAL ================= */
+    const iterm=document.getElementById('iterm');
+    const itermBody=document.getElementById('itermBody');
+    const itermInput=document.getElementById('itermInput');
+    let itermBooted=false,histArr=[],histIdx=-1;
+
+    const FILES={
+      'about.txt':`Nalin Agarwal — MSc AI @ University of Edinburgh.
+Specialising in Robotics & Reinforcement Learning.
+BTech Engineering Physics, DTU (GPA 9.18/10).
+Research at ISRO, IIT Delhi, C-DAC. IEEE-published.
+Physics-trained. Robot-focused.`,
+      'skills.txt':`Languages : Python, C/C++, JavaScript, MATLAB, SQL, LaTeX
+Robotics  : Pinocchio, RL algorithms, motion planning, SLAM
+Tools     : Git, Linux, Flask, Godot, Silvaco TCAD, PennyLane
+Domains   : RL, robot learning, satellite data, quantum ML`,
+      'projects.txt':`[01] Hybrid Quantum CNN for wildfire detection  (C-DAC)
+[02] Novel Double-Gate MOSFET — IEEE published  (DTU)
+[03] Marine heatwave detection via satellite    (ISRO)
+[04] Seychelles-Chagos ocean analysis           (IIT Delhi)
+[05] Gamer's Paradise — Flask web app
+[06] Cricket Scorecard DBMS — C++
+→ type 'goto projects' to see them on the page`,
+      'contact.txt':`email    : s2749986@ed.ac.uk
+linkedin : <a href="https://www.linkedin.com/in/nalin-agarwal-b20495203/" target="_blank">linkedin.com/in/nalin-agarwal-b20495203</a>
+github   : <a href="https://github.com/inalinagarwal" target="_blank">github.com/inalinagarwal</a>
+location : Edinburgh, Scotland
+status   : OPEN TO ROBOTICS / RL ROLES`,
+      'publications.txt':`[2024] IEEE ICITEICS — Novel DG Charge-Trapping MOSFET
+       DOI: 10.1109/ICITEICS61368.2024.10625402
+[2022] TROPMET — Marine Heatwaves & Cyclone Activity`,
+      'resume.pdf':'__BINARY__'
+    };
+
+    const CMDS={
+      help:()=>`available commands:
+  <span class="info">help</span>          this menu
+  <span class="info">ls</span>            list files
+  <span class="info">cat</span> &lt;file&gt;    read a file (try: cat about.txt)
+  <span class="info">whoami</span>        who is this guy
+  <span class="info">goto</span> &lt;section&gt; navigate: about|skills|projects|blog|contact|top
+  <span class="info">resume</span>        open resume.pdf
+  <span class="info">play</span>          launch RL-Gridworld game
+  <span class="info">contact</span>       jump to contact form
+  <span class="info">sudo hire_me</span>  try it
+  <span class="info">neofetch</span>      system info
+  <span class="info">matrix</span>        …
+  <span class="info">clear</span>         clear screen
+  <span class="info">exit</span>          close terminal
+<span class="dim">tip: TAB autocompletes, ↑/↓ browse history</span>`,
+      ls:()=>Object.keys(FILES).map(f=>f==='resume.pdf'?`<span class="info">${f}</span>`:`<span class="ok">${f}</span>`).join('  '),
+      whoami:()=>`nalin — robotics & RL grad student. teaches robots to move; occasionally moves himself (table tennis).`,
+      pwd:()=>`/home/nalin/portfolio`,
+      neofetch:()=>`<span class="ok">        ▄▄▄▄        </span>  <span class="info">nalin</span>@<span class="info">portfolio</span>
+<span class="ok">      ▄█░░░░█▄      </span>  ─────────────────
+<span class="ok">      █░▀░░▀░█      </span>  OS      : RobotOS 2025 LTS
+<span class="ok">      █░░▄▄░░█      </span>  Host    : University of Edinburgh
+<span class="ok">      ▀█▄▄▄▄█▀      </span>  Kernel  : physics-6.2-rl
+<span class="ok">     ▄██████████▄   </span>  Shell   : policy-gradient
+<span class="ok">    █ ▓▓▓▓▓▓▓▓▓▓ █  </span>  Uptime  : since 2001
+<span class="ok">    █ ▓▓▓▓▓▓▓▓▓▓ █  </span>  Memory  : mostly robotics papers`,
+      matrix:()=>{matrixRain();return `<span class="ok">wake up, recruiter…</span>`;},
+      clear:()=>{itermBody.innerHTML='';return null;},
+      exit:()=>{closeTerm();return null;},
+      resume:()=>{window.open('resume.pdf','_blank');return `<span class="ok">opening resume.pdf …</span>`;},
+      play:()=>{openGame();return `<span class="ok">launching RL-GRIDWORLD …</span>`;},
+      contact:()=>{closeTerm();location.hash='#contact';return null;},
+      date:()=>new Date().toString(),
+      echo:(a)=>a.join(' ')
+    };
+
+    function termPrint(html,cls){const d=document.createElement('div');d.className='ln'+(cls?' '+cls:'');d.innerHTML=html;itermBody.appendChild(d);itermBody.scrollTop=itermBody.scrollHeight;}
+    function termEcho(cmd){termPrint(`<span class="p">nalin@portfolio:~$</span> <span class="c">${cmd.replace(/</g,'&lt;')}</span>`);}
+
+    function runCmd(raw){
+      const line=raw.trim();
+      termEcho(line);
+      if(!line)return;
+      histArr.push(line);histIdx=histArr.length;
+      const parts=line.split(/\s+/);
+      const cmd=parts[0].toLowerCase();
+      const args=parts.slice(1);
+      if(cmd==='sudo'&&args.join(' ')==='hire_me'){
+        termPrint(`<span class="warn">[sudo] password for recruiter:</span> ********`);
+        setTimeout(()=>{termPrint(`<span class="ok">ACCESS GRANTED ✓ — redirecting to contact form…</span>`);setTimeout(()=>{closeTerm();location.hash='#contact';},900);},600);
+        return;
+      }
+      if(cmd==='cat'){
+        if(!args[0]){termPrint(`<span class="warn">cat: missing file. try 'ls'</span>`);return;}
+        const f=FILES[args[0]];
+        if(f===undefined)termPrint(`<span class="warn">cat: ${args[0]}: no such file</span>`);
+        else if(f==='__BINARY__'){termPrint(`<span class="dim">binary file — opening in viewer…</span>`);window.open('resume.pdf','_blank');}
+        else termPrint(f,'dim');
+        return;
+      }
+      if(cmd==='goto'||cmd==='cd'){
+        const sec=(args[0]||'').replace(/[#/]/g,'');
+        const map={about:'#about',skills:'#skills',projects:'#projects',blog:'#blog',contact:'#contact',top:'#hero',home:'#hero','~':'#hero',log:'#timeline',timeline:'#timeline'};
+        if(map[sec]){termPrint(`<span class="ok">navigating → ${sec}</span>`);closeTerm();location.hash=map[sec];}
+        else termPrint(`<span class="warn">unknown section. try: about|skills|projects|blog|contact|top</span>`);
+        return;
+      }
+      const fn=CMDS[cmd];
+      if(fn){const out=fn(args);if(out!==null&&out!==undefined)termPrint(out);}
+      else termPrint(`<span class="warn">command not found: ${cmd.replace(/</g,'&lt;')}</span> <span class="dim">— type 'help'</span>`);
+    }
+
+    function matrixRain(){
+      const c=document.createElement('canvas');c.style.cssText='position:fixed;inset:0;z-index:1050;pointer-events:none;';
+      c.width=innerWidth;c.height=innerHeight;document.body.appendChild(c);
+      const ctx=c.getContext('2d');const cols=Math.floor(c.width/14);const drops=Array(cols).fill(0);
+      let frames=0;
+      const iv=setInterval(()=>{
+        ctx.fillStyle='rgba(5,5,8,0.1)';ctx.fillRect(0,0,c.width,c.height);
+        ctx.fillStyle='#00ff9d';ctx.font='13px monospace';
+        drops.forEach((y,i)=>{ctx.fillText(String.fromCharCode(0x30A0+Math.random()*96),i*14,y*14);drops[i]=(y*14>c.height&&Math.random()>0.975)?0:y+1;});
+        if(++frames>140){clearInterval(iv);c.style.transition='opacity 1s';c.style.opacity='0';setTimeout(()=>c.remove(),1000);}
+      },40);
+    }
+
+    function openTerm(){
+      iterm.classList.add('open');
+      if(!iterm.style.left){iterm.style.left=Math.max(20,(innerWidth-640)/2)+'px';iterm.style.top=Math.max(20,(innerHeight-500)/2)+'px';}
+      if(!itermBooted){
+        itermBooted=true;
+        termPrint(`<span class="ok">╔══════════════════════════════════════════╗</span>`);
+        termPrint(`<span class="ok">║  NALIN_OS v2.5 — portfolio shell          ║</span>`);
+        termPrint(`<span class="ok">╚══════════════════════════════════════════╝</span>`);
+        termPrint(`<span class="dim">type <span class="info">help</span> to see commands. try <span class="info">sudo hire_me</span>.</span>`);
+      }
+      setTimeout(()=>itermInput.focus(),50);
+    }
+    function closeTerm(){iterm.classList.remove('open');}
+
+    itermInput.addEventListener('keydown',e=>{
+      if(e.key==='Enter'){runCmd(itermInput.value);itermInput.value='';}
+      else if(e.key==='ArrowUp'){e.preventDefault();if(histIdx>0){histIdx--;itermInput.value=histArr[histIdx];}}
+      else if(e.key==='ArrowDown'){e.preventDefault();if(histIdx<histArr.length-1){histIdx++;itermInput.value=histArr[histIdx];}else{histIdx=histArr.length;itermInput.value='';}}
+      else if(e.key==='Tab'){
+        e.preventDefault();
+        const v=itermInput.value;const parts=v.split(/\s+/);const last=parts[parts.length-1];
+        const pool=parts.length>1?Object.keys(FILES):[...Object.keys(CMDS),'sudo','goto','cat'];
+        const m=pool.filter(x=>x.startsWith(last));
+        if(m.length===1){parts[parts.length-1]=m[0];itermInput.value=parts.join(' ')+(parts.length>1?'':' ');}
+        else if(m.length>1)termPrint(`<span class="dim">${m.join('  ')}</span>`);
+      }
+      else if(e.key==='Escape')closeTerm();
+    });
+    document.getElementById('itermClose').addEventListener('click',closeTerm);
+
+    // dragging
+    (function(){
+      const bar=document.getElementById('itermBar');let dx=0,dy=0,drag=false;
+      bar.addEventListener('pointerdown',e=>{if(e.target.classList.contains('iterm-dot'))return;drag=true;dx=e.clientX-iterm.offsetLeft;dy=e.clientY-iterm.offsetTop;bar.setPointerCapture(e.pointerId);});
+      bar.addEventListener('pointermove',e=>{if(!drag)return;iterm.style.left=Math.max(0,Math.min(innerWidth-80,e.clientX-dx))+'px';iterm.style.top=Math.max(0,Math.min(innerHeight-40,e.clientY-dy))+'px';});
+      bar.addEventListener('pointerup',()=>drag=false);
+    })();
+
+    // triggers
+    document.getElementById('hintTermBtn').addEventListener('click',openTerm);
+    document.getElementById('heroTermBtn').addEventListener('click',openTerm);
+    document.getElementById('heroGameBtn').addEventListener('click',()=>openGame());
+    document.querySelector('.hero-right .terminal').addEventListener('click',openTerm);
+    document.addEventListener('keydown',e=>{
+      const typing=['INPUT','TEXTAREA'].includes(document.activeElement.tagName);
+      if((e.key==='~'||e.key==='`')&&!typing){e.preventDefault();iterm.classList.contains('open')?closeTerm():openTerm();}
+      if((e.key==='g'||e.key==='G')&&!typing&&!gameOverlay.classList.contains('open')&&!iterm.classList.contains('open')){openGame();}
+      if(e.key==='Escape'){closeGame();closeTerm();}
+    });
+
+    /* ================= RL GRIDWORLD ================= */
+    const gameOverlay=document.getElementById('gameOverlay');
+    const cv=document.getElementById('gameCanvas');
+    const gtx=cv.getContext('2d');
+    const N=8,CELL=60;
+    const GOAL={x:7,y:0};
+    const TRAPS=[{x:2,y:2},{x:5,y:1},{x:3,y:5},{x:6,y:4},{x:1,y:6},{x:4,y:3}];
+    const START={x:0,y:7};
+    let agent={...START},Q=null,eps=1,episode=0,steps=0,totalR=0,mode='human',trainTimer=null;
+    const hud={ep:document.getElementById('hudEp'),steps:document.getElementById('hudSteps'),reward:document.getElementById('hudReward'),eps:document.getElementById('hudEps'),mode:document.getElementById('hudMode')};
+    const gameMsg=document.getElementById('gameMsg');
+    const DIRS=[[0,-1],[0,1],[1,0],[-1,0]]; // up down right left
+
+    function newQ(){return Array.from({length:N*N},()=>[0,0,0,0]);}
+    function isTrap(x,y){return TRAPS.some(t=>t.x===x&&t.y===y);}
+    function sIdx(x,y){return y*N+x;}
+
+    function drawGame(){
+      gtx.fillStyle='#050508';gtx.fillRect(0,0,cv.width,cv.height);
+      for(let y=0;y<N;y++)for(let x=0;x<N;x++){
+        // Q-value heatmap
+        if(Q){const best=Math.max(...Q[sIdx(x,y)]);if(best>0){gtx.fillStyle=`rgba(0,255,157,${Math.min(0.35,best/40)})`;gtx.fillRect(x*CELL,y*CELL,CELL,CELL);}}
+        gtx.strokeStyle='rgba(0,255,157,0.12)';gtx.strokeRect(x*CELL,y*CELL,CELL,CELL);
+      }
+      // best-policy arrows
+      if(Q){gtx.fillStyle='rgba(0,200,255,0.7)';gtx.font='14px monospace';gtx.textAlign='center';gtx.textBaseline='middle';
+        for(let y=0;y<N;y++)for(let x=0;x<N;x++){
+          if((x===GOAL.x&&y===GOAL.y)||isTrap(x,y))continue;
+          const q=Q[sIdx(x,y)];const best=Math.max(...q);
+          if(best>0.5)gtx.fillText(['↑','↓','→','←'][q.indexOf(best)],x*CELL+CELL/2,y*CELL+CELL/2);
+        }}
+      // traps
+      TRAPS.forEach(t=>{gtx.fillStyle='rgba(255,77,106,0.18)';gtx.fillRect(t.x*CELL,t.y*CELL,CELL,CELL);gtx.fillStyle='#ff4d6a';gtx.font='22px monospace';gtx.textAlign='center';gtx.textBaseline='middle';gtx.fillText('✖',t.x*CELL+CELL/2,t.y*CELL+CELL/2);});
+      // goal
+      gtx.fillStyle='rgba(0,200,255,0.15)';gtx.fillRect(GOAL.x*CELL,GOAL.y*CELL,CELL,CELL);
+      gtx.fillStyle='#00c8ff';gtx.font='24px monospace';gtx.textAlign='center';gtx.textBaseline='middle';gtx.fillText('◆',GOAL.x*CELL+CELL/2,GOAL.y*CELL+CELL/2);
+      // agent (robot)
+      const ax=agent.x*CELL+CELL/2,ay=agent.y*CELL+CELL/2;
+      gtx.fillStyle='#00ff9d';gtx.shadowColor='#00ff9d';gtx.shadowBlur=14;
+      gtx.fillRect(ax-13,ay-13,26,26);
+      gtx.shadowBlur=0;gtx.fillStyle='#050508';
+      gtx.fillRect(ax-8,ay-7,5,5);gtx.fillRect(ax+3,ay-7,5,5);gtx.fillRect(ax-6,ay+3,12,3);
+      updateHud();
+    }
+    function updateHud(){hud.ep.textContent=episode;hud.steps.textContent=steps;hud.reward.textContent=totalR.toFixed(0);hud.eps.textContent=mode==='train'?eps.toFixed(2):'—';hud.mode.textContent=mode==='train'?'Q-LEARNING':'HUMAN';}
+
+    function stepEnv(a){
+      const[dx,dy]=DIRS[a];
+      const nx=Math.max(0,Math.min(N-1,agent.x+dx)),ny=Math.max(0,Math.min(N-1,agent.y+dy));
+      agent.x=nx;agent.y=ny;steps++;
+      if(nx===GOAL.x&&ny===GOAL.y)return{r:20,done:true,win:true};
+      if(isTrap(nx,ny))return{r:-10,done:true,win:false};
+      return{r:-0.1,done:false};
+    }
+    function resetEp(){agent={...START};steps=0;}
+
+    function humanMove(a){
+      if(mode!=='human'||!gameOverlay.classList.contains('open'))return;
+      const res=stepEnv(a);totalR+=res.r;
+      if(res.done){
+        episode++;
+        gameMsg.textContent=res.win?`✓ GOAL in ${steps} steps! The robot thanks you. Now try AUTO-TRAIN.`:`✖ Stepped on a trap. Reward −10. Try again!`;
+        gameMsg.style.color=res.win?'var(--accent)':'var(--accent3)';
+        resetEp();
+      }
+      drawGame();
+    }
+
+    function trainStep(){
+      // one full episode per tick (fast), animate agent along greedy path occasionally
+      const alpha=0.2,gamma=0.95;
+      let x=START.x,y=START.y,done=false,epR=0,st=0;
+      while(!done&&st<200){
+        const s=sIdx(x,y);
+        const a=Math.random()<eps?Math.floor(Math.random()*4):Q[s].indexOf(Math.max(...Q[s]));
+        const[dx,dy]=DIRS[a];
+        const nx=Math.max(0,Math.min(N-1,x+dx)),ny=Math.max(0,Math.min(N-1,y+dy));
+        let r=-0.1,d=false;
+        if(nx===GOAL.x&&ny===GOAL.y){r=20;d=true;}
+        else if(isTrap(nx,ny)){r=-10;d=true;}
+        const s2=sIdx(nx,ny);
+        Q[s][a]+=alpha*(r+gamma*(d?0:Math.max(...Q[s2]))-Q[s][a]);
+        x=nx;y=ny;epR+=r;done=d;st++;
+      }
+      episode++;totalR=epR;steps=st;
+      eps=Math.max(0.05,eps*0.985);
+      agent={x,y};
+      drawGame();
+      if(eps<=0.051&&episode>150){
+        stopTrain();
+        gameMsg.textContent='✓ Policy converged! Arrows show the learned policy, green = high Q-value. Press HUMAN MODE to race it.';
+        gameMsg.style.color='var(--accent)';
+        replayGreedy();
+        return;
+      }
+      gameMsg.textContent=`training… episode ${episode} | ε=${eps.toFixed(2)} (exploration → exploitation)`;
+      gameMsg.style.color='var(--accent2)';
+    }
+    function replayGreedy(){
+      resetEp();agent={...START};let guard=0;
+      const iv=setInterval(()=>{
+        const s=sIdx(agent.x,agent.y);
+        const a=Q[s].indexOf(Math.max(...Q[s]));
+        const res=stepEnv(a);drawGame();
+        if(res.done||++guard>60){clearInterval(iv);if(res.win!==undefined&&res.win){gameMsg.textContent=`✓ Trained robot reached goal in ${steps} steps — optimal-ish!`;}resetEp();setTimeout(drawGame,600);}
+      },140);
+    }
+    function startTrain(){
+      if(!Q)Q=newQ();
+      mode='train';stopTrain();
+      trainTimer=setInterval(trainStep,50);
+      updateHud();
+    }
+    function stopTrain(){if(trainTimer){clearInterval(trainTimer);trainTimer=null;}}
+
+    function openGame(){gameOverlay.classList.add('open');resetEp();drawGame();}
+    function closeGame(){gameOverlay.classList.remove('open');stopTrain();if(mode==='train')mode='human';}
+
+    document.getElementById('btnTrain').addEventListener('click',()=>{eps=1;episode=0;startTrain();});
+    document.getElementById('btnHuman').addEventListener('click',()=>{stopTrain();mode='human';resetEp();gameMsg.textContent='HUMAN mode — arrows/WASD. Avoid ✖, reach ◆.';gameMsg.style.color='var(--accent2)';drawGame();});
+    document.getElementById('btnReset').addEventListener('click',()=>{stopTrain();Q=null;eps=1;episode=0;totalR=0;mode='human';resetEp();gameMsg.textContent='Fresh start — the robot has forgotten everything.';gameMsg.style.color='var(--accent2)';drawGame();});
+    document.getElementById('gameClose').addEventListener('click',closeGame);
+    document.getElementById('hintGameBtn').addEventListener('click',openGame);
+    gameOverlay.addEventListener('click',e=>{if(e.target===gameOverlay)closeGame();});
+    document.querySelectorAll('.dpad button').forEach(b=>b.addEventListener('click',()=>humanMove(+b.dataset.dir)));
+    document.addEventListener('keydown',e=>{
+      if(!gameOverlay.classList.contains('open')||mode!=='human')return;
+      const km={ArrowUp:0,w:0,W:0,ArrowDown:1,s:1,S:1,ArrowRight:2,d:2,D:2,ArrowLeft:3,a:3,A:3};
+      if(km[e.key]!==undefined){e.preventDefault();humanMove(km[e.key]);}
+    });
+
+    /* ================= HERO TERMINAL TYPING ================= */
+    (function(){
+      const blocks=[...document.querySelectorAll('#heroTermBody .tb')];
+      if(!blocks.length)return;
+      let bi=0;
+      function typeBlock(){
+        if(bi>=blocks.length){const last=blocks[blocks.length-1].querySelector('.t-cmd');last.classList.add('t-cursor');return;}
+        const b=blocks[bi];b.classList.add('on');
+        const cmdEl=b.querySelector('.t-cmd');
+        const text=b.dataset.cmd;let i=0;
+        cmdEl.classList.add('t-cursor');
+        const iv=setInterval(()=>{
+          i++;cmdEl.innerHTML='&nbsp;'+text.slice(0,i);
+          if(i>=text.length){
+            clearInterval(iv);
+            setTimeout(()=>{cmdEl.classList.remove('t-cursor');b.classList.add('done');bi++;setTimeout(typeBlock,450);},280);
+          }
+        },42);
+      }
+      const io=new IntersectionObserver(es=>{
+        if(es.some(en=>en.isIntersecting)){io.disconnect();setTimeout(typeBlock,500);}
+      },{threshold:0.3});
+      io.observe(document.getElementById('heroTermBody'));
+    })();
+
+    /* ================= DOUBLE PENDULUM ================= */
+    (function(){
+      const c=document.getElementById('pendCanvas');
+      if(!c)return;
+      const ctx=c.getContext('2d');
+      const l1=62,l2=62,m1=1,m2=1,g=0.35,damp=0.9995;
+      let th1=Math.PI/2+0.4,th2=Math.PI/2,w1=0,w2=0;
+      let px=0,py=24,trail=[];
+      let drag=0,lastAng=0,lastT=0; // drag: 0 none, 1 bob1, 2 bob2
+      function resize(){c.width=c.clientWidth*devicePixelRatio;c.height=190*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);px=c.clientWidth/2;}
+      resize();addEventListener('resize',resize);
+      function pos(){
+        const x1=px+l1*Math.sin(th1),y1=py+l1*Math.cos(th1);
+        return{x1,y1,x2:x1+l2*Math.sin(th2),y2:y1+l2*Math.cos(th2)};
+      }
+      function step(){
+        if(drag)return;
+        const d=th1-th2,den=2*m1+m2-m2*Math.cos(2*d);
+        const a1=(-g*(2*m1+m2)*Math.sin(th1)-m2*g*Math.sin(th1-2*th2)-2*Math.sin(d)*m2*(w2*w2*l2+w1*w1*l1*Math.cos(d)))/(l1*den);
+        const a2=(2*Math.sin(d)*(w1*w1*l1*(m1+m2)+g*(m1+m2)*Math.cos(th1)+w2*w2*l2*m2*Math.cos(d)))/(l2*den);
+        w1=(w1+a1)*damp;w2=(w2+a2)*damp;th1+=w1;th2+=w2;
+      }
+      function draw(){
+        for(let k=0;k<2;k++)step();
+        const p=pos();
+        trail.push([p.x2,p.y2]);if(trail.length>90)trail.shift();
+        ctx.clearRect(0,0,c.clientWidth,190);
+        for(let i=1;i<trail.length;i++){ctx.strokeStyle=`rgba(0,200,255,${i/trail.length*0.35})`;ctx.beginPath();ctx.moveTo(trail[i-1][0],trail[i-1][1]);ctx.lineTo(trail[i][0],trail[i][1]);ctx.stroke();}
+        ctx.strokeStyle='rgba(0,255,157,0.7)';ctx.lineWidth=1.5;
+        ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(p.x1,p.y1);ctx.lineTo(p.x2,p.y2);ctx.stroke();
+        ctx.fillStyle='#525270';ctx.fillRect(px-4,py-4,8,8);
+        ctx.fillStyle='#00ff9d';ctx.shadowColor='#00ff9d';ctx.shadowBlur=8;
+        ctx.beginPath();ctx.arc(p.x1,p.y1,7,0,7);ctx.fill();
+        ctx.fillStyle='#00c8ff';ctx.shadowColor='#00c8ff';
+        ctx.beginPath();ctx.arc(p.x2,p.y2,7,0,7);ctx.fill();
+        ctx.shadowBlur=0;
+        requestAnimationFrame(draw);
+      }
+      function ptr(e){const r=c.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top};}
+      c.addEventListener('pointerdown',e=>{
+        const m=ptr(e),p=pos();
+        const d1=Math.hypot(m.x-p.x1,m.y-p.y1),d2=Math.hypot(m.x-p.x2,m.y-p.y2);
+        if(Math.min(d1,d2)>30)return;
+        drag=d1<d2?1:2;w1=0;w2=0;trail=[];
+        c.classList.add('grabbing');c.setPointerCapture(e.pointerId);
+        lastT=performance.now();
+      });
+      c.addEventListener('pointermove',e=>{
+        if(!drag)return;
+        const m=ptr(e),p=pos(),now=performance.now(),dt=Math.max(8,now-lastT);
+        if(drag===1){
+          const a=Math.atan2(m.x-px,m.y-py);
+          w1=((a-th1+Math.PI*3)%(Math.PI*2)-Math.PI)/dt*14;th1=a;
+        }else{
+          const a=Math.atan2(m.x-p.x1,m.y-p.y1);
+          w2=((a-th2+Math.PI*3)%(Math.PI*2)-Math.PI)/dt*14;th2=a;
+        }
+        lastT=now;
+      });
+      const release=()=>{drag=0;c.classList.remove('grabbing');};
+      c.addEventListener('pointerup',release);c.addEventListener('pointercancel',release);
+      draw();
+    })();
+
+    /* ================= KONAMI CODE ================= */
+    (function(){
+      const seq=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+      let pos=0;
+      document.addEventListener('keydown',e=>{
+        if(['INPUT','TEXTAREA'].includes(document.activeElement.tagName))return;
+        const k=e.key.length===1?e.key.toLowerCase():e.key;
+        pos=(k===seq[pos])?pos+1:(k===seq[0]?1:0);
+        if(pos===seq.length){pos=0;rave();}
+      });
+      function rave(){
+        if(document.body.classList.contains('rave'))return;
+        document.body.classList.add('rave');
+        const toast=document.createElement('div');
+        toast.className='rave-toast';
+        toast.innerHTML='⬆⬆⬇⬇⬅➡⬅➡ B A<br>KONAMI ACCEPTED :: RAVE_MODE ACTIVATED';
+        document.body.appendChild(toast);
+        const bots=[];
+        const emo=['🤖','🦾','🛸','⚙️','🕹️'];
+        for(let i=0;i<26;i++){
+          const b=document.createElement('div');
+          b.className='rave-bot';b.textContent=emo[i%emo.length];
+          b.style.left=Math.random()*95+'vw';
+          b.style.fontSize=(1.2+Math.random()*2)+'rem';
+          b.style.animationDuration=(2.5+Math.random()*4)+'s';
+          b.style.animationDelay=(Math.random()*3)+'s';
+          document.body.appendChild(b);bots.push(b);
+        }
+        setTimeout(()=>toast.remove(),2600);
+        setTimeout(()=>{document.body.classList.remove('rave');bots.forEach(b=>b.remove());},8000);
+      }
+    })();
   </script>
 </body>
 </html>
