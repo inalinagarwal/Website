@@ -108,6 +108,35 @@
     .project-card.featured{border-color:rgba(0,200,255,0.1);}
     .project-card.featured::before{background:linear-gradient(90deg,transparent,var(--accent2),transparent);}
     .project-card.featured:hover{border-color:rgba(0,200,255,0.25);}
+    .project-card.hero-project{grid-column:1/-1;display:grid;grid-template-columns:1.1fr 1fr;gap:2rem;padding:2rem;border-color:rgba(0,255,157,0.18);}
+    .project-card.hero-project:hover{transform:none;border-color:rgba(0,255,157,0.3);}
+    .hp-media{display:flex;flex-direction:column;gap:0.8rem;}
+    .hp-video{position:relative;background:#000;border:1px solid var(--border);aspect-ratio:16/9;overflow:hidden;}
+    .hp-video video{width:100%;height:100%;object-fit:contain;display:block;background:#000;}
+    .hp-video-fallback{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;font-family:var(--font-tech);font-size:0.68rem;color:var(--muted);letter-spacing:0.1em;text-align:center;background:repeating-linear-gradient(45deg,rgba(0,255,157,0.02) 0 10px,transparent 10px 20px);}
+    .hp-video-fallback b{color:var(--accent);font-weight:400;font-size:0.8rem;}
+    .hp-video.missing video{display:none;}
+    .hp-video.missing .hp-video-fallback{display:flex;}
+    .hp-video-cap{font-family:var(--font-tech);font-size:0.6rem;color:var(--muted);letter-spacing:0.08em;}
+    .hp-video-cap span{color:var(--accent);}
+    .hp-figure{background:#fff;border:1px solid var(--border);}
+    .hp-figure img{width:100%;display:block;}
+    .hp-info{display:flex;flex-direction:column;}
+    .hp-info .project-title{font-size:1.3rem;}
+    .hp-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;margin:0.4rem 0 1.3rem;}
+    .hp-stat{border:1px solid var(--border2);padding:0.7rem;background:var(--surface);}
+    .hp-stat b{display:block;font-family:var(--font-display);font-weight:800;font-size:1.25rem;color:var(--accent);line-height:1.1;}
+    .hp-stat span{font-family:var(--font-tech);font-size:0.56rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;}
+    .hp-role{font-family:var(--font-mono);font-size:0.76rem;color:var(--muted);line-height:1.7;margin-bottom:1.2rem;padding-left:0.9rem;border-left:1px solid rgba(0,255,157,0.3);}
+    .hp-role strong{color:var(--text);font-weight:400;}
+    .hp-pubs{display:flex;flex-direction:column;gap:0.6rem;margin-top:1.2rem;}
+    .hp-pub{display:flex;align-items:center;justify-content:space-between;gap:0.8rem;flex-wrap:wrap;border:1px solid var(--border2);padding:0.65rem 0.85rem;background:var(--surface);}
+    .hp-pub-venue{font-family:var(--font-tech);font-size:0.66rem;color:var(--text);letter-spacing:0.06em;}
+    .hp-pub-venue em{font-style:normal;color:var(--accent2);margin-right:0.4rem;}
+    .hp-pub-links{display:flex;gap:0.8rem;}
+    .project-link.pending{color:var(--muted);cursor:not-allowed;}
+    .project-link.pending:hover{opacity:1;}
+    @media(max-width:900px){.project-card.hero-project{grid-template-columns:1fr;padding:1.4rem;}.hp-stats{grid-template-columns:repeat(3,1fr);}}
     .project-badge{position:absolute;top:1.2rem;right:1.2rem;font-family:var(--font-tech);font-size:0.58rem;color:var(--accent2);border:1px solid rgba(0,200,255,0.25);padding:0.18rem 0.5rem;letter-spacing:0.1em;text-transform:uppercase;}
     .project-num{font-family:var(--font-tech);font-size:0.6rem;color:var(--muted);letter-spacing:0.1em;margin-bottom:1rem;}
     .project-title{font-family:var(--font-display);font-weight:700;font-size:1.05rem;letter-spacing:-0.01em;margin-bottom:0.7rem;line-height:1.3;}
@@ -274,7 +303,7 @@
         <div class="terminal-body" id="heroTermBody">
           <div class="tb" data-cmd="whoami"><div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">&nbsp;</span></div><div class="t-out">MSc AI student · Robotics &amp; RL focus<br>Edinburgh, Scotland 🏴󠁧󠁢󠁳󠁣󠁴󠁿</div></div>
           <div class="tb" data-cmd="cat research.txt"><div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">&nbsp;</span></div><div class="t-out">Focus: <span>Robot Learning · RL Policies · Motion Planning</span><br>Tools: <span>Pinocchio · Python · C++ · Linux</span><br>Prior: <span>ISRO · IIT Delhi · C-DAC</span></div></div>
-          <div class="tb" data-cmd="cat publications.txt"><div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">&nbsp;</span></div><div class="t-out">[2024] IEEE ICITEICS — <span>Novel DG MOSFET</span><br>[2022] TROPMET — <span>Marine Heatwaves &amp; Cyclones</span></div></div>
+          <div class="tb" data-cmd="cat publications.txt"><div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">&nbsp;</span></div><div class="t-out">[2026] ICRA (sub.) · CoRL WS — <span>Blind Baoding, Shadow Hand</span><br>[2024] IEEE ICITEICS — <span>Novel DG MOSFET</span><br>[2022] TROPMET — <span>Marine Heatwaves &amp; Cyclones</span></div></div>
           <div class="tb" data-cmd="status --jobs"><div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">&nbsp;</span></div><div class="t-out"><span>AVAILABLE</span> — Robotics / RL roles, research positions</div></div>
         </div>
       </div>
@@ -316,6 +345,11 @@
         <div class="git-meta"><span class="git-hash">f7c2a91</span><span class="git-branch head">HEAD → edinburgh/robotics-rl</span><span class="git-date">Sept 2025 — present</span></div>
         <div class="git-title">feat: checkout -b robotics-rl @ University of Edinburgh</div>
         <div class="git-desc">MSc Artificial Intelligence. Advanced Robotics, Robot &amp; Reinforcement Learning, Probabilistic Modelling, Computational Neuroscience.</div>
+      </div>
+      <div class="git-commit reveal">
+        <div class="git-meta"><span class="git-hash">e3b112a</span><span class="git-branch tag">tag: ICRA-2027</span><span class="git-branch tag">tag: CoRL-2026-WS</span><span class="git-date">2026</span></div>
+        <div class="git-title">feat(dexterous): blind Baoding on the Shadow Hand Lite — MSc dissertation</div>
+        <div class="git-desc">Sim-to-real RL with proprioception + binary touch, no vision. 112.5 rotations on hardware. Submitted to ICRA 2027; CoRL 2026 workshop paper. <a href="#dissertation" style="color:var(--accent2)">see project →</a></div>
       </div>
       <div class="git-commit reveal">
         <div class="git-meta"><span class="git-hash">d84b3e0</span><span class="git-date">Nov 2024 — Mar 2025</span></div>
@@ -363,6 +397,34 @@
     <div class="section-label">Projects & Research</div>
     <h2 class="section-title reveal">Work.</h2>
     <div class="projects-grid">
+      <div class="project-card hero-project reveal" id="dissertation">
+        <div class="hp-media">
+          <div class="hp-video" id="baodingVideo">
+            <video src="media/baoding_112_rotations.mp4" controls muted loop playsinline preload="metadata"></video>
+            <div class="hp-video-fallback"><b>▶ 112.5 ROTATIONS</b>hardware video — uploading soon</div>
+          </div>
+          <div class="hp-video-cap">// <span>hardware run</span> — the policy keeps two Baoding balls cycling for 112.5 rotations, blind</div>
+          <div class="hp-figure"><img src="media/baoding_sim_hw.jpg" alt="Simulated (top) and hardware (bottom) Shadow Hand Lite rotating two Baoding balls under the same policy, frames at 0.0, 0.4, 0.8 and 1.2 seconds" loading="lazy"/></div>
+          <div class="hp-video-cap">// top: simulation · bottom: matched hardware frames, same policy, zero-shot</div>
+        </div>
+        <div class="hp-info">
+          <span class="project-badge">MSc Dissertation · ICRA · CoRL</span>
+          <div class="project-num">00 — University of Edinburgh, 2026</div>
+          <div class="project-title">No Eyes, No Problem: What Does Touch Contribute to Blind Baoding Ball Manipulation?</div>
+          <div class="project-desc">A reinforcement-learning policy that rotates two Baoding balls on a <strong style="color:var(--text);font-weight:400">Shadow Dexterous Hand Lite</strong> using only proprioception and binary touch — no cameras. Trained entirely in simulation and transferred zero-shot to the real hand. Ablations show tactile feedback is what keeps the rotation going: remove it and sustained Baoding collapses.</div>
+          <div class="hp-stats">
+            <div class="hp-stat"><b>112.5</b><span>rotations on hardware</span></div>
+            <div class="hp-stat"><b>16</b><span>tactile sensors (12 FSR + 4 BioTac)</span></div>
+            <div class="hp-stat"><b>0</b><span>cameras · fine-tuning</span></div>
+          </div>
+          <div class="hp-role"><strong>My contributions:</strong> designed the tactile sensor layout and fitted the FSRs to the physical hand; Slew-rate Domain Randomisation (SlewDR) in sim and as the hardware rate limit; per-channel hysteresis tactile calibration; implemented Stuck-AT Taxel randomisation; trained the headline tactile policy.</div>
+          <div class="project-tags"><span class="project-tag">Dexterous Manipulation</span><span class="project-tag">Sim-to-Real</span><span class="project-tag">Tactile Sensing</span><span class="project-tag">Reinforcement Learning</span><span class="project-tag">Domain Randomisation</span><span class="project-tag">ROS</span></div>
+          <div class="hp-pubs">
+            <div class="hp-pub"><div class="hp-pub-venue"><em>ICRA 2027</em>submitted · with A. Deshmukh, E. Miller, S. Vijayakumar</div><div class="hp-pub-links"><a href="#arxiv-icra" class="project-link pending" aria-disabled="true">↗ arXiv (soon)</a></div></div>
+            <div class="hp-pub"><div class="hp-pub-venue"><em>CoRL 2026</em>workshop paper</div><div class="hp-pub-links"><a href="#arxiv-corl" class="project-link pending" aria-disabled="true">↗ arXiv (soon)</a></div></div>
+          </div>
+        </div>
+      </div>
       <div class="project-card featured reveal"><span class="project-badge">Research · C-DAC</span><div class="project-num">01 — 2024–25</div><div class="project-title">Hybrid Quantum CNN for Wildfire Detection</div><div class="project-desc">Hybrid Quantum Convolutional Neural Networks for image-based wildfire detection in forests. Explored QAOA and VQE optimisation on IBM Quantum hardware via Qiskit and PennyLane.</div><div class="project-tags"><span class="project-tag">Quantum ML</span><span class="project-tag">Qiskit</span><span class="project-tag">PennyLane</span><span class="project-tag">Computer Vision</span></div></div>
       <div class="project-card featured reveal"><span class="project-badge">IEEE Published</span><div class="project-num">02 — DTU 2023–24</div><div class="project-title">Novel Double Gate Charge-Trapping MOSFET</div><div class="project-desc">Undergraduate thesis: ferroelectric gate stack and Gaussian doped substrate integration for enhanced MOSFET performance. Published at ICITEICS-2024 (IEEE). DOI: 10.1109/ICITEICS61368.2024.10625402</div><div class="project-tags"><span class="project-tag">Silvaco TCAD</span><span class="project-tag">ATLAS</span><span class="project-tag">Semiconductor</span></div><div class="project-links"><a href="https://doi.org/10.1109/ICITEICS61368.2024.10625402" target="_blank" class="project-link">↗ IEEE Paper</a></div></div>
       <div class="project-card reveal"><div class="project-num">03 — ISRO, 2022–23</div><div class="project-title">Marine Heatwave Detection via Satellite</div><div class="project-desc">Tool to detect marine heatwaves globally using 40 years of real-time satellite data. Analysed MHW metrics and correlations with cyclone activity in the Indian Ocean under Dr. Rashmi Sharma.</div><div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Satellite Data</span><span class="project-tag">ISRO</span></div></div>
@@ -482,7 +544,8 @@ Physics-trained. Robot-focused.`,
 Robotics  : Pinocchio, RL algorithms, motion planning, SLAM
 Tools     : Git, Linux, Flask, Godot, Silvaco TCAD, PennyLane
 Domains   : RL, robot learning, satellite data, quantum ML`,
-      'projects.txt':`[01] Hybrid Quantum CNN for wildfire detection  (C-DAC)
+      'projects.txt':`[00] No Eyes, No Problem — blind Baoding on Shadow Hand (MSc dissertation)
+[01] Hybrid Quantum CNN for wildfire detection  (C-DAC)
 [02] Novel Double-Gate MOSFET — IEEE published  (DTU)
 [03] Marine heatwave detection via satellite    (ISRO)
 [04] Seychelles-Chagos ocean analysis           (IIT Delhi)
@@ -494,7 +557,11 @@ linkedin : <a href="https://www.linkedin.com/in/nalin-agarwal-b20495203/" target
 github   : <a href="https://github.com/inalinagarwal" target="_blank">github.com/inalinagarwal</a>
 location : Edinburgh, Scotland
 status   : OPEN TO ROBOTICS / RL ROLES`,
-      'publications.txt':`[2024] IEEE ICITEICS — Novel DG Charge-Trapping MOSFET
+      'publications.txt':`[2026] No Eyes, No Problem: What Does Touch Contribute to
+       Blind Baoding Ball Manipulation?
+       ICRA 2027 (submitted) · CoRL 2026 workshop
+       arXiv: coming soon
+[2024] IEEE ICITEICS — Novel DG Charge-Trapping MOSFET
        DOI: 10.1109/ICITEICS61368.2024.10625402
 [2022] TROPMET — Marine Heatwaves & Cyclone Activity`,
       'resume.pdf':'__BINARY__'
@@ -766,6 +833,15 @@ status   : OPEN TO ROBOTICS / RL ROLES`,
       const km={ArrowUp:0,w:0,W:0,ArrowDown:1,s:1,S:1,ArrowRight:2,d:2,D:2,ArrowLeft:3,a:3,A:3};
       if(km[e.key]!==undefined){e.preventDefault();humanMove(km[e.key]);}
     });
+
+    /* ================= DISSERTATION VIDEO + PENDING LINKS ================= */
+    (function(){
+      const wrap=document.getElementById('baodingVideo');
+      const v=wrap.querySelector('video');
+      v.addEventListener('error',()=>wrap.classList.add('missing'));
+      if(v.error)wrap.classList.add('missing');
+      document.querySelectorAll('a.pending').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));
+    })();
 
     /* ================= HERO TERMINAL TYPING ================= */
     (function(){
