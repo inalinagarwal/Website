@@ -3,31 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nalin Agarwal — Robotics & RL</title>
+  <meta name="color-scheme" content="light dark"/>
+  <title>Nalin Agarwal · Robotics & RL</title>
+  <script src="theme.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Oxanium:wght@300;400;600;700;800&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Oxanium:wght@300;400;600;700;800&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    :root{--bg:#050508;--surface:#080810;--surface2:#0d0d1a;--accent:#00ff9d;--accent2:#00c8ff;--accent3:#ff4d6a;--text:#d4d4e8;--muted:#525270;--border:rgba(0,255,157,0.08);--border2:rgba(255,255,255,0.05);--font-display:'Oxanium',sans-serif;--font-mono:'IBM Plex Mono',monospace;--font-tech:'Share Tech Mono',monospace;}
-    html{scroll-behavior:smooth;}
-    body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-size:16px;line-height:1.6;overflow-x:hidden;cursor:none;}
-    body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,255,157,0.022) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,157,0.022) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0;}
-    body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.06) 2px,rgba(0,0,0,0.06) 4px);pointer-events:none;z-index:999;}
-    .cursor{position:fixed;width:8px;height:8px;background:var(--accent);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);transition:transform 0.1s;}
-    .cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(0,255,157,0.5);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform 0.3s ease,width 0.2s,height 0.2s;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);}
-    .progress-bar{position:fixed;top:0;left:0;height:1px;background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:200;box-shadow:0 0 8px var(--accent);}
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;border-bottom:1px solid var(--border);background:rgba(5,5,8,0.88);backdrop-filter:blur(16px);}
+    :root{--bg:#f5faf8;--surface:#ffffff;--surface2:#e8f3ef;--accent:#116466;--accent2:#805022;--accent3:#87502d;--text:#2c3531;--muted:#52655d;--mint:#d1e8e2;--peach:#ffcb9a;--sand:#d9b08c;--ochre:#b27a36;--grid:linear-gradient(rgba(var(--accent-rgb),0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(var(--accent-rgb),0.06) 1px,transparent 1px);--border:rgba(var(--accent-rgb),0.2);--border2:rgba(var(--text-rgb),0.16);--font-body:'Space Grotesk',sans-serif;--font-display:'Oxanium',sans-serif;--font-mono:'IBM Plex Mono',monospace;--font-tech:'Share Tech Mono',monospace;}
+    html{scroll-behavior:smooth;font-size:18px;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:1rem;line-height:1.6;overflow-x:hidden;}
+    .cursor{display:none;opacity:0;position:fixed;width:8px;height:8px;background:var(--accent);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);transition:transform 0.1s;}
+    .cursor-ring{display:none;opacity:0;position:fixed;width:32px;height:32px;border:1px solid rgba(var(--warm-rgb),0.65);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform 0.3s ease,width 0.2s,height 0.2s;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);}
+    .progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:200;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;border-bottom:1px solid var(--border);background:rgba(var(--bg-rgb),0.96);backdrop-filter:blur(16px);}
     .nav-logo{font-family:var(--font-tech);font-size:0.95rem;color:var(--accent);text-decoration:none;letter-spacing:0.1em;display:flex;align-items:center;gap:0.6rem;}
     .nav-logo::before{content:'>';color:var(--muted);animation:blink 1.2s step-end infinite;}
     @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-    .nav-links{display:flex;gap:2.5rem;list-style:none;}
-    .nav-links a{font-family:var(--font-tech);font-size:0.7rem;color:var(--muted);text-decoration:none;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.2s;}
+    .nav-links{display:flex;gap:1.35rem;list-style:none;}
+    .nav-links a{font-family:var(--font-tech);font-size:0.82rem;color:var(--muted);text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}
     .nav-links a::before{content:'//';margin-right:0.3em;opacity:0.4;}
     .nav-links a:hover{color:var(--accent);}
-    .nav-status{font-family:var(--font-tech);font-size:0.65rem;color:var(--accent);display:flex;align-items:center;gap:0.5rem;border:1px solid rgba(0,255,157,0.2);padding:0.3rem 0.8rem;letter-spacing:0.08em;}
-    .nav-status::before{content:'';width:5px;height:5px;background:var(--accent);border-radius:50%;box-shadow:0 0 6px var(--accent);animation:blink 2s ease infinite;}
+    .nav-status{font-family:var(--font-tech);font-size:0.82rem;color:var(--accent);display:flex;align-items:center;gap:0.5rem;border:1px solid rgba(var(--accent-rgb),0.2);padding:0.4rem 0.8rem;letter-spacing:0.08em;background:var(--mint);border-radius:6px;}
+    .nav-status::before{content:'';width:5px;height:5px;background:var(--accent);border-radius:50%;}
     section{padding:7rem 4rem;position:relative;z-index:1;}
-    #hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding-top:8rem;position:relative;overflow:hidden;}
+    #hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding-top:8rem;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--bg) 35%,#edf6f2 75%,#f9ede1 100%);}
     .corner{position:absolute;width:40px;height:40px;opacity:0.35;}
     .corner::before,.corner::after{content:'';position:absolute;background:var(--accent);}
     .corner::before{width:100%;height:1px;top:0;left:0;}
@@ -37,30 +37,30 @@
     .corner-br{bottom:2rem;right:2rem;transform:scale(-1);}
     .corner-bl{bottom:2rem;left:2rem;transform:scaleY(-1);}
     .hero-left{position:relative;z-index:2;}
-    .hero-sys{font-family:var(--font-tech);font-size:0.66rem;color:var(--muted);letter-spacing:0.1em;margin-bottom:1.5rem;animation:fadeUp 0.5s ease both;}
+    .hero-sys{font-family:var(--font-tech);font-size:0.82rem;color:var(--muted);letter-spacing:0.1em;margin-bottom:1.5rem;animation:fadeUp 0.5s ease both;}
     .hero-sys span{color:var(--accent);}
     h1.hero-name{font-family:var(--font-display);font-weight:800;font-size:clamp(3.2rem,6vw,5.8rem);line-height:0.9;letter-spacing:-0.02em;color:var(--text);animation:fadeUp 0.6s 0.1s ease both;}
-    h1.hero-name .line2{display:block;color:transparent;-webkit-text-stroke:1px rgba(0,255,157,0.4);}
-    .hero-role{margin-top:1.5rem;font-family:var(--font-tech);font-size:0.78rem;color:var(--accent2);letter-spacing:0.12em;text-transform:uppercase;animation:fadeUp 0.6s 0.15s ease both;}
+    h1.hero-name .line2{display:block;color:var(--accent);}
+    .hero-role{margin-top:1.5rem;font-family:var(--font-tech);font-size:0.82rem;color:var(--accent2);letter-spacing:0.12em;text-transform:uppercase;animation:fadeUp 0.6s 0.15s ease both;}
     .hero-role::before{content:'[ ';}
     .hero-role::after{content:' ]';}
-    .hero-desc{margin-top:1.5rem;font-family:var(--font-mono);font-size:0.88rem;color:var(--muted);max-width:500px;line-height:1.8;animation:fadeUp 0.6s 0.2s ease both;}
+    .hero-desc{margin-top:1.5rem;font-family:var(--font-body);font-size:1rem;color:var(--muted);max-width:500px;line-height:1.8;animation:fadeUp 0.6s 0.2s ease both;}
     .hero-desc strong{color:var(--text);font-weight:400;}
     .hero-desc em{color:var(--accent);font-style:normal;}
-    .hero-ctas{margin-top:2.5rem;display:flex;gap:1rem;animation:fadeUp 0.6s 0.3s ease both;}
-    .btn-primary{display:inline-flex;align-items:center;gap:0.5rem;background:var(--accent);color:#050508;font-family:var(--font-tech);font-size:0.78rem;padding:0.9rem 1.8rem;text-decoration:none;letter-spacing:0.12em;text-transform:uppercase;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));transition:box-shadow 0.2s,transform 0.2s;}
-    .btn-primary:hover{box-shadow:0 0 24px rgba(0,255,157,0.4);transform:translateY(-2px);}
-    .btn-ghost{display:inline-flex;align-items:center;gap:0.5rem;border:1px solid rgba(0,255,157,0.3);color:var(--accent);font-family:var(--font-tech);font-size:0.78rem;padding:0.9rem 1.8rem;text-decoration:none;letter-spacing:0.12em;text-transform:uppercase;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));transition:background 0.2s,border-color 0.2s;}
-    .btn-ghost:hover{background:rgba(0,255,157,0.07);border-color:var(--accent);}
+    .hero-ctas{margin-top:2.5rem;display:flex;flex-wrap:wrap;gap:0.75rem;animation:fadeUp 0.6s 0.3s ease both;}
+    .btn-primary{display:inline-flex;align-items:center;gap:0.5rem;background:var(--accent);color:#ffffff;font-family:var(--font-tech);font-size:0.82rem;padding:0.9rem 1.8rem;text-decoration:none;letter-spacing:0.12em;text-transform:uppercase;border-radius:8px;transition:box-shadow 0.2s,transform 0.2s;}
+    .btn-primary:hover{background:#0d5355;box-shadow:0 4px 12px rgba(var(--accent-rgb),0.12);transform:translateY(-2px);}
+    .btn-ghost{display:inline-flex;align-items:center;gap:0.5rem;border:1px solid rgba(var(--accent-rgb),0.3);color:var(--accent);font-family:var(--font-tech);font-size:0.82rem;padding:0.9rem 1.8rem;text-decoration:none;letter-spacing:0.12em;text-transform:uppercase;border-radius:8px;transition:background 0.2s,border-color 0.2s;}
+    .btn-ghost:hover{background:rgba(var(--accent-rgb),0.07);border-color:var(--accent);}
     .hero-ctas-fun{margin-top:1rem;}
     .hero-ctas-fun .btn-ghost{background:transparent;cursor:pointer;}
-    .hero-ctas-fun .btn-ghost.blue{border-color:rgba(0,200,255,0.3);color:var(--accent2);}
-    .hero-ctas-fun .btn-ghost.blue:hover{background:rgba(0,200,255,0.07);border-color:var(--accent2);}
+    .hero-ctas-fun .btn-ghost.blue{border-color:rgba(var(--goal-rgb),0.3);color:var(--accent2);}
+    .hero-ctas-fun .btn-ghost.blue:hover{background:rgba(var(--goal-rgb),0.07);border-color:var(--accent2);}
     @media(max-width:480px){.hero-ctas{flex-wrap:wrap;}}
     .hero-right{position:relative;z-index:2;animation:fadeUp 0.7s 0.4s ease both;}
-    .terminal{background:var(--surface);border:1px solid var(--border);font-family:var(--font-tech);font-size:0.72rem;position:relative;overflow:hidden;}
-    .terminal::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,255,157,0.03) 0%,transparent 40%);pointer-events:none;}
-    .terminal-bar{background:var(--surface2);border-bottom:1px solid var(--border);padding:0.6rem 1rem;display:flex;align-items:center;gap:0.5rem;color:var(--muted);letter-spacing:0.08em;font-size:0.68rem;}
+    .terminal{background:var(--surface);border:1px solid var(--border);font-family:var(--font-tech);font-size:0.8rem;position:relative;overflow:hidden;border-radius:12px;box-shadow:0 8px 30px rgba(var(--text-rgb),0.05);}
+    .terminal::before{content:none;}
+    .terminal-bar{background:var(--surface2);border-bottom:1px solid var(--border);padding:0.6rem 1rem;display:flex;align-items:center;gap:0.5rem;color:var(--muted);letter-spacing:0.08em;font-size:0.82rem;}
     .terminal-bar::before{content:'●';color:var(--accent3);font-size:0.5rem;}
     .terminal-bar::after{content:'●';color:var(--accent);font-size:0.5rem;}
     .terminal-body{padding:1.4rem;display:flex;flex-direction:column;gap:0.9rem;}
@@ -71,70 +71,70 @@
     .t-out span{color:var(--accent2);}
     .t-cursor::after{content:'█';animation:blink 1s step-end infinite;color:var(--accent);}
     @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-    .section-label{font-family:var(--font-tech);font-size:0.65rem;color:var(--accent);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.8rem;display:flex;align-items:center;gap:0.8rem;}
+    .section-label{font-family:var(--font-tech);font-size:0.82rem;color:var(--accent);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.8rem;display:flex;align-items:center;gap:0.8rem;}
     .section-label::before{content:'//';color:var(--muted);}
     .section-label::after{content:'';flex:1;height:1px;background:var(--border);max-width:120px;}
     h2.section-title{font-family:var(--font-display);font-weight:800;font-size:clamp(2rem,3.5vw,3rem);letter-spacing:-0.02em;line-height:1.1;margin-bottom:2.5rem;}
     #about{background:var(--surface);}
     .about-grid{display:grid;grid-template-columns:1.2fr 0.8fr;gap:5rem;align-items:start;}
-    .about-text p{color:var(--muted);font-family:var(--font-mono);font-size:0.88rem;line-height:1.85;margin-bottom:1.2rem;}
+    .about-text p{color:var(--muted);font-family:var(--font-body);font-size:1rem;line-height:1.85;margin-bottom:1.2rem;}
     .about-text p strong{color:var(--text);font-weight:400;}
     .about-text p em{color:var(--accent);font-style:normal;}
-    .comment{font-family:var(--font-tech);font-size:0.68rem;color:var(--muted);opacity:0.45;margin-bottom:0.3rem;}
+    .comment{font-family:var(--font-tech);font-size:0.82rem;color:var(--muted);margin-bottom:0.3rem;}
     .education-list{display:flex;flex-direction:column;gap:1rem;}
-    .edu-card{background:var(--surface2);border:1px solid var(--border2);border-left:2px solid var(--accent);padding:1.1rem 1.3rem;position:relative;transition:border-color 0.2s;}
-    .edu-card:hover{border-color:rgba(0,255,157,0.25);}
-    .edu-card::before{content:attr(data-idx);position:absolute;top:0.8rem;right:1rem;font-family:var(--font-tech);font-size:0.6rem;color:var(--muted);opacity:0.4;}
+    .edu-card{background:var(--surface2);border:1px solid var(--border2);border-left:2px solid var(--accent);padding:1.1rem 1.3rem;position:relative;border-radius:8px;transition:border-color 0.2s;}
+    .edu-card:hover{border-color:rgba(var(--accent-rgb),0.25);}
+    .edu-card::before{content:attr(data-idx);position:absolute;top:0.8rem;right:1rem;font-family:var(--font-tech);font-size:0.82rem;color:var(--muted);}
     .edu-degree{font-family:var(--font-display);font-weight:700;font-size:0.85rem;margin-bottom:0.2rem;}
-    .edu-school{font-family:var(--font-tech);font-size:0.7rem;color:var(--muted);}
-    .edu-date{font-family:var(--font-tech);font-size:0.63rem;color:var(--accent2);margin-top:0.35rem;letter-spacing:0.06em;}
+    .edu-school{font-family:var(--font-tech);font-size:0.82rem;color:var(--muted);}
+    .edu-date{font-family:var(--font-tech);font-size:0.82rem;color:var(--accent2);margin-top:0.35rem;letter-spacing:0.06em;}
     .skills-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-top:2.5rem;}
-    .skill-group{background:var(--surface);border:1px solid var(--border2);padding:1.6rem;position:relative;overflow:hidden;transition:border-color 0.2s;}
+    .skill-group{background:var(--surface);border:1px solid var(--border2);padding:1.6rem;position:relative;overflow:hidden;border-radius:12px;transition:border-color 0.2s;}
     .skill-group::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--accent),transparent);opacity:0;transition:opacity 0.3s;}
     .skill-group:hover::after{opacity:1;}
-    .skill-group-title{font-family:var(--font-tech);font-size:0.68rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1.2rem;display:flex;align-items:center;gap:0.5rem;}
+    .skill-group-title{font-family:var(--font-tech);font-size:0.82rem;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1.2rem;display:flex;align-items:center;gap:0.5rem;}
     .skill-group-title::before{content:'▶';font-size:0.5rem;}
     .skill-tags{display:flex;flex-wrap:wrap;gap:0.4rem;}
-    .skill-tag{font-family:var(--font-tech);font-size:0.65rem;padding:0.3rem 0.7rem;border:1px solid var(--border2);color:var(--muted);letter-spacing:0.06em;transition:all 0.15s;}
-    .skill-tag:hover{color:var(--accent);border-color:rgba(0,255,157,0.3);background:rgba(0,255,157,0.04);}
-    .skill-tag.blue:hover{color:var(--accent2);border-color:rgba(0,200,255,0.3);background:rgba(0,200,255,0.04);}
-    .skill-tag.red:hover{color:var(--accent3);border-color:rgba(255,77,106,0.3);background:rgba(255,77,106,0.04);}
+    .skill-tag{font-family:var(--font-tech);font-size:0.82rem;padding:0.3rem 0.7rem;border:1px solid var(--border2);color:var(--muted);letter-spacing:0.06em;transition:all 0.15s;}
+    .skill-tag:hover{color:var(--accent);border-color:rgba(var(--accent-rgb),0.3);background:rgba(var(--accent-rgb),0.04);}
+    .skill-tag.blue:hover{color:var(--accent2);border-color:rgba(var(--goal-rgb),0.3);background:rgba(var(--goal-rgb),0.04);}
+    .skill-tag.red:hover{color:var(--accent3);border-color:rgba(var(--danger-rgb),0.3);background:rgba(var(--danger-rgb),0.04);}
     #projects{background:var(--surface);}
-    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.2rem;margin-top:2.5rem;}
-    .project-card{background:var(--bg);border:1px solid var(--border2);padding:1.8rem;position:relative;overflow:hidden;transition:border-color 0.2s,transform 0.2s;}
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:1.2rem;margin-top:2.5rem;}
+    .project-card{background:var(--surface);border:1px solid var(--border2);padding:1.8rem;position:relative;overflow:hidden;border-radius:12px;transition:border-color 0.2s,transform 0.2s;}
     .project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transition:opacity 0.3s;}
     .project-card:hover::before{opacity:1;}
-    .project-card:hover{border-color:rgba(0,255,157,0.15);transform:translateY(-3px);}
-    .project-card.featured{border-color:rgba(0,200,255,0.1);}
+    .project-card:hover{border-color:rgba(var(--accent-rgb),0.15);transform:translateY(-3px);}
+    .project-card.featured{border-color:rgba(var(--goal-rgb),0.1);}
     .project-card.featured::before{background:linear-gradient(90deg,transparent,var(--accent2),transparent);}
-    .project-card.featured:hover{border-color:rgba(0,200,255,0.25);}
-    .project-card.hero-project{grid-column:1/-1;display:grid;grid-template-columns:1.1fr 1fr;gap:2rem;padding:2rem;border-color:rgba(0,255,157,0.18);}
-    .project-card.hero-project:hover{transform:none;border-color:rgba(0,255,157,0.3);}
+    .project-card.featured:hover{border-color:rgba(var(--goal-rgb),0.25);}
+    .project-card.hero-project{grid-column:1/-1;display:grid;grid-template-columns:1.1fr 1fr;gap:2rem;padding:2rem;border-color:rgba(var(--accent-rgb),0.28);}
+    .project-card.hero-project:hover{transform:none;border-color:rgba(var(--accent-rgb),0.3);}
     .hp-media{display:flex;flex-direction:column;gap:0.8rem;}
     .hp-video{position:relative;background:#000;border:1px solid var(--border);aspect-ratio:16/9;overflow:hidden;}
     .hp-video video{width:100%;height:100%;object-fit:contain;display:block;background:#000;}
-    .hp-video-fallback{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;font-family:var(--font-tech);font-size:0.68rem;color:var(--muted);letter-spacing:0.1em;text-align:center;background:repeating-linear-gradient(45deg,rgba(0,255,157,0.02) 0 10px,transparent 10px 20px);}
+    .hp-video-fallback{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;font-family:var(--font-tech);font-size:0.82rem;color:var(--muted);letter-spacing:0.1em;text-align:center;background:repeating-linear-gradient(45deg,rgba(var(--accent-rgb),0.02) 0 10px,transparent 10px 20px);}
     .hp-video-fallback b{color:var(--accent);font-weight:400;font-size:0.8rem;}
     .hp-video.missing video{display:none;}
     .hp-video.missing .hp-video-fallback{display:flex;}
-    .hp-video-cap{font-family:var(--font-tech);font-size:0.6rem;color:var(--muted);letter-spacing:0.08em;}
+    .hp-video-cap{font-family:var(--font-tech);font-size:0.82rem;color:var(--muted);letter-spacing:0.04em;}
     .hp-video-cap span{color:var(--accent);}
     .hp-figure{background:#fff;border:1px solid var(--border);}
     .hp-figure img{width:100%;display:block;}
     .hp-info{display:flex;flex-direction:column;}
     .hp-info .project-title{font-size:1.3rem;}
     .hp-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;margin:0.4rem 0 1.3rem;}
-    .hp-stat{border:1px solid var(--border2);padding:0.7rem;background:var(--surface);}
+    .hp-stat{border:1px solid var(--border2);padding:0.85rem;background:var(--mint);border-radius:8px;}
     .hp-stat b{display:block;font-family:var(--font-display);font-weight:800;font-size:1.25rem;color:var(--accent);line-height:1.1;}
-    .hp-stat span{font-family:var(--font-tech);font-size:0.56rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;}
-    .hp-role{font-family:var(--font-mono);font-size:0.76rem;color:var(--muted);line-height:1.7;margin-bottom:1.2rem;padding-left:0.9rem;border-left:1px solid rgba(0,255,157,0.3);}
+    .hp-stat span{font-family:var(--font-tech);font-size:0.82rem;color:var(--text);letter-spacing:0.08em;text-transform:uppercase;}
+    .hp-role{font-family:var(--font-body);font-size:0.9rem;color:var(--muted);line-height:1.7;margin-bottom:1.2rem;padding-left:0.9rem;border-left:1px solid rgba(var(--accent-rgb),0.3);}
     .hp-role strong{color:var(--text);font-weight:400;}
     .hp-pubs{display:flex;flex-direction:column;gap:0.6rem;margin-top:1.2rem;}
-    .hp-pub{display:flex;align-items:center;justify-content:space-between;gap:0.8rem;flex-wrap:wrap;border:1px solid var(--border2);padding:0.65rem 0.85rem;background:var(--surface);}
-    .hp-pub-venue{font-family:var(--font-tech);font-size:0.66rem;color:var(--text);letter-spacing:0.06em;}
+    .hp-pub{display:flex;align-items:center;justify-content:space-between;gap:0.8rem;flex-wrap:wrap;border:1px solid var(--border2);padding:0.9rem 1rem;background:var(--bg);border-radius:8px;}
+    .hp-pub-venue{font-family:var(--font-tech);font-size:0.82rem;color:var(--text);letter-spacing:0.06em;}
     .hp-pub-venue em{font-style:normal;color:var(--accent2);margin-right:0.4rem;}
     .hp-pub-title{font-size:0.85rem;line-height:1.6;margin-top:0.4rem;color:var(--text);}
-    .hp-workshop{font-size:0.78rem;line-height:1.7;margin-top:0.5rem;color:var(--muted);}
+    .hp-workshop{font-size:0.9rem;line-height:1.7;margin-top:0.5rem;color:var(--muted);}
     .hp-workshop a{color:var(--accent2);text-decoration:none;}
     .hp-workshop a:hover{text-decoration:underline;}
     .hp-workshop strong{font-weight:400;color:var(--text);}
@@ -142,37 +142,37 @@
     .project-link.pending{color:var(--muted);cursor:not-allowed;}
     .project-link.pending:hover{opacity:1;}
     @media(max-width:900px){.project-card.hero-project{grid-template-columns:1fr;padding:1.4rem;}.hp-stats{grid-template-columns:repeat(3,1fr);}}
-    .project-badge{position:absolute;top:1.2rem;right:1.2rem;font-family:var(--font-tech);font-size:0.58rem;color:var(--accent2);border:1px solid rgba(0,200,255,0.25);padding:0.18rem 0.5rem;letter-spacing:0.1em;text-transform:uppercase;}
-    .project-num{font-family:var(--font-tech);font-size:0.6rem;color:var(--muted);letter-spacing:0.1em;margin-bottom:1rem;}
+    .project-badge{position:absolute;top:1.2rem;right:1.2rem;font-family:var(--font-tech);font-size:0.82rem;color:var(--accent2);border:1px solid rgba(var(--goal-rgb),0.25);padding:0.18rem 0.5rem;letter-spacing:0.1em;text-transform:uppercase;}
+    .project-num{font-family:var(--font-tech);font-size:0.85rem;color:var(--muted);letter-spacing:0.06em;margin-bottom:1rem;}
     .project-title{font-family:var(--font-display);font-weight:700;font-size:1.05rem;letter-spacing:-0.01em;margin-bottom:0.7rem;line-height:1.3;}
-    .project-desc{font-family:var(--font-mono);font-size:0.8rem;color:var(--muted);line-height:1.7;margin-bottom:1.3rem;}
+    .project-desc{font-family:var(--font-body);font-size:0.95rem;color:var(--muted);line-height:1.7;margin-bottom:1.3rem;}
     .project-tags{display:flex;flex-wrap:wrap;gap:0.35rem;}
-    .project-tag{font-family:var(--font-tech);font-size:0.6rem;padding:0.2rem 0.55rem;background:var(--surface2);color:var(--muted);letter-spacing:0.06em;}
+    .project-tag{font-family:var(--font-tech);font-size:0.82rem;padding:0.25rem 0.6rem;border-radius:4px;background:var(--surface2);color:var(--muted);letter-spacing:0.06em;}
     .project-links{display:flex;gap:0.8rem;margin-top:1.2rem;}
-    .project-link{font-family:var(--font-tech);font-size:0.65rem;color:var(--accent2);text-decoration:none;letter-spacing:0.08em;display:flex;align-items:center;gap:0.3rem;transition:opacity 0.2s;}
-    .project-link:hover{opacity:0.6;}
-    .blog-coming{border:1px dashed rgba(0,255,157,0.1);padding:4rem 2rem;text-align:center;margin-top:2.5rem;position:relative;}
-    .bc-label{font-family:var(--font-tech);font-size:0.6rem;color:var(--accent);letter-spacing:0.18em;margin-bottom:1rem;display:block;}
-    .blog-coming p{font-family:var(--font-tech);font-size:0.78rem;color:var(--muted);line-height:1.8;}
+    .project-link{font-family:var(--font-tech);font-size:0.82rem;color:var(--accent2);text-decoration:none;letter-spacing:0.08em;display:flex;align-items:center;gap:0.3rem;transition:opacity 0.2s;}
+    .project-link:hover{text-decoration:underline;text-underline-offset:3px;}
+    .blog-coming{border:1px dashed rgba(var(--accent-rgb),0.1);padding:4rem 2rem;text-align:center;background:#fff2e5;border-color:var(--sand);border-radius:12px;margin-top:2.5rem;position:relative;}
+    .bc-label{font-family:var(--font-tech);font-size:0.82rem;color:var(--accent);letter-spacing:0.18em;margin-bottom:1rem;display:block;}
+    .blog-coming p{font-family:var(--font-tech);font-size:0.9rem;color:var(--text);line-height:1.8;}
     .blog-coming p em{color:var(--accent);font-style:normal;}
     #contact{background:var(--surface);}
     .contact-wrapper{max-width:680px;}
-    .contact-intro{font-family:var(--font-mono);font-size:0.88rem;color:var(--muted);line-height:1.8;margin-bottom:2.5rem;}
+    .contact-intro{font-family:var(--font-body);font-size:1rem;color:var(--muted);line-height:1.8;margin-bottom:2.5rem;}
     .contact-intro strong{color:var(--text);font-weight:400;}
     .contact-form{display:flex;flex-direction:column;gap:1.1rem;}
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;}
     .form-group{display:flex;flex-direction:column;gap:0.45rem;}
-    .form-group label{font-family:var(--font-tech);font-size:0.62rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;}
+    .form-group label{font-family:var(--font-tech);font-size:0.82rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;}
     .form-group label::before{content:'> ';color:var(--accent);}
-    .form-group input,.form-group textarea{background:var(--surface2);border:1px solid var(--border2);padding:0.85rem 1rem;color:var(--text);font-family:var(--font-tech);font-size:0.78rem;outline:none;transition:border-color 0.2s,box-shadow 0.2s;resize:vertical;letter-spacing:0.04em;}
-    .form-group input::placeholder,.form-group textarea::placeholder{color:var(--muted);opacity:0.5;}
-    .form-group input:focus,.form-group textarea:focus{border-color:rgba(0,255,157,0.35);box-shadow:0 0 0 2px rgba(0,255,157,0.05);}
+    .form-group input,.form-group textarea{background:var(--surface2);border:1px solid var(--border2);padding:0.85rem 1rem;color:var(--text);font-family:var(--font-tech);font-size:0.82rem;outline:none;transition:border-color 0.2s,box-shadow 0.2s;resize:vertical;letter-spacing:0.02em;border-radius:8px;}
+    .form-group input::placeholder,.form-group textarea::placeholder{color:var(--muted);opacity:1;}
+    .form-group input:focus,.form-group textarea:focus{border-color:rgba(var(--accent-rgb),0.35);box-shadow:0 0 0 2px rgba(var(--accent-rgb),0.05);}
     .form-group textarea{min-height:130px;}
     .contact-links{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:2.5rem;padding-top:2.5rem;border-top:1px solid var(--border2);}
-    .contact-link{display:flex;align-items:center;gap:0.55rem;font-family:var(--font-tech);font-size:0.72rem;color:var(--muted);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s;}
-    .contact-link::before{content:'↗';color:var(--accent);font-size:0.7rem;}
+    .contact-link{display:flex;align-items:center;gap:0.55rem;font-family:var(--font-tech);font-size:0.85rem;color:var(--muted);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s;}
+    .contact-link::before{content:'↗';color:var(--accent);font-size:0.82rem;}
     .contact-link:hover{color:var(--accent);}
-    footer{padding:1.8rem 4rem;border-top:1px solid var(--border2);display:flex;align-items:center;justify-content:space-between;font-family:var(--font-tech);font-size:0.65rem;color:var(--muted);position:relative;z-index:1;}
+    footer{padding:1.8rem 4rem;border-top:1px solid var(--border2);display:flex;align-items:center;justify-content:space-between;font-family:var(--font-tech);font-size:0.82rem;color:var(--muted);position:relative;z-index:1;}
     footer .f-left::before{content:'© ';color:var(--accent);}
     footer .f-right::before{content:'SYS: ';opacity:0.4;}
     footer .f-online{color:var(--accent);}
@@ -180,32 +180,32 @@
     @keyframes spin{to{transform:translateY(-50%) rotate(360deg);}}
     .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.55s ease,transform 0.55s ease;}
     .reveal.visible{opacity:1;transform:translateY(0);}
-    #easterEgg{font-family:var(--font-tech);font-size:0.55rem;color:rgba(82,82,112,0.2);text-decoration:none;letter-spacing:0.08em;transition:color 0.4s,text-shadow 0.4s;}
-    #easterEgg:hover{color:rgba(0,255,157,0.5)!important;text-shadow:0 0 8px rgba(0,255,157,0.3);}
+    .easter-egg{font-family:var(--font-tech);font-size:0.82rem;color:var(--muted);text-decoration:none;letter-spacing:0.08em;transition:color 0.4s,text-shadow 0.4s;}
+    .easter-egg:hover{color:var(--accent)!important;text-decoration:underline;}
     /* ===== HERO TERMINAL TYPING ===== */
     #heroTermBody .tb{display:none;}
     #heroTermBody .tb.on{display:block;}
     #heroTermBody .tb .t-out{display:none;}
     #heroTermBody .tb.done .t-out{display:block;animation:fadeUp 0.25s ease both;}
     /* ===== PENDULUM PANEL ===== */
-    .pendulum-panel{margin-top:1rem;background:var(--surface);border:1px solid var(--border);overflow:hidden;}
+    .pendulum-panel{margin-top:1rem;background:var(--surface);border:1px solid var(--border);overflow:hidden;border-radius:12px;}
     .pendulum-panel .terminal-bar{display:flex;}
     #pendCanvas{display:block;width:100%;height:190px;cursor:grab;touch-action:none;}
     #pendCanvas.grabbing{cursor:grabbing;}
     /* ===== GIT LOG TIMELINE ===== */
     .gitlog{position:relative;margin-top:2.5rem;padding-left:2.2rem;max-width:820px;}
-    .gitlog::before{content:'';position:absolute;left:8px;top:8px;bottom:8px;width:1px;background:linear-gradient(180deg,var(--accent),rgba(0,255,157,0.08));}
+    .gitlog::before{content:'';position:absolute;left:8px;top:8px;bottom:8px;width:1px;background:linear-gradient(180deg,var(--accent),rgba(var(--accent-rgb),0.08));}
     .git-commit{position:relative;padding:0 0 2.2rem 0;}
-    .git-commit::before{content:'';position:absolute;left:-2.2rem;top:5px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);margin-left:3px;box-shadow:0 0 8px rgba(0,255,157,0.4);transition:background 0.2s;}
+    .git-commit::before{content:'';position:absolute;left:-2.2rem;top:5px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);margin-left:3px;transition:background 0.2s;}
     .git-commit:hover::before{background:var(--accent);}
     .git-commit:first-child::before{background:var(--accent);animation:blink 2s ease infinite;}
-    .git-meta{display:flex;gap:0.8rem;flex-wrap:wrap;align-items:center;font-family:var(--font-tech);font-size:0.66rem;margin-bottom:0.35rem;}
+    .git-meta{display:flex;gap:0.8rem;flex-wrap:wrap;align-items:center;font-family:var(--font-tech);font-size:0.82rem;margin-bottom:0.35rem;}
     .git-hash{color:var(--accent3);letter-spacing:0.05em;}
     .git-date{color:var(--muted);letter-spacing:0.06em;}
-    .git-branch{color:var(--accent);border:1px solid rgba(0,255,157,0.3);padding:0.1rem 0.5rem;letter-spacing:0.05em;font-size:0.6rem;}
-    .git-branch.tag{color:var(--accent2);border-color:rgba(0,200,255,0.3);}
+    .git-branch{color:var(--accent);border:1px solid rgba(var(--accent-rgb),0.3);padding:0.1rem 0.5rem;letter-spacing:0.05em;font-size:0.82rem;}
+    .git-branch.tag{color:var(--accent2);border-color:rgba(var(--goal-rgb),0.3);}
     .git-title{font-family:var(--font-display);font-weight:700;font-size:0.95rem;letter-spacing:-0.01em;margin-bottom:0.3rem;}
-    .git-desc{font-family:var(--font-mono);font-size:0.78rem;color:var(--muted);line-height:1.7;max-width:640px;}
+    .git-desc{font-family:var(--font-body);font-size:0.95rem;color:var(--muted);line-height:1.7;max-width:640px;}
     /* ===== KONAMI RAVE ===== */
     /* filter on body would break position:fixed children (the floating bots), so target content instead */
     body.rave nav,body.rave section,body.rave footer{animation:hueSpin 0.45s linear infinite,shake 0.3s linear infinite;}
@@ -213,21 +213,21 @@
     @keyframes shake{0%,100%{transform:translate(0,0);}25%{transform:translate(-3px,2px);}50%{transform:translate(3px,-2px);}75%{transform:translate(-2px,-3px);}}
     .rave-bot{position:fixed;bottom:-70px;z-index:2000;pointer-events:none;animation:botUp linear forwards;}
     @keyframes botUp{to{transform:translateY(-115vh) rotate(720deg);}}
-    .rave-toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2001;background:rgba(5,5,8,0.95);border:1px solid var(--accent);color:var(--accent);font-family:var(--font-tech);font-size:0.85rem;letter-spacing:0.15em;padding:1.2rem 2.2rem;box-shadow:0 0 40px rgba(0,255,157,0.4);animation:termIn 0.3s ease both;text-align:center;pointer-events:none;}
+    .rave-toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2001;background:var(--surface);border:1px solid var(--accent);color:var(--accent);font-family:var(--font-tech);font-size:0.85rem;letter-spacing:0.15em;padding:1.2rem 2.2rem;box-shadow:0 12px 40px rgba(var(--text-rgb),0.15);animation:termIn 0.3s ease both;text-align:center;pointer-events:none;}
     /* ===== INTERACTIVE TERMINAL ===== */
-    .iterm{position:fixed;z-index:1000;width:min(640px,92vw);background:rgba(5,5,10,0.97);border:1px solid rgba(0,255,157,0.3);box-shadow:0 0 40px rgba(0,255,157,0.15),0 25px 60px rgba(0,0,0,0.6);display:none;flex-direction:column;font-family:var(--font-tech);backdrop-filter:blur(10px);}
+    .iterm{position:fixed;z-index:1000;width:min(640px,92vw);background:rgba(var(--bg-rgb),0.97);border:1px solid rgba(var(--accent-rgb),0.3);border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(var(--text-rgb),0.18);display:none;flex-direction:column;font-family:var(--font-tech);backdrop-filter:blur(10px);}
     .iterm.open{display:flex;animation:termIn 0.25s cubic-bezier(0.2,0.9,0.3,1.2) both;}
     @keyframes termIn{from{opacity:0;transform:translateY(24px) scale(0.96);}to{opacity:1;transform:translateY(0) scale(1);}}
-    .iterm-bar{background:var(--surface2);border-bottom:1px solid var(--border);padding:0.55rem 1rem;display:flex;align-items:center;gap:0.6rem;cursor:grab;user-select:none;font-size:0.68rem;color:var(--muted);letter-spacing:0.08em;}
+    .iterm-bar{background:var(--surface2);border-bottom:1px solid var(--border);padding:0.55rem 1rem;display:flex;align-items:center;gap:0.6rem;cursor:grab;user-select:none;font-size:0.82rem;color:var(--muted);letter-spacing:0.08em;}
     .iterm-bar:active{cursor:grabbing;}
     .iterm-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;cursor:pointer;}
     .iterm-dot.close{background:var(--accent3);}
-    .iterm-dot.min{background:#f5c842;}
+    .iterm-dot.min{background:var(--sand);}
     .iterm-dot.max{background:var(--accent);}
     .iterm-title{flex:1;text-align:center;}
-    .iterm-body{padding:1rem 1.2rem;height:380px;overflow-y:auto;font-size:0.74rem;line-height:1.75;scrollbar-width:thin;scrollbar-color:rgba(0,255,157,0.3) transparent;}
+    .iterm-body{padding:1rem 1.2rem;height:380px;overflow-y:auto;font-size:0.82rem;line-height:1.75;scrollbar-width:thin;scrollbar-color:rgba(var(--accent-rgb),0.3) transparent;}
     .iterm-body::-webkit-scrollbar{width:5px;}
-    .iterm-body::-webkit-scrollbar-thumb{background:rgba(0,255,157,0.3);}
+    .iterm-body::-webkit-scrollbar-thumb{background:rgba(var(--accent-rgb),0.3);}
     .iterm-body .ln{white-space:pre-wrap;word-break:break-word;}
     .iterm-body .ln .p{color:var(--accent);}
     .iterm-body .ln .c{color:var(--text);}
@@ -237,39 +237,183 @@
     .iterm-body .dim{color:var(--muted);}
     .iterm-body a{color:var(--accent2);}
     .iterm-input-row{display:flex;gap:0.6rem;padding:0.7rem 1.2rem;border-top:1px solid var(--border);align-items:center;}
-    .iterm-input-row .p{color:var(--accent);font-size:0.74rem;flex-shrink:0;}
-    #itermInput{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:var(--font-tech);font-size:0.74rem;letter-spacing:0.03em;caret-color:var(--accent);}
+    .iterm-input-row .p{color:var(--accent);font-size:0.82rem;flex-shrink:0;}
+    #itermInput{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:var(--font-tech);font-size:0.82rem;letter-spacing:0.03em;caret-color:var(--accent);}
     /* ===== HINT BAR ===== */
-    .hintbar{position:fixed;bottom:1.2rem;left:1.2rem;z-index:150;display:flex;gap:0.5rem;font-family:var(--font-tech);font-size:0.6rem;color:var(--muted);letter-spacing:0.08em;align-items:center;}
-    .hintbar kbd{border:1px solid rgba(0,255,157,0.3);color:var(--accent);padding:0.15rem 0.45rem;background:rgba(0,255,157,0.05);font-family:var(--font-tech);font-size:0.6rem;}
-    .hintbar button{background:transparent;border:1px solid rgba(0,255,157,0.25);color:var(--muted);font-family:var(--font-tech);font-size:0.6rem;letter-spacing:0.08em;padding:0.35rem 0.7rem;cursor:pointer;transition:all 0.2s;}
-    .hintbar button:hover{color:var(--accent);border-color:var(--accent);background:rgba(0,255,157,0.06);}
+    .hintbar{position:fixed;bottom:1.2rem;left:1.2rem;z-index:150;display:flex;gap:0.5rem;font-family:var(--font-tech);font-size:0.82rem;color:var(--muted);letter-spacing:0.04em;align-items:center;}
+    .hintbar kbd{border:1px solid rgba(var(--accent-rgb),0.3);color:var(--accent);padding:0.15rem 0.45rem;background:rgba(var(--accent-rgb),0.05);font-family:var(--font-tech);font-size:0.82rem;}
+    .hintbar button{background:var(--surface);border:1px solid rgba(var(--accent-rgb),0.25);color:var(--muted);font-family:var(--font-tech);font-size:0.82rem;letter-spacing:0.08em;padding:0.35rem 0.7rem;cursor:pointer;transition:all 0.2s;}
+    .hintbar button:hover{color:var(--accent);border-color:var(--accent);background:rgba(var(--accent-rgb),0.06);}
     /* ===== GAME MODAL ===== */
-    .game-overlay{position:fixed;inset:0;z-index:1100;background:rgba(3,3,6,0.85);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:1rem;}
+    .game-overlay{position:fixed;inset:0;z-index:1100;background:rgba(var(--text-rgb),0.42);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:1rem;}
     .game-overlay.open{display:flex;}
-    .game-window{background:var(--surface);border:1px solid rgba(0,200,255,0.3);box-shadow:0 0 50px rgba(0,200,255,0.12);max-width:600px;width:100%;animation:termIn 0.25s ease both;}
-    .game-bar{background:var(--surface2);border-bottom:1px solid var(--border2);padding:0.6rem 1rem;display:flex;align-items:center;justify-content:space-between;font-family:var(--font-tech);font-size:0.68rem;color:var(--accent2);letter-spacing:0.1em;}
-    .game-close{background:transparent;border:1px solid rgba(255,77,106,0.4);color:var(--accent3);font-family:var(--font-tech);font-size:0.6rem;padding:0.2rem 0.6rem;cursor:pointer;letter-spacing:0.08em;transition:all 0.2s;}
-    .game-close:hover{background:rgba(255,77,106,0.12);}
+    .game-window{background:var(--surface);border:1px solid rgba(var(--goal-rgb),0.3);border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(var(--text-rgb),0.2);max-width:600px;width:100%;animation:termIn 0.25s ease both;}
+    .game-bar{background:var(--surface2);border-bottom:1px solid var(--border2);padding:0.6rem 1rem;display:flex;align-items:center;justify-content:space-between;font-family:var(--font-tech);font-size:0.82rem;color:var(--accent2);letter-spacing:0.1em;}
+    .game-close{background:transparent;border:1px solid rgba(var(--danger-rgb),0.4);color:var(--accent3);font-family:var(--font-tech);font-size:0.82rem;padding:0.2rem 0.6rem;cursor:pointer;letter-spacing:0.08em;transition:all 0.2s;}
+    .game-close:hover{background:rgba(var(--danger-rgb),0.12);}
     .game-body{padding:1.2rem;display:flex;flex-direction:column;gap:0.9rem;align-items:center;}
     #gameCanvas{border:1px solid var(--border);background:var(--bg);max-width:100%;image-rendering:pixelated;}
-    .game-hud{display:flex;gap:1.4rem;flex-wrap:wrap;justify-content:center;font-family:var(--font-tech);font-size:0.62rem;color:var(--muted);letter-spacing:0.08em;}
+    .game-hud{display:flex;gap:1.4rem;flex-wrap:wrap;justify-content:center;font-family:var(--font-tech);font-size:0.82rem;color:var(--muted);letter-spacing:0.08em;}
     .game-hud b{color:var(--accent);font-weight:400;}
     .game-controls{display:flex;gap:0.6rem;flex-wrap:wrap;justify-content:center;}
-    .game-btn{background:transparent;border:1px solid rgba(0,255,157,0.3);color:var(--accent);font-family:var(--font-tech);font-size:0.65rem;letter-spacing:0.1em;padding:0.5rem 1rem;cursor:pointer;text-transform:uppercase;transition:all 0.2s;}
-    .game-btn:hover{background:rgba(0,255,157,0.08);}
-    .game-btn.blue{border-color:rgba(0,200,255,0.3);color:var(--accent2);}
-    .game-btn.blue:hover{background:rgba(0,200,255,0.08);}
-    .game-msg{font-family:var(--font-tech);font-size:0.68rem;color:var(--accent2);letter-spacing:0.06em;min-height:1.2em;text-align:center;}
+    .game-btn{background:transparent;border:1px solid rgba(var(--accent-rgb),0.3);color:var(--accent);font-family:var(--font-tech);font-size:0.82rem;letter-spacing:0.1em;padding:0.5rem 1rem;cursor:pointer;text-transform:uppercase;transition:all 0.2s;}
+    .game-btn:hover{background:rgba(var(--accent-rgb),0.08);}
+    .game-btn.blue{border-color:rgba(var(--goal-rgb),0.3);color:var(--accent2);}
+    .game-btn.blue:hover{background:rgba(var(--goal-rgb),0.08);}
+    .game-msg{font-family:var(--font-tech);font-size:0.82rem;color:var(--accent2);letter-spacing:0.06em;min-height:1.2em;text-align:center;}
     .dpad{display:none;grid-template-columns:repeat(3,44px);grid-template-rows:repeat(2,44px);gap:4px;}
     .dpad button{background:var(--surface2);border:1px solid var(--border);color:var(--accent);font-size:1rem;cursor:pointer;}
     .hero-right .terminal{cursor:pointer;transition:border-color 0.2s,box-shadow 0.2s;}
-    .hero-right .terminal:hover{border-color:rgba(0,255,157,0.35);box-shadow:0 0 30px rgba(0,255,157,0.08);}
-    .terminal-hint{font-family:var(--font-tech);font-size:0.6rem;color:var(--muted);text-align:right;margin-top:0.5rem;letter-spacing:0.08em;}
+    .hero-right .terminal:hover{border-color:rgba(var(--accent-rgb),0.35);box-shadow:0 8px 24px rgba(var(--accent-rgb),0.08);}
+    .terminal-hint{font-family:var(--font-tech);font-size:0.82rem;color:var(--muted);text-align:right;margin-top:0.5rem;letter-spacing:0.08em;}
     .terminal-hint span{color:var(--accent);}
     @media(max-width:900px){nav{padding:1rem 1.5rem;}section{padding:5rem 1.5rem;}#hero{grid-template-columns:1fr;padding:7rem 1.5rem 4rem;}.hero-right{margin-top:1rem;}.reticle{display:none;}.about-grid{grid-template-columns:1fr;gap:3rem;}.form-row{grid-template-columns:1fr;}footer{flex-direction:column;gap:0.8rem;text-align:center;padding:1.5rem;}.nav-links,.nav-status{display:none;}.hintbar{display:none;}.iterm{left:4vw !important;top:10vh !important;width:92vw;}.iterm-body{height:50vh;}.dpad{display:grid;}}
     @media(pointer:coarse){.dpad{display:grid;}}
+    /* Robotics theme: pastel surfaces, instrument-grid detail and larger type. */
+    :root{color-scheme:light;}
+    body::after{content:'';position:fixed;inset:0;background-image:var(--grid);background-size:60px 60px;pointer-events:none;z-index:0;}
+    body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(var(--text-rgb),0.035) 2px,rgba(var(--text-rgb),0.035) 4px);opacity:0.22;pointer-events:none;z-index:998;}
+    section[id],#dissertation{scroll-margin-top:6rem;}
+    ::selection{background:var(--peach);color:var(--text);}
+    :focus-visible{outline:3px solid var(--accent);outline-offset:4px;}
+    .hero-left,.hero-right,.hp-info,.hp-media{min-width:0;}
+    #hero{background-image:var(--grid),linear-gradient(125deg,#f3f9f6 35%,#f3e6d5 100%);background-size:60px 60px,60px 60px,cover;gap:3rem;padding-top:6.5rem;padding-bottom:3.5rem;}
+    h1.hero-name{font-size:clamp(3.4rem,6vw,6.4rem);}
+    .hero-role{font-size:0.95rem;line-height:1.7;letter-spacing:0.06em;max-width:34rem;}
+    .hero-desc{font-size:1.1rem;max-width:34rem;}
+    .hero-desc strong,.about-text strong,.contact-intro strong{font-weight:600;}
+    .hero-sys,.section-label,.skill-group-title{font-size:0.85rem;letter-spacing:0.12em;}
+    .hero-sys{max-width:34rem;}
+    .btn-primary,.btn-ghost{font-size:0.88rem;border-radius:3px;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));}
+    .hero-ctas a[href="resume.pdf"]{background:var(--peach);border-color:var(--sand);color:var(--text);}
+    .hero-ctas-fun .btn-ghost.blue{color:var(--accent2);border-color:var(--ochre);background:rgba(var(--peach-rgb),0.25);}
+    .corner::before,.corner::after{background:var(--ochre);}
+    .terminal,.pendulum-panel{border-radius:6px;}
+    .terminal-bar,.iterm-bar,.game-bar{background:var(--mint);font-size:0.82rem;}
+    .hero-right .terminal > .terminal-bar{background:#f1d9bb;}
+    .terminal-bar::after{color:var(--ochre);}
+    .terminal-body{font-size:0.88rem;line-height:1.65;gap:0.55rem;padding:1rem 1.3rem;}
+    .t-out{line-height:1.6;}
+    .terminal-body a,.paper-doi{color:var(--accent2);text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere;}
+    .terminal-hint,.hp-video-cap{font-size:0.82rem;}
+    .pendulum-panel .terminal-bar span{opacity:1!important;}
+    .about-text p,.git-desc,.project-desc,.hp-role,.hp-pub-title,.hp-workshop,.contact-intro{font-size:1.05rem;line-height:1.8;}
+    .edu-degree,.git-title{font-size:1.05rem;line-height:1.5;}
+    .edu-degree{padding-right:1.8rem;}
+    .edu-school,.edu-date{font-size:0.9rem;}
+    .edu-card{padding:1.35rem 1.4rem;}
+    .edu-card:nth-child(2){background:#f3dfc9;}
+    .edu-card:nth-child(3){background:#f6e8c8;}
+    .skill-tag{font-size:0.88rem;border-radius:3px;}
+    .skill-group{border-radius:6px;border-top:3px solid var(--accent);}
+    .skill-group:nth-child(even){background:#f7e8d6;border-top-color:var(--ochre);}
+    #about,#contact{background-color:#edf5f1;background-image:var(--grid);background-size:60px 60px;}
+    #timeline{background-color:#f6ebdc;background-image:var(--grid);background-size:60px 60px;}
+    #projects{background-color:#e8f3ef;background-image:var(--grid);background-size:60px 60px;}
+    .project-card{border-radius:6px;}
+    .project-card:not(.hero-project):nth-child(3n){background:#fbefde;border-top:3px solid var(--ochre);}
+    .project-title{font-size:1.3rem;line-height:1.4;}
+    .hp-info .project-title{font-size:1.55rem;}
+    .project-badge,.hero-project .project-badge{position:static;display:inline-block;align-self:flex-start;margin-bottom:0.9rem;padding:0.35rem 0.6rem;background:var(--peach);color:var(--text);border:1px solid var(--sand);border-radius:3px;font-size:0.82rem;}
+    .project-num{font-size:0.85rem;}
+    .hp-stat:nth-child(2){background:#ffdfb9;}
+    .hp-stat:nth-child(3){background:#e8c9a6;}
+    .hp-stat b{color:var(--text);font-size:1.65rem;}
+    .hp-stat span{font-size:0.82rem;letter-spacing:0.03em;line-height:1.6;}
+    .hp-stats{gap:0.6rem;}
+    .hp-video,.hp-figure{border-radius:5px;overflow:hidden;}
+    .hp-video-fallback{background:var(--surface2);}
+    .project-desc,.hp-role,.hp-pub-title,.hp-workshop{overflow-wrap:anywhere;}
+    .project-tag{font-size:0.82rem;}
+    .project-link,.hp-pub-venue{font-size:0.88rem;}
+    .hp-pub-links{flex-wrap:wrap;}
+    .research-horizon{background-color:#f7eddf;background-image:var(--grid);background-size:60px 60px;}
+    .horizon-feature{display:grid;grid-template-columns:1.1fr 0.9fr;border:1px solid rgba(var(--warm-rgb),0.3);border-top:3px solid var(--ochre);background:rgba(255,251,244,0.95);}
+    .horizon-copy{padding:2.5rem;}
+    .horizon-status,.horizon-note,.brain-panel figcaption,.upcoming-meta,.upcoming-tags,.upcoming-heading > span{font-family:var(--font-tech);font-size:0.85rem;letter-spacing:0.06em;}
+    .horizon-status{display:inline-block;color:var(--accent2);margin-bottom:1.3rem;}
+    .horizon-copy h3{font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.7rem);line-height:1.2;margin-bottom:1.4rem;}
+    .horizon-copy p{font-size:1.1rem;color:var(--muted);line-height:1.8;margin-bottom:1.2rem;}
+    .horizon-note{display:flex;align-items:center;gap:0.65rem;color:var(--accent2);margin-top:1.8rem;}
+    .horizon-dot{width:7px;height:7px;background:var(--ochre);flex-shrink:0;box-shadow:0 0 0 4px rgba(178,122,54,0.12);}
+    .brain-panel{position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;min-width:0;margin:0;padding:2rem;background-image:var(--grid),radial-gradient(ellipse at center,#f0d8b4,#d1e8e2 80%);background-size:40px 40px,40px 40px,cover;border-left:1px solid var(--border);overflow:hidden;}
+    .brain-panel img{display:block;width:100%;max-width:500px;height:auto;aspect-ratio:1;object-fit:contain;}
+    .brain-panel figcaption{margin-top:1rem;text-align:center;color:var(--text);}
+    .brain-crosshair{position:absolute;width:24px;height:24px;border-top:2px solid var(--accent2);border-left:2px solid var(--accent2);}
+    .brain-crosshair-tl{top:1.2rem;left:1.2rem;}.brain-crosshair-br{bottom:1.2rem;right:1.2rem;transform:rotate(180deg);}
+    .upcoming-heading{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:3rem 0 1.2rem;}
+    .upcoming-heading h3{font-family:var(--font-display);font-size:1.5rem;}.upcoming-heading > span{color:var(--accent2);}
+    .upcoming-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.2rem;}
+    .upcoming-card{display:flex;flex-direction:column;padding:1.6rem;background:#fffaf2;border:1px solid rgba(var(--warm-rgb),0.3);border-top:3px solid var(--ochre);}
+    .upcoming-card:nth-child(2){background:#f0f7f3;border-top-color:var(--accent);}.upcoming-card:nth-child(3){background:#f7e5ce;}
+    .upcoming-meta{display:flex;flex-wrap:wrap;gap:0.6rem;align-items:center;justify-content:space-between;margin-bottom:1.3rem;color:var(--accent2);}
+    .upcoming-state{font-size:0.78rem;letter-spacing:0.03em;padding:0.15rem 0.4rem;background:var(--peach);color:var(--text);border:1px solid var(--sand);}
+    .upcoming-card h4{font-family:var(--font-display);font-size:1.25rem;line-height:1.4;margin-bottom:1rem;}
+    .upcoming-card p{font-size:1.05rem;line-height:1.8;color:var(--muted);margin-bottom:1.5rem;}
+    .upcoming-tags{margin-top:auto;padding-top:1rem;border-top:1px solid rgba(var(--warm-rgb),0.2);color:var(--accent2);}
+    .form-group input,.form-group textarea{background:var(--surface);font-family:var(--font-body);font-size:1.05rem;}
+    .form-group input:focus-visible,.form-group textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+    .contact-link,footer{font-size:0.9rem;}
+    .hintbar{padding:0.45rem 0.65rem;border:1px solid var(--border);border-radius:3px;background:rgba(var(--bg-rgb),0.97);}
+    .hintbar,.hintbar kbd,.hintbar button{font-size:0.78rem;}
+    .iterm{width:min(760px,92vw);}
+    .iterm-body,#itermInput,.iterm-input-row .p,.game-msg,.game-hud,.game-btn,.game-close{font-size:0.88rem;}
+    .nav-links{gap:1.25rem;}.nav-links a{font-size:0.85rem;letter-spacing:0.05em;}.nav-links a::before{display:inline;}
+    .nav-status{font-size:0.82rem;white-space:nowrap;background:#f1d9bb;color:var(--text);border-color:var(--sand);}
+    .reticle{opacity:0.18;}
+    .footer-system{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;max-width:100%;}
+    #itermInput:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+    .easter-egg{opacity:0;font-size:0.82rem;transition:opacity 0.35s,color 0.35s;}
+    .easter-egg:hover,.easter-egg:focus-visible{opacity:1;}
+    .nav-presence{display:flex;align-items:center;gap:0.8rem;font-family:var(--font-tech);font-size:0.82rem;color:var(--accent);white-space:nowrap;}
+    @media(max-width:1400px){.nav-status{display:none;}}
+    @media(max-width:1150px){.nav-links{display:none;}}
+    @media(max-width:400px){nav{flex-wrap:wrap;gap:0.25rem 0.75rem;}.nav-presence{margin-left:auto;}}
+    @media(hover:hover) and (pointer:fine){body,body a,body button{cursor:none;}.cursor,.cursor-ring{display:block;}}
+    @media(max-width:1250px){nav{padding:1rem 2rem;}.nav-links{gap:0.8rem;}.nav-status{display:none;}}
+    @media(max-width:1050px){#hero{grid-template-columns:1fr;}.about-grid{grid-template-columns:1fr;gap:2.5rem;}.hero-right{margin-top:1rem;}.hero-desc{max-width:40rem;}.horizon-feature{grid-template-columns:1fr;}.brain-panel{border-left:0;border-top:1px solid var(--border);}.brain-panel img{max-width:420px;}.upcoming-grid{grid-template-columns:1fr;}.upcoming-card h4{font-size:1.35rem;}}
+    @media(max-width:900px){nav{padding:1rem 1.5rem;}.nav-links,.nav-status{display:none;}#hero{padding:7rem 1.5rem 4rem;}.iterm{width:92vw;}}
+    @media(max-width:600px){.hp-stats{grid-template-columns:1fr;}.hp-stat{display:flex;align-items:center;gap:0.8rem;}.hp-stat b{min-width:3.5rem;}.hero-project .project-title{font-size:1.35rem;}.terminal-body{padding:1rem;font-size:0.88rem;}.terminal-bar{flex-wrap:wrap;}.pendulum-panel .terminal-bar span{margin-left:0!important;}.game-hud{gap:0.65rem;}.iterm-input-row{padding:0.7rem;}.iterm-input-row .p{font-size:0.75rem;}#itermInput{min-width:0;}.horizon-copy{padding:1.4rem;}.brain-panel{padding:1.5rem;}.horizon-copy h3{font-size:1.9rem;}.horizon-note{align-items:flex-start;}.horizon-dot{margin-top:0.5rem;}.game-body{padding:0.7rem;}.game-window{max-height:94vh;overflow-y:auto;}.contact-links{gap:1rem;}footer > div{flex-wrap:wrap;justify-content:center;}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*,*::before,*::after{animation:none!important;transition:none!important;}.reveal{opacity:1;transform:none;}}
+    /* Resume-backed research, recognition and community blocks. */
+    .skills-container{grid-template-columns:repeat(3,minmax(0,1fr));}
+    .edu-focus{font-size:0.9rem;line-height:1.6;margin-top:0.6rem;color:var(--muted);}
+    .edu-details,.project-method,.paper-details{margin-top:0.9rem;border-top:1px solid var(--border);padding-top:0.7rem;}
+    .edu-details summary,.project-method summary,.paper-details summary{font-family:var(--font-tech);font-size:0.9rem;color:var(--accent2);cursor:pointer;}
+    .edu-details p,.project-method p,.paper-details p{font-size:0.98rem;line-height:1.75;color:var(--muted);margin-top:0.8rem;overflow-wrap:anywhere;}
+    .edu-date a,.project-method a{color:var(--accent2);text-underline-offset:3px;}
+    .project-method{margin-bottom:1.2rem;}
+    .scholarship-card{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.3rem;background:#f4dfb5;border:1px solid var(--sand);border-left:3px solid var(--ochre);}
+    .scholarship-value{font-family:var(--font-display);font-size:1.8rem;font-weight:800;line-height:1;}
+    .scholarship-card strong,.scholarship-card div > span{display:block;font-size:0.9rem;line-height:1.6;}.scholarship-card div > span{color:var(--muted);}
+    .current-work{background-color:#f4f8f2;background-image:var(--grid);background-size:60px 60px;}
+    .lab-heading{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap;}.lab-heading .section-title{margin-bottom:1rem;}
+    .lab-status,.lab-card-meta,.lab-pipeline > div > span,.foundations-note > span{font-family:var(--font-tech);font-size:0.85rem;letter-spacing:0.05em;color:var(--accent2);}
+    .lab-intro{font-size:1.1rem;color:var(--muted);line-height:1.8;max-width:53rem;margin-bottom:2rem;}
+    .lab-pipeline{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:stretch;border:1px solid var(--border);background:var(--surface);margin-bottom:1.2rem;}
+    .lab-pipeline > div{padding:1.5rem;min-width:0;}.lab-pipeline > div:nth-of-type(2){background:#f7e6d0;}.lab-pipeline > div:nth-of-type(3){background:var(--mint);}
+    .lab-pipeline strong{display:block;font-family:var(--font-display);font-size:1.4rem;margin:0.5rem 0;}.lab-pipeline p{font-size:0.95rem;line-height:1.6;color:var(--muted);}
+    .pipeline-arrow{align-self:center;color:var(--accent2);font-size:1.4rem;padding:0 0.4rem;}
+    .current-work-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.2rem;}
+    .lab-card{display:flex;flex-direction:column;min-width:0;padding:1.5rem;background:#fffaf2;border:1px solid var(--border2);border-top:3px solid var(--ochre);}.lab-card:nth-child(2){background:#e8f3ef;border-top-color:var(--accent);}.lab-card:nth-child(3){background:#f4e3cd;}
+    .lab-card-meta{display:flex;justify-content:space-between;gap:0.7rem;flex-wrap:wrap;margin-bottom:1.2rem;}
+    .lab-card h3,.leadership-card h3,.community-card h3{font-family:var(--font-display);font-size:1.4rem;line-height:1.35;margin-bottom:1rem;}
+    .lab-card p,.leadership-card > p,.community-card > p{font-size:1.05rem;line-height:1.8;color:var(--muted);margin-bottom:1.5rem;}.lab-card .project-tags{margin-top:auto;}
+    .hp-stats{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .beyond-lab{background-color:#f3f7f3;background-image:var(--grid);background-size:60px 60px;}
+    .beyond-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:1.2rem;}
+    .leadership-card,.community-card{min-width:0;padding:1.8rem;border:1px solid var(--border2);background:#fffaf2;border-top:3px solid var(--ochre);}
+    .leadership-card{grid-row:span 2;background:#f4e3cd;display:flex;flex-direction:column;}.community-card:nth-child(2){background:#e3f0ea;border-top-color:var(--accent);}
+    .leadership-roles{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0;}.leadership-roles > div{padding:0.85rem;border-left:2px solid var(--ochre);background:rgba(255,255,255,0.35);}.leadership-roles strong,.leadership-roles span{display:block;font-size:0.95rem;line-height:1.6;}.leadership-roles span{color:var(--muted);}
+    .anomaly-teaser{display:inline-flex;align-items:center;justify-content:center;align-self:flex-end;flex-shrink:0;width:2.5rem;height:2.5rem;margin-top:auto;color:var(--accent2);opacity:0.18;transition:opacity 0.25s,transform 0.25s;}
+    .anomaly-teaser:hover,.anomaly-teaser:focus-visible{opacity:1;transform:translateY(-2px);}
+    .community-amount{font-family:var(--font-display);font-size:2.7rem;font-weight:800;margin:0.5rem 0 1.2rem;line-height:1.2;}.community-amount span{display:block;font-family:var(--font-tech);font-size:0.9rem;font-weight:400;color:var(--accent);margin-top:0.5rem;}
+    .foundations-note{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:1.2rem;margin-top:1.5rem;}.foundations-note p{font-size:0.95rem;color:var(--muted);line-height:1.7;}
+    @media(max-width:1000px){.skills-container{grid-template-columns:repeat(2,minmax(0,1fr));}}
+    @media(max-width:1100px){.current-work-grid{grid-template-columns:1fr;}.lab-card{padding:1.5rem;}.beyond-grid{grid-template-columns:1fr;}.leadership-card{grid-row:auto;}}
+    @media(max-width:650px){.skills-container{grid-template-columns:1fr;}.lab-pipeline{grid-template-columns:1fr;}.pipeline-arrow{justify-self:center;transform:rotate(90deg);padding:0.2rem 0;}.lab-pipeline > div{padding:1.2rem;}.leadership-roles{grid-template-columns:1fr;}.leadership-card,.community-card{padding:1.3rem;}.scholarship-card{flex-wrap:wrap;}.hp-stats{grid-template-columns:1fr;}.lab-status{line-height:1.7;}}
   </style>
+  <link rel="stylesheet" href="theme.css"/>
 </head>
 <body>
   <div class="cursor" id="cursor"></div>
@@ -277,28 +421,32 @@
   <div class="progress-bar" id="progressBar"></div>
   <nav>
     <a href="#hero" class="nav-logo">NALIN_AG</a>
-    <div style="display:flex;align-items:center;gap:2rem;">
-      <a href="creative.html" id="easterEgg">anomaly_detected.exe</a>
-      <div class="f-right"><span class="f-online">ONLINE</span></div>
-    </div>
+    <div class="nav-presence"><a href="creative.html" id="easterEggTop" class="easter-egg" aria-label="Explore the other side">anomaly_detected.exe</a><span>ONLINE</span></div>
     <ul class="nav-links">
       <li><a href="#about">about</a></li>
       <li><a href="#timeline">log</a></li>
       <li><a href="#skills">skills</a></li>
       <li><a href="#projects">projects</a></li>
-      <li><a href="#blog">blog</a></li>
+      <li><a href="#blog">horizon</a></li>
       <li><a href="#contact">contact</a></li>
       <li><a href="resume.pdf" target="_blank" style="color:var(--accent2)">resume</a></li>
     </ul>
-    <div class="nav-status">OPEN TO ROLES</div>
+    <div class="nav-actions">
+      <div class="nav-status">RA @ IPAB · UoE</div>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode">
+        <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.3A8.6 8.6 0 0 1 9.7 3.5a8.6 8.6 0 1 0 10.8 10.8Z"/></svg>
+        <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <span class="theme-toggle-label">Dark mode</span>
+      </button>
+    </div>
   </nav>
   <section id="hero">
     <div class="corner corner-tl"></div><div class="corner corner-tr"></div><div class="corner corner-br"></div><div class="corner corner-bl"></div>
     <div class="hero-left">
-      <div class="hero-sys">SYS_ID: 001 &nbsp;|&nbsp; <span>ROBOTICS · REINFORCEMENT LEARNING</span> &nbsp;|&nbsp; MSc AI @ UoE</div>
+      <div class="hero-sys">SYS_ID: 001 &nbsp;|&nbsp; <span>ROBOTICS · REINFORCEMENT LEARNING</span> &nbsp;|&nbsp; IPAB · UNIVERSITY OF EDINBURGH</div>
       <h1 class="hero-name">Nalin<span class="line2">Agarwal</span></h1>
-      <div class="hero-role">Robotics · Reinforcement Learning · AI Research</div>
-      <p class="hero-desc"><strong>Physics-trained. Robot-focused.</strong> Building intelligent agents that move, sense, and adapt — from <em>robot kinematics</em> to <em>learned control policies</em>. MSc AI at Edinburgh. Research at IIT Delhi &amp; ISRO.</p>
+      <div class="hero-role">Research Assistant · IPAB, University of Edinburgh</div>
+      <p class="hero-desc"><strong>Physics-trained. Robot-focused.</strong> I build intelligent agents that move, sense and adapt, from <em>robot kinematics</em> to <em>learned control policies</em>. MSc AI at Edinburgh, 2025-2026. SLMC group, IPAB. Earlier research at IIT Delhi and ISRO.</p>
       <div class="hero-ctas"><a href="#projects" class="btn-primary">View Projects</a><a href="resume.pdf" target="_blank" class="btn-ghost">Resume.pdf</a><a href="#contact" class="btn-ghost">Contact Me</a></div>
       <div class="hero-ctas hero-ctas-fun"><button class="btn-ghost" id="heroTermBtn" type="button">&gt;_ Open Terminal</button><button class="btn-ghost blue" id="heroGameBtn" type="button">▶ Play RL-Gridworld</button></div>
     </div>
@@ -306,19 +454,19 @@
       <div class="terminal">
         <div class="terminal-bar">nalin@robotics-lab ~ </div>
         <div class="terminal-body" id="heroTermBody">
-          <div class="tb" data-cmd="whoami"><div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">&nbsp;</span></div><div class="t-out">MSc AI student · Robotics &amp; RL focus<br>Edinburgh, Scotland 🏴󠁧󠁢󠁳󠁣󠁴󠁿</div></div>
+          <div class="tb" data-cmd="whoami"><div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">&nbsp;</span></div><div class="t-out">Research Assistant · IPAB, UoE<br>Edinburgh, Scotland 🏴󠁧󠁢󠁳󠁣󠁴󠁿</div></div>
           <div class="tb" data-cmd="cat research.txt"><div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">&nbsp;</span></div><div class="t-out">Focus: <span>Robot Learning · RL Policies · Motion Planning</span><br>Tools: <span>Pinocchio · Python · C++ · Linux</span><br>Prior: <span>ISRO · IIT Delhi · C-DAC</span></div></div>
-          <div class="tb" data-cmd="cat publications.txt"><div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">&nbsp;</span></div><div class="t-out">[2026] ICRA (sub.) · CoRL WS — <span>Blind Baoding, Shadow Hand</span><br>[2024] IEEE ICITEICS — <span>Novel DG MOSFET</span><br>[2022] TROPMET — <span>Marine Heatwaves &amp; Cyclones</span></div></div>
-          <div class="tb" data-cmd="status --jobs"><div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">&nbsp;</span></div><div class="t-out"><span>AVAILABLE</span> — Robotics / RL roles, research positions</div></div>
+          <div class="tb" data-cmd="cat publications.txt"><div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">&nbsp;</span></div><div class="t-out">[2026] <a href="https://arxiv.org/abs/2610.23438" target="_blank" rel="noopener noreferrer">arXiv:2610.23438</a><br><span>Blind Baoding, Shadow Hand</span><br>[2024] IEEE ICITEICS · <span>Novel DG MOSFET</span><br>[2022] TROPMET · <span>Marine Heatwaves &amp; Cyclones</span></div></div>
+          <div class="tb" data-cmd="status --research"><div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">&nbsp;</span></div><div class="t-out"><span>ACTIVE</span> · Research Assistant at IPAB, UoE</div></div>
         </div>
       </div>
       <div class="terminal-hint">click terminal or press <span>~</span> to go interactive</div>
       <div class="pendulum-panel">
-        <div class="terminal-bar">physics_sim — double_pendulum.py<span style="margin-left:auto;opacity:0.55">drag a bob &amp; fling it</span></div>
+        <div class="terminal-bar">physics_sim · double_pendulum.py<span style="margin-left:auto;opacity:0.55">drag a bob &amp; fling it</span></div>
         <canvas id="pendCanvas" height="190"></canvas>
       </div>
     </div>
-    <svg class="reticle" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="160" cy="160" r="155" stroke="#00ff9d" stroke-width="0.5"/><circle cx="160" cy="160" r="120" stroke="#00ff9d" stroke-width="0.3"/><circle cx="160" cy="160" r="80" stroke="#00ff9d" stroke-width="0.5"/><circle cx="160" cy="160" r="4" fill="#00ff9d"/><line x1="0" y1="160" x2="120" y2="160" stroke="#00ff9d" stroke-width="0.5"/><line x1="200" y1="160" x2="320" y2="160" stroke="#00ff9d" stroke-width="0.5"/><line x1="160" y1="0" x2="160" y2="120" stroke="#00ff9d" stroke-width="0.5"/><line x1="160" y1="200" x2="160" y2="320" stroke="#00ff9d" stroke-width="0.5"/><line x1="50" y1="50" x2="90" y2="90" stroke="#00ff9d" stroke-width="0.3"/><line x1="270" y1="50" x2="230" y2="90" stroke="#00ff9d" stroke-width="0.3"/><line x1="50" y1="270" x2="90" y2="230" stroke="#00ff9d" stroke-width="0.3"/><line x1="270" y1="270" x2="230" y2="230" stroke="#00ff9d" stroke-width="0.3"/><text x="168" y="148" fill="#00ff9d" font-family="monospace" font-size="7" opacity="0.6">NALIN AG.</text><text x="168" y="158" fill="#00ff9d" font-family="monospace" font-size="6" opacity="0.4">ROBOTICS · RL</text></svg>
+    <svg class="reticle" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="160" cy="160" r="155" stroke="#116466" stroke-width="0.5"/><circle cx="160" cy="160" r="120" stroke="#116466" stroke-width="0.3"/><circle cx="160" cy="160" r="80" stroke="#116466" stroke-width="0.5"/><circle cx="160" cy="160" r="4" fill="#116466"/><line x1="0" y1="160" x2="120" y2="160" stroke="#116466" stroke-width="0.5"/><line x1="200" y1="160" x2="320" y2="160" stroke="#116466" stroke-width="0.5"/><line x1="160" y1="0" x2="160" y2="120" stroke="#116466" stroke-width="0.5"/><line x1="160" y1="200" x2="160" y2="320" stroke="#116466" stroke-width="0.5"/><line x1="50" y1="50" x2="90" y2="90" stroke="#116466" stroke-width="0.3"/><line x1="270" y1="50" x2="230" y2="90" stroke="#116466" stroke-width="0.3"/><line x1="50" y1="270" x2="90" y2="230" stroke="#116466" stroke-width="0.3"/><line x1="270" y1="270" x2="230" y2="230" stroke="#116466" stroke-width="0.3"/><text x="168" y="148" fill="#116466" font-family="monospace" font-size="7" opacity="0.6">NALIN AG.</text><text x="168" y="158" fill="#116466" font-family="monospace" font-size="6" opacity="0.4">ROBOTICS · RL</text></svg>
   </section>
   <section id="about">
     <div class="section-label">About</div>
@@ -326,20 +474,36 @@
       <div class="about-text reveal">
         <h2 class="section-title">Physics-trained.<br>Robot-focused.</h2>
         <div class="comment">/* background */</div>
-        <p>I'm a <strong>graduate AI researcher</strong> at the University of Edinburgh, specialising in <em>Robotics and Reinforcement Learning</em>. My undergraduate degree in Engineering Physics gave me a rigorous foundation in mathematics, signal processing, and dynamical systems — which I now apply to teaching robots how to move, perceive, and make decisions.</p>
+        <p>I'm a <strong>Research Assistant in the Statistical Machine Learning and Motor Control (SLMC) group at IPAB, University of Edinburgh</strong>, focused on <em>robot learning, dexterous manipulation, tactile sensing and sim-to-real reinforcement learning</em>. My background in AI and Engineering Physics brings together mathematics, signal processing and dynamical systems. I apply that foundation to teaching robots how to move, perceive and make decisions.</p>
         <div class="comment">/* what drives me */</div>
-        <p>I'm drawn to <em>embodied intelligence</em> — agents that must act in the physical world under uncertainty. From processing satellite data at ISRO to computational ocean analysis at IIT Delhi, I've always worked at the edge of <strong>computation and physical systems</strong>. Robotics is where those worlds meet permanently.</p>
+        <p>I'm drawn to <em>embodied intelligence</em>: agents that act in the physical world under uncertainty. From processing satellite data at ISRO to computational ocean analysis at IIT Delhi, I've always worked at the edge of <strong>computation and physical systems</strong>. Robotics is where those worlds meet permanently.</p>
         <div class="comment">/* beyond the lab */</div>
         <p>I've built web apps, competed in science hackathons (Top 20 nationwide in XR-tech), and led teams. I believe the best engineers are <strong>curious generalists who execute with precision</strong>.</p>
       </div>
       <div class="reveal">
         <div class="section-label" style="margin-bottom:1.2rem">Education</div>
         <div class="education-list">
-          <div class="edu-card" data-idx="[01]"><div class="edu-degree">MSc Artificial Intelligence</div><div class="edu-school">University of Edinburgh, Scotland</div><div class="edu-date">Sept 2025 – Present · Robotics & RL Specialisation</div></div>
-          <div class="edu-card" data-idx="[02]" style="border-left-color:var(--accent2)"><div class="edu-degree">BTech Engineering Physics</div><div class="edu-school">Delhi Technological University, India</div><div class="edu-date">2020 – 2024 · GPA: 9.18 / 10</div></div>
-          <div class="edu-card" data-idx="[03]" style="border-left-color:var(--muted)"><div class="edu-degree">CS50X — Harvard University</div><div class="edu-school">Online Certificate</div><div class="edu-date">Nov 2023</div></div>
+          <div class="edu-card" data-idx="[01]"><div class="edu-degree">MSc Artificial Intelligence</div><div class="edu-school">University of Edinburgh, Scotland</div><div class="edu-date">2025-2026 · Merit (70.6%)</div><div class="edu-focus">Robotics &amp; reinforcement learning</div><details class="edu-details"><summary>Coursework</summary><p>Advanced Robotics; Robot and Reinforcement Learning; Probabilistic Modeling and Reasoning; Advanced Topics in Machine Learning; Computational Neuroscience; Computational Cognitive Neuroscience; Introduction to Quantum Computing; Computer Vision.</p></details></div>
+          <div class="scholarship-card"><span class="scholarship-value">£5,000</span><div><strong>India Merit Scholarship</strong><span>University of Edinburgh</span></div></div>
+          <div class="edu-card" data-idx="[02]" style="border-left-color:var(--accent2)"><div class="edu-degree">BTech Engineering Physics</div><div class="edu-school">Delhi Technological University, India</div><div class="edu-date">2020-2024 · GPA: 9.18 / 10</div><div class="edu-focus">Electronics &amp; Communications major · Computer Science minor</div><details class="edu-details"><summary>Coursework</summary><p>Fundamental Physics; Mathematics; MATLAB Applied Physics; Quantum Physics; Cosmology and Astrophysics; Electronics; Semiconductors; Optical Fibres; Microwave; Atmospheric Sciences; Data Structures and Algorithms; Database Systems; Operating Systems; Computer Networks; Computer Graphics.</p></details></div>
+          <div class="edu-card" data-idx="[03]" style="border-left-color:var(--muted)"><div class="edu-degree">CS50X · Harvard University</div><div class="edu-school">Online Certificate</div><div class="edu-date">Nov 2023 · <a href="https://cs50.harvard.edu/certificates/4699d760-d8ab-4e3c-a1f2-ade4a25b5c97" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div></div>
         </div>
       </div>
+    </div>
+  </section>
+  <section id="current-work" class="current-work">
+    <div class="section-label">Current research</div>
+    <div class="lab-heading"><h2 class="section-title reveal">On the lab bench.</h2><span class="lab-status">SLMC / IPAB / UoE · OCT 2026-PRESENT</span></div>
+    <p class="lab-intro reveal">Simulation, control and robot interfaces for manipulation. Current research in the Statistical Machine Learning and Motor Control group at the University of Edinburgh.</p>
+    <div class="lab-pipeline reveal" aria-label="Simulation, controller tuning and robot execution workflow">
+      <div><span>01 / SIMULATE</span><strong>MuJoCo</strong><p>Real-time environments &amp; object resets</p></div><span class="pipeline-arrow" aria-hidden="true">→</span>
+      <div><span>02 / TUNE</span><strong>Controller gains</strong><p>Parallel sweeps with mjbatch</p></div><span class="pipeline-arrow" aria-hidden="true">→</span>
+      <div><span>03 / EXECUTE</span><strong>ROS2</strong><p>Trajectories, teleoperation &amp; cameras</p></div>
+    </div>
+    <div class="current-work-grid">
+      <article class="lab-card reveal"><div class="lab-card-meta"><span>01 / SIMULATION</span><span>ONGOING</span></div><h3>Robotic box folding.</h3><p>MuJoCo simulation infrastructure for real-time box folding, object-state resets and trajectory execution. Controller-gain tuning and parallel parameter sweeps with mjbatch connect simulation to reinforcement-learning and data-collection pipelines.</p><div class="project-tags"><span class="project-tag">MuJoCo</span><span class="project-tag">mjbatch</span><span class="project-tag">Manipulation</span></div></article>
+      <article class="lab-card reveal"><div class="lab-card-meta"><span>02 / ROBOT INTERFACES</span><span>ONGOING</span></div><h3>NEXTAGE execution.</h3><p>ROS2 interfaces for trajectory editing and folding execution on NEXTAGE. Streaming teleoperation and simultaneous publishing from multiple robot cameras support interaction and data collection.</p><div class="project-tags"><span class="project-tag">NEXTAGE</span><span class="project-tag">ROS2</span><span class="project-tag">Teleoperation</span></div></article>
+      <article class="lab-card reveal"><div class="lab-card-meta"><span>03 / MODEL &amp; CONTROL</span><span>ONGOING</span></div><h3>AIREC integration.</h3><p>MuJoCo model integration and controller stabilisation for the AIREC robot. A focus on the simulation and control foundations needed for reliable robot behaviour.</p><div class="project-tags"><span class="project-tag">AIREC</span><span class="project-tag">MuJoCo</span><span class="project-tag">Control</span></div></article>
     </div>
   </section>
   <section id="timeline">
@@ -347,33 +511,38 @@
     <h2 class="section-title reveal">$ git log --career</h2>
     <div class="gitlog">
       <div class="git-commit reveal">
-        <div class="git-meta"><span class="git-hash">f7c2a91</span><span class="git-branch head">HEAD → edinburgh/robotics-rl</span><span class="git-date">Sept 2025 — present</span></div>
-        <div class="git-title">feat: checkout -b robotics-rl @ University of Edinburgh</div>
-        <div class="git-desc">MSc Artificial Intelligence. Advanced Robotics, Robot &amp; Reinforcement Learning, Probabilistic Modelling, Computational Neuroscience.</div>
+        <div class="git-meta"><span class="git-hash">a6f012b</span><span class="git-branch head">HEAD → edinburgh/ipab</span><span class="git-date">Oct 2026 - Present · Full-time</span></div>
+        <div class="git-title">feat(research): Research Assistant @ IPAB, UoE</div>
+        <div class="git-desc">SLMC group, IPAB. MuJoCo box-folding infrastructure, controller tuning, ROS2 interfaces for NEXTAGE, and AIREC model integration. <a href="#current-work" class="paper-doi">Current projects →</a></div>
       </div>
       <div class="git-commit reveal">
-        <div class="git-meta"><span class="git-hash">e3b112a</span><span class="git-branch tag">tag: ICRA-2027</span><span class="git-branch tag">tag: CoRL-2026-WS</span><span class="git-date">2026</span></div>
-        <div class="git-title">feat(dexterous): blind Baoding on the Shadow Hand Lite — MSc dissertation</div>
+        <div class="git-meta"><span class="git-hash">f7c2a91</span><span class="git-branch tag">tag: MSc-AI</span><span class="git-date">2025-2026</span></div>
+        <div class="git-title">study: MSc Artificial Intelligence @ University of Edinburgh</div>
+        <div class="git-desc">Advanced Robotics, Robot &amp; Reinforcement Learning, Probabilistic Modelling and Computational Neuroscience.</div>
+      </div>
+      <div class="git-commit reveal">
+        <div class="git-meta"><span class="git-hash">e3b112a</span><span class="git-branch tag">tag: ICRA-2027</span><span class="git-branch tag">tag: CoRL-2026-WS</span><span class="git-date">Jan-Sept 2026</span></div>
+        <div class="git-title">feat(dexterous): blind Baoding on the Shadow Hand Lite · MSc dissertation</div>
         <div class="git-desc">Sim-to-real RL with proprioception + binary touch, no vision. 112.5 rotations on hardware. Under review at ICRA 2027 and two CoRL 2026 workshops. <a href="#dissertation" style="color:var(--accent2)">see project →</a></div>
       </div>
       <div class="git-commit reveal">
-        <div class="git-meta"><span class="git-hash">d84b3e0</span><span class="git-date">Nov 2024 — Mar 2025</span></div>
+        <div class="git-meta"><span class="git-hash">d84b3e0</span><span class="git-date">Nov 2024 - Mar 2025</span></div>
         <div class="git-title">feat(quantum): hybrid quantum CNNs for wildfire detection @ C-DAC Pune</div>
-        <div class="git-desc">Research Assistant. QAOA, VQE, IBM Qiskit &amp; PennyLane — quantum ML for image-based wildfire recognition.</div>
+        <div class="git-desc">Research Assistant. QAOA, VQE, IBM Qiskit &amp; PennyLane · quantum ML for image-based wildfire recognition.</div>
       </div>
       <div class="git-commit reveal">
         <div class="git-meta"><span class="git-hash">9e1fa55</span><span class="git-branch tag">tag: IEEE-2024</span><span class="git-date">Jul 2024</span></div>
         <div class="git-title">publish: novel DG charge-trapping MOSFET → IEEE ICITEICS-2024</div>
-        <div class="git-desc">Ferroelectric gate stack + Gaussian doped substrate. DOI: 10.1109/ICITEICS61368.2024.10625402</div>
+        <div class="git-desc">Ferroelectric gate stack + Gaussian doped substrate. DOI: <a href="https://doi.org/10.1109/ICITEICS61368.2024.10625402" target="_blank" rel="noopener noreferrer" class="paper-doi">10.1109/ICITEICS61368.2024.10625402</a></div>
       </div>
       <div class="git-commit reveal">
-        <div class="git-meta"><span class="git-hash">b52c7d8</span><span class="git-date">Feb — Oct 2024</span></div>
+        <div class="git-meta"><span class="git-hash">b52c7d8</span><span class="git-date">Feb - Oct 2024</span></div>
         <div class="git-title">feat(ocean): Seychelles-Chagos thermocline ridge analysis @ IIT Delhi</div>
-        <div class="git-desc">Research fellowship, Centre for Atmospheric Sciences. Heatwave hotspots, IOD/ENSO correlations.</div>
+        <div class="git-desc">Part-time research fellowship at the Centre for Atmospheric Sciences, supervised by Dr. Samiran Mandal. Heatwave hotspots and IOD/ENSO correlations.</div>
       </div>
       <div class="git-commit reveal">
-        <div class="git-meta"><span class="git-hash">7a90c13</span><span class="git-branch tag">tag: TROPMET-2022</span><span class="git-date">May 2022 — Aug 2023</span></div>
-        <div class="git-title">feat(satellite): marine heatwave detection tool @ ISRO — Space Applications Centre</div>
+        <div class="git-meta"><span class="git-hash">7a90c13</span><span class="git-branch tag">tag: TROPMET-2022</span><span class="git-date">May-Jul 2022 · Jun-Aug 2023</span></div>
+        <div class="git-title">feat(satellite): marine heatwave detection tool @ ISRO · Space Applications Centre</div>
         <div class="git-desc">Two research stints. Real-time global MHW detection over 40 years of satellite data; cyclone correlation study presented at TROPMET-2022.</div>
       </div>
       <div class="git-commit reveal">
@@ -382,7 +551,7 @@
         <div class="git-desc">Because every roboticist should know how the stack actually works.</div>
       </div>
       <div class="git-commit reveal">
-        <div class="git-meta"><span class="git-hash">0000001</span><span class="git-date">Dec 2020 — May 2024</span></div>
+        <div class="git-meta"><span class="git-hash">0000001</span><span class="git-date">Dec 2020 - May 2024</span></div>
         <div class="git-title">init: BTech Engineering Physics @ Delhi Technological University</div>
         <div class="git-desc">GPA 9.18/10. ECE major, CS minor. The physics foundation everything else is built on.</div>
       </div>
@@ -392,10 +561,12 @@
     <div class="section-label">Skills</div>
     <h2 class="section-title reveal">Toolkit.</h2>
     <div class="skills-container">
-      <div class="skill-group reveal"><div class="skill-group-title">Languages</div><div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">C / C++</span><span class="skill-tag">JavaScript</span><span class="skill-tag">MATLAB</span><span class="skill-tag">SQL</span><span class="skill-tag">LaTeX</span><span class="skill-tag">HTML / CSS</span></div></div>
-      <div class="skill-group reveal"><div class="skill-group-title">Robotics & AI</div><div class="skill-tags"><span class="skill-tag blue">Pinocchio</span><span class="skill-tag blue">RL Algorithms</span><span class="skill-tag blue">Motion Planning</span><span class="skill-tag blue">Prob. Modelling</span><span class="skill-tag blue">Comp. Neuroscience</span><span class="skill-tag blue">SLAM (learning)</span></div></div>
-      <div class="skill-group reveal"><div class="skill-group-title">Tools & Platforms</div><div class="skill-tags"><span class="skill-tag">Git</span><span class="skill-tag">Linux</span><span class="skill-tag">Flask</span><span class="skill-tag">Godot</span><span class="skill-tag">Silvaco TCAD</span><span class="skill-tag">PennyLane</span><span class="skill-tag">Adobe CC</span></div></div>
-      <div class="skill-group reveal"><div class="skill-group-title">Research Domains</div><div class="skill-tags"><span class="skill-tag red">Reinforcement Learning</span><span class="skill-tag red">Robot Learning</span><span class="skill-tag red">Satellite Data Analysis</span><span class="skill-tag red">Quantum ML</span><span class="skill-tag red">Semiconductor Physics</span></div></div>
+      <div class="skill-group reveal"><div class="skill-group-title">Languages</div><div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">C / C++</span><span class="skill-tag">MATLAB</span><span class="skill-tag">SQL</span><span class="skill-tag">LaTeX</span><span class="skill-tag">HTML / CSS</span><span class="skill-tag">JavaScript</span></div></div>
+      <div class="skill-group reveal"><div class="skill-group-title">Robotics &amp; Simulation</div><div class="skill-tags"><span class="skill-tag">ROS / ROS2</span><span class="skill-tag">Isaac Lab</span><span class="skill-tag">MuJoCo</span><span class="skill-tag">Pinocchio</span><span class="skill-tag">Motion Planning</span><span class="skill-tag">SLAM (learning)</span></div></div>
+      <div class="skill-group reveal"><div class="skill-group-title">Learning &amp; Cognition</div><div class="skill-tags"><span class="skill-tag">PyTorch</span><span class="skill-tag">Reinforcement Learning</span><span class="skill-tag">PPO</span><span class="skill-tag">SAC</span><span class="skill-tag">Computer Vision</span><span class="skill-tag">Probabilistic Modelling</span><span class="skill-tag">Computational Neuroscience</span></div></div>
+      <div class="skill-group reveal"><div class="skill-group-title">Hardware &amp; Control</div><div class="skill-tags"><span class="skill-tag">Tactile Sensing</span><span class="skill-tag">Arduino</span><span class="skill-tag">Microcontroller Interfacing</span><span class="skill-tag">Robot Control</span></div></div>
+      <div class="skill-group reveal"><div class="skill-group-title">Quantum &amp; Scientific</div><div class="skill-tags"><span class="skill-tag">Qiskit</span><span class="skill-tag">PennyLane</span><span class="skill-tag">Quantum ML</span><span class="skill-tag">Silvaco TCAD</span><span class="skill-tag">ATLAS</span><span class="skill-tag">Satellite Data Analysis</span><span class="skill-tag">Semiconductor Physics</span></div></div>
+      <div class="skill-group reveal"><div class="skill-group-title">Software &amp; Creative</div><div class="skill-tags"><span class="skill-tag">Git</span><span class="skill-tag">Linux</span><span class="skill-tag">Flask</span><span class="skill-tag">Jinja</span><span class="skill-tag">Godot</span><span class="skill-tag">Unity</span><span class="skill-tag">Adobe Creative Suite</span></div></div>
     </div>
   </section>
   <section id="projects">
@@ -406,32 +577,34 @@
         <div class="hp-media">
           <div class="hp-video" id="baodingVideo">
             <video src="media/baoding_112_rotations.mp4" controls muted loop playsinline preload="metadata"></video>
-            <div class="hp-video-fallback"><b>▶ 112.5 ROTATIONS</b>hardware video — uploading soon</div>
+            <div class="hp-video-fallback"><b>▶ 112.5 ROTATIONS</b>hardware video · uploading soon</div>
           </div>
-          <div class="hp-video-cap">// <span>hardware run</span> — the policy keeps two Baoding balls cycling for 112.5 rotations, blind</div>
+          <div class="hp-video-cap">// <span>hardware run</span> · the policy keeps two Baoding balls cycling for 112.5 rotations, blind</div>
           <div class="hp-figure"><img src="media/baoding_sim_hw.jpg" alt="Simulated (top) and hardware (bottom) Shadow Hand Lite rotating two Baoding balls under the same policy, frames at 0.0, 0.4, 0.8 and 1.2 seconds" loading="lazy"/></div>
           <div class="hp-video-cap">// top: simulation · bottom: matched hardware frames, same policy, zero-shot</div>
         </div>
         <div class="hp-info">
           <span class="project-badge">MSc Dissertation · ICRA · CoRL</span>
-          <div class="project-num">00 — University of Edinburgh, 2026</div>
+          <div class="project-num">00 · University of Edinburgh, 2026</div>
           <div class="project-title">No Eyes, No Problem: What Does Touch Contribute to Blind Baoding Ball Manipulation?</div>
-          <div class="project-desc">A reinforcement-learning policy that rotates two Baoding balls on a <strong style="color:var(--text);font-weight:400">Shadow Dexterous Hand Lite</strong> using only proprioception and binary touch — no cameras. Trained entirely in simulation and transferred zero-shot to the real hand. Ablations show tactile feedback is what keeps the rotation going: remove it and sustained Baoding collapses.</div>
+          <div class="project-desc">A reinforcement-learning policy rotates two Baoding balls on a <strong>Shadow Dexterous Hand Lite</strong> using proprioception and binary touch, without cameras. Sensor-aligned simulation, tactile calibration and domain randomisation enable zero-shot transfer to the real hand. The project studies what touch contributes to sustained manipulation and which regions of the hand matter most.</div>
           <div class="hp-stats">
-            <div class="hp-stat"><b>112.5</b><span>rotations on hardware</span></div>
-            <div class="hp-stat"><b>16</b><span>tactile sensors (12 FSR + 4 BioTac)</span></div>
-            <div class="hp-stat"><b>0</b><span>cameras · fine-tuning</span></div>
+            <div class="hp-stat"><b>112.5</b><span>peak full rotations on hardware</span></div>
+            <div class="hp-stat"><b>34.75</b><span>mean full rotations · 10 trials</span></div>
+            <div class="hp-stat"><b>16</b><span>tactile sensors · 12 FSR + 4 BioTac</span></div>
+            <div class="hp-stat"><b>60 Hz</b><span>PPO policy deployment</span></div>
           </div>
-          <div class="hp-role"><strong>Authors:</strong> Ayush Deshmukh*, <strong>Nalin Agarwal*</strong>, Elle Miller, Sethu Vijayakumar.<br><strong>*Equal contribution (co-first authors).</strong></div>
-          <div class="hp-role"><strong>My contributions:</strong> designed the tactile sensor layout and fitted the FSRs to the physical hand; created PadTac USD assets in Isaac Lab; built the ROS deployment pipeline; developed per-channel hysteresis tactile calibration and Slew-rate Domain Randomisation (SlewDR), including the hardware command rate limit; trained tactile policies and contributed to hardware experiments, analysis, and paper preparation.</div>
+          <details class="project-method"><summary>Method &amp; dissertation details</summary><p>The tactile system combines 12 FSR sensors and four BioTac fingertips with per-channel hysteresis calibration. PadTac USD assets in Isaac Lab, a ROS deployment pipeline and slew-rate domain randomisation account for sensing and hardware motion limits. PPO policies transfer zero-shot to the physical hand.</p><p><strong>MSc dissertation, Jan-Sept 2026:</strong> Development of a Low-cost Tactile System for Dexterous Manipulation and Investigating the Sim-To-Real Gap in Tactile Reinforcement Learning.</p><p><strong>Supervision:</strong> <a href="https://homepages.inf.ed.ac.uk/svijayak/" target="_blank" rel="noopener noreferrer">Prof. Sethu Vijayakumar</a> and <a href="https://elle-miller.github.io" target="_blank" rel="noopener noreferrer">Elle Miller</a>.</p></details>
+          <div class="hp-role"><strong>Authors:</strong> Ayush Deshmukh*, <strong>Nalin Agarwal*</strong>, Elle Miller, Sethu Vijayakumar.<br><strong>*Equal contribution.</strong></div>
+
           <div class="project-tags"><span class="project-tag">Dexterous Manipulation</span><span class="project-tag">Sim-to-Real</span><span class="project-tag">Tactile Sensing</span><span class="project-tag">Reinforcement Learning</span><span class="project-tag">Domain Randomisation</span><span class="project-tag">ROS</span></div>
           <div class="hp-pubs">
             <div class="hp-pub">
               <div>
-                <div class="hp-pub-venue"><em>ICRA 2027</em>Under review</div>
+                <div class="hp-pub-venue"><em>arXiv preprint · ICRA 2027</em>Under review</div>
                 <div class="hp-pub-title">No Eyes, No Problem: What Does Touch Contribute to Blind Baoding Ball Manipulation?</div>
               </div>
-              <div class="hp-pub-links"><a href="#arxiv-icra" class="project-link pending" aria-disabled="true">↗ arXiv (soon)</a></div>
+              <div class="hp-pub-links"><a href="https://arxiv.org/abs/2610.23438" target="_blank" rel="noopener noreferrer" class="project-link">↗ Read paper</a><a href="https://arxiv.org/pdf/2610.23438" target="_blank" rel="noopener noreferrer" class="project-link">↗ PDF</a></div>
             </div>
             <div class="hp-pub">
               <div>
@@ -440,30 +613,80 @@
                 <div class="hp-workshop"><a href="https://dex-manipulation.github.io/corl2026/" target="_blank" rel="noopener">3rd Workshop on Dexterous Manipulation: Full-Stack Robotics on Learning and Design</a> · <strong>Under review</strong></div>
                 <div class="hp-workshop"><a href="https://contact-rich-loco-manipulation.github.io/" target="_blank" rel="noopener">Open Problems in Contact-Rich Loco-Manipulation</a> · <strong>Under review</strong></div>
               </div>
-              <div class="hp-pub-links"><a href="#arxiv-corl" class="project-link pending" aria-disabled="true">↗ arXiv (soon)</a></div>
             </div>
             <div class="hp-pub"><div class="hp-pub-venue"><em>Project page</em>demo, method, and results</div><div class="hp-pub-links"><a href="https://theundercover01.github.io/ayushdeshmukh/projects/no-eyes-no-problem/#demo" target="_blank" rel="noopener" class="project-link">↗ Watch the demo</a></div></div>
           </div>
         </div>
       </div>
-      <div class="project-card featured reveal"><span class="project-badge">Research · C-DAC</span><div class="project-num">01 — 2024–25</div><div class="project-title">Hybrid Quantum CNN for Wildfire Detection</div><div class="project-desc">Hybrid Quantum Convolutional Neural Networks for image-based wildfire detection in forests. Explored QAOA and VQE optimisation on IBM Quantum hardware via Qiskit and PennyLane.</div><div class="project-tags"><span class="project-tag">Quantum ML</span><span class="project-tag">Qiskit</span><span class="project-tag">PennyLane</span><span class="project-tag">Computer Vision</span></div></div>
-      <div class="project-card featured reveal"><span class="project-badge">IEEE Published</span><div class="project-num">02 — DTU 2023–24</div><div class="project-title">Novel Double Gate Charge-Trapping MOSFET</div><div class="project-desc">Undergraduate thesis: ferroelectric gate stack and Gaussian doped substrate integration for enhanced MOSFET performance. Published at ICITEICS-2024 (IEEE). DOI: 10.1109/ICITEICS61368.2024.10625402</div><div class="project-tags"><span class="project-tag">Silvaco TCAD</span><span class="project-tag">ATLAS</span><span class="project-tag">Semiconductor</span></div><div class="project-links"><a href="https://doi.org/10.1109/ICITEICS61368.2024.10625402" target="_blank" class="project-link">↗ IEEE Paper</a></div></div>
-      <div class="project-card reveal"><div class="project-num">03 — ISRO, 2022–23</div><div class="project-title">Marine Heatwave Detection via Satellite</div><div class="project-desc">Tool to detect marine heatwaves globally using 40 years of real-time satellite data. Analysed MHW metrics and correlations with cyclone activity in the Indian Ocean under Dr. Rashmi Sharma.</div><div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Satellite Data</span><span class="project-tag">ISRO</span></div></div>
-      <div class="project-card reveal"><div class="project-num">04 — IIT Delhi, 2024</div><div class="project-title">Oceanic Analysis — Seychelles-Chagos Thermocline Ridge</div><div class="project-desc">Computational analysis of oceanic heatwave hotspots in the Southern Indian Ocean. Correlated sea surface height and chlorophyll anomalies with IOD/ENSO events.</div><div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Oceanography</span><span class="project-tag">IIT Delhi</span></div></div>
-      <div class="project-card reveal"><div class="project-num">05 — Personal</div><div class="project-title">Gamer's Paradise</div><div class="project-desc">Web app for organising gaming libraries — add, delete, search, and curate personalised playlists. Built with Flask, SQL, and a clean HTML/CSS/JS frontend.</div><div class="project-tags"><span class="project-tag">Flask</span><span class="project-tag">SQL</span><span class="project-tag">HTML/CSS</span><span class="project-tag">JavaScript</span></div></div>
-      <div class="project-card reveal"><div class="project-num">06 — Personal</div><div class="project-title">Cricket Scorecard DBMS</div><div class="project-desc">Database management system for cricket scorecards in C++. Full CRUD — store, retrieve, and edit scorecards. Your own personal Cricbuzz.</div><div class="project-tags"><span class="project-tag">C++</span><span class="project-tag">DBMS</span><span class="project-tag">Data Structures</span></div></div>
+      <div class="project-card featured reveal"><span class="project-badge">Research · C-DAC</span><div class="project-num">01 · 2024-25</div><div class="project-title">Hybrid Quantum CNN for Wildfire Detection</div><div class="project-desc">Qiskit-based hybrid quantum convolutional neural networks for image-based wildfire detection in forests. Related research examined QAOA and VQE for quantum optimisation.</div><div class="project-tags"><span class="project-tag">Quantum ML</span><span class="project-tag">Qiskit</span><span class="project-tag">PennyLane</span><span class="project-tag">Computer Vision</span></div></div>
+      <div class="project-card featured reveal"><span class="project-badge">IEEE Published</span><div class="project-num">02 · DTU 2023-24</div><div class="project-title">Novel Double Gate Charge-Trapping MOSFET</div><div class="project-desc">Undergraduate thesis: ferroelectric gate stack and Gaussian doped substrate integration for enhanced MOSFET performance. Published at ICITEICS-2024 (IEEE). DOI: <a href="https://doi.org/10.1109/ICITEICS61368.2024.10625402" target="_blank" rel="noopener noreferrer" class="paper-doi">10.1109/ICITEICS61368.2024.10625402</a></div><div class="project-tags"><span class="project-tag">Silvaco TCAD</span><span class="project-tag">ATLAS</span><span class="project-tag">Semiconductor</span></div><div class="project-links"><a href="https://doi.org/10.1109/ICITEICS61368.2024.10625402" target="_blank" class="project-link">↗ IEEE Paper</a></div><details class="paper-details"><summary>Publication details</summary><p>A Novel Dielectric modulated Double Gate Charge-Trapping MOSFET: Ferroelectric Gate Stack and Gaussian Doped Substrate Integration for Enhanced Performance.</p><p>Akkshita Swain, Nalin Agarwal, Tanisha Singhal, Rishu Chaujar.</p><p><strong>Undergraduate research:</strong> Aug 2023-May 2024, Delhi Technological University.</p><a href="https://drive.google.com/file/d/1Xls8ZJgN6OP888GqA_732QZ_4nluA_c9/view" target="_blank" rel="noopener noreferrer" class="project-link">↗ Conference certificate</a></details></div>
+      <div class="project-card reveal"><div class="project-num">03 · ISRO, 2022-23</div><div class="project-title">Marine Heatwave Detection via Satellite</div><div class="project-desc">Tool for real-time marine heatwave detection worldwide using 40 years of satellite observations. Analysed MHW metrics and correlations with cyclone activity in the Indian Ocean under Dr. Rashmi Sharma and Dr. Nitant Dube. Research visits: May-Jul 2022 and Jun-Aug 2023.</div><div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Satellite Data</span><span class="project-tag">ISRO</span></div><details class="paper-details"><summary>TROPMET 2022 presentation</summary><p>On Rapid Increase In The MHW Intensity During Last Decade (2010-Present) Using Satellite Observations: Implications on Cyclone Activity in the Arabian Sea?</p><p>Nalin Agarwal, Nitant Dube, Rashmi Sharma.</p><p>Presented at IISER Bhopal, December 2022.</p><a href="https://drive.google.com/file/d/1aXQyFwujDu9v48LN_PQiqC7q44MVRLAQ/view" target="_blank" rel="noopener noreferrer" class="project-link">↗ Presentation certificate</a></details></div>
+      <div class="project-card reveal"><div class="project-num">04 · IIT Delhi, 2024</div><div class="project-title">Oceanic Analysis · Seychelles-Chagos Thermocline Ridge</div><div class="project-desc">Computational analysis of oceanic heatwave hotspots in the Southern Indian Ocean. Correlated sea surface height and chlorophyll anomalies with IOD/ENSO events, under Dr. Samiran Mandal at the Centre for Atmospheric Sciences.</div><div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Oceanography</span><span class="project-tag">IIT Delhi</span></div></div>
+      <div class="project-card reveal"><div class="project-num">05 · Personal</div><div class="project-title">Gamer's Paradise</div><div class="project-desc">A web app for organising gaming libraries. Add, delete, search and curate personalised playlists. Built with Flask, SQL, and a clean HTML/CSS/JS frontend.</div><div class="project-tags"><span class="project-tag">Flask</span><span class="project-tag">SQL</span><span class="project-tag">HTML/CSS</span><span class="project-tag">JavaScript</span></div></div>
+      <div class="project-card reveal"><div class="project-num">06 · Personal</div><div class="project-title">Cricket Scorecard DBMS</div><div class="project-desc">Database management system for cricket scorecards in C++. Store, retrieve and edit scorecards with full CRUD support. Your own personal Cricbuzz.</div><div class="project-tags"><span class="project-tag">C++</span><span class="project-tag">DBMS</span><span class="project-tag">Data Structures</span></div></div>
     </div>
   </section>
-  <section id="blog">
-    <div class="section-label">Blog</div>
-    <h2 class="section-title reveal">Thinking out loud.</h2>
-    <div class="blog-coming reveal"><span class="bc-label">// STATUS: INITIALISING</span><p>Writing incoming — on <em>robot learning</em>, <em>RL from scratch</em>, the physics intuition behind policy gradients, and what it actually takes to make machines move well.<br><br>Check back soon.</p></div>
+  <section id="beyond-lab" class="beyond-lab">
+    <div class="section-label">People, design &amp; community</div>
+    <h2 class="section-title reveal">Beyond the lab.</h2>
+    <div class="beyond-grid">
+      <article class="leadership-card reveal">
+        <span class="lab-card-meta">DESIGN / LEADERSHIP</span><h3>Ideas need a visual language.</h3>
+        <p>Leading design teams and shaping print and digital work, from brochures and event identities to websites and social media graphics.</p>
+        <div class="leadership-roles"><div><strong>Ambassador of Design</strong><span>HEIV, the scientific community</span></div><div><strong>Design Head</strong><span>The Indian Game Theory Society</span></div><div><strong>Design Head</strong><span>Society of Robotics, DTU</span></div><div><strong>Design Head</strong><span>DEPTH, Engineering Physics Society</span></div></div>
+        <a href="creative.html" class="anomaly-teaser" aria-label="Explore the other side">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4H4v16h4M16 4h4v16h-4M9 9l3 3-3 3M14 15h2"/></svg>
+        </a>
+      </article>
+      <article class="community-card reveal"><div class="lab-card-meta"><span>MUSKURAHAT FOUNDATION</span><span>MAY-AUG 2023</span></div><h3>Fundraising with purpose.</h3><div class="community-amount">₹8,000<span>raised as a volunteer</span></div><p>Fundraising, awareness drives and conversations about the foundation's work for children in India.</p><a href="https://drive.google.com/file/d/1fckpWxbjcOFZa8XOT4qNkW43w1XGrr-1/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="project-link">↗ Volunteer certificate</a></article>
+      <article class="community-card reveal"><div class="lab-card-meta"><span>EDUMONICS</span><span>JUN-OCT 2021</span></div><h3>Research, written for people.</h3><p>Content research and corrections, blog posts, website landing pages and digital marketing with SEO. Turning research into clear communication and accessible web content.</p><a href="https://drive.google.com/file/d/1Ap6JsYpfPpeuRlRDh8S_PMpIgSBMCOGf/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="project-link">↗ Content research certificate</a></article>
+    </div>
+    <div class="foundations-note reveal"><span>EARLY MILESTONES</span><p>School topper in Class X board examinations · Academic Head Boy in Class XII</p></div>
+  </section>
+  <section id="blog" class="research-horizon">
+    <div class="section-label">Research horizon</div>
+    <h2 class="section-title reveal">Beyond learned behaviour.</h2>
+    <div class="horizon-feature reveal">
+      <div class="horizon-copy">
+        <span class="horizon-status">LONG-TERM GOAL · EXPLORATORY</span>
+        <h3>Consciousness &amp;<br>self-awareness.</h3>
+        <p>My long-term goal is to build embodied systems that could develop subjective experience and a sense of self. I want to understand how consciousness and self-awareness could emerge through perception, memory and action.</p>
+        <p>I want to explore agents that build a model of themselves, reflect on what they know and learn through experience in the physical world. Robotics gives me a way to connect those questions to perception, action and learning.</p>
+        <div class="horizon-note"><span class="horizon-dot"></span>Research notes and experiments coming soon.</div>
+      </div>
+      <figure class="brain-panel">
+        <div class="brain-crosshair brain-crosshair-tl"></div><div class="brain-crosshair brain-crosshair-br"></div>
+        <img src="media/consciousness-brain.png" alt="A brain illustrated with teal neural connections and warm amber circuit traces" width="1254" height="1254" loading="lazy"/>
+        <figcaption>PERCEPTION / MEMORY / SELF-MODEL</figcaption>
+      </figure>
+    </div>
+    <div class="upcoming-heading"><h3>Upcoming explorations</h3><span>STATUS: PLANNED</span></div>
+    <div class="upcoming-grid">
+      <article class="upcoming-card reveal">
+        <div class="upcoming-meta"><span>01 / SELF-MODELS</span><span class="upcoming-state">Planned</span></div>
+        <h4>An agent that models itself.</h4>
+        <p>Explore how an embodied agent could learn the relationship between its body, its actions and the world around it.</p>
+        <div class="upcoming-tags">Embodiment · Internal models</div>
+      </article>
+      <article class="upcoming-card reveal">
+        <div class="upcoming-meta"><span>02 / MEMORY</span><span class="upcoming-state">Planned</span></div>
+        <h4>Experience that carries forward.</h4>
+        <p>Investigate how memory and a continuing history of experience could shape an agent's model of itself over time.</p>
+        <div class="upcoming-tags">Memory · Learning over time</div>
+      </article>
+      <article class="upcoming-card reveal">
+        <div class="upcoming-meta"><span>03 / METACOGNITION</span><span class="upcoming-state">Planned</span></div>
+        <h4>Knowing what it doesn't know.</h4>
+        <p>Study how agents might track uncertainty, recognise their own limits and use that information to guide learning.</p>
+        <div class="upcoming-tags">Uncertainty · Reflection</div>
+      </article>
+    </div>
   </section>
   <section id="contact">
     <div class="section-label">Contact</div>
     <div class="contact-wrapper">
       <h2 class="section-title reveal">Let's build<br>something that moves.</h2>
-      <p class="contact-intro reveal">If you're working on <strong>robotics, robot learning, or RL</strong> — or you want someone who brings a <strong>physics and systems thinking</strong> background — I'd love to hear from you.</p>
+      <p class="contact-intro reveal">If you're working on <strong>robotics, robot learning or RL</strong>, I'd love to hear from you. I bring a <strong>physics and systems thinking</strong> background to research and collaboration.</p>
       <form class="contact-form reveal" action="https://formspree.io/f/xwvrokwp" method="POST">
         <div class="form-row"><div class="form-group"><label>Name</label><input type="text" name="name" placeholder="your_name" required/></div><div class="form-group"><label>Email</label><input type="email" name="email" placeholder="your@email.com" required/></div></div>
         <div class="form-group"><label>Subject</label><input type="text" name="subject" placeholder="re: robotics role / research / collab"/></div>
@@ -471,7 +694,7 @@
         <div><button type="submit" class="btn-primary" style="border:none;cursor:pointer">TRANSMIT →</button></div>
       </form>
       <div class="contact-links reveal">
-        <a href="mailto:s2749986@ed.ac.uk" class="contact-link">s2749986@ed.ac.uk</a>
+        <a href="mailto:nagarwal@ed.ac.uk" class="contact-link">nagarwal@ed.ac.uk</a>
         <a href="https://www.linkedin.com/in/nalin-agarwal-b20495203/" target="_blank" class="contact-link">LinkedIn</a>
         <a href="https://github.com/inalinagarwal" target="_blank" class="contact-link">GitHub</a>
         <span class="contact-link" style="cursor:default">Edinburgh, Scotland</span>
@@ -479,11 +702,8 @@
     </div>
   </section>
   <footer>
-    <div class="f-left">Nalin Agarwal · Robotics & RL · Edinburgh 2025</div>
-    <div style="display:flex;align-items:center;gap:2rem;">
-      <a href="creative.html" id="easterEgg">anomaly_detected.exe</a>
-      <div class="f-right"><span class="f-online">ONLINE</span></div>
-    </div>
+    <div class="f-left">Nalin Agarwal · Robotics & RL · Edinburgh 2026</div>
+    <div class="footer-system"><a href="creative.html" id="easterEgg" class="easter-egg" aria-label="Explore the other side">anomaly_detected.exe</a><div class="f-right"><span class="f-online">ONLINE</span></div></div>
   </footer>
 
   <!-- Hint bar -->
@@ -500,7 +720,7 @@
       <span class="iterm-dot close" id="itermClose" title="close"></span>
       <span class="iterm-dot min"></span>
       <span class="iterm-dot max"></span>
-      <span class="iterm-title">nalin@portfolio: ~ — type 'help'</span>
+      <span class="iterm-title">nalin@portfolio: ~ · type 'help'</span>
     </div>
     <div class="iterm-body" id="itermBody"></div>
     <div class="iterm-input-row" onclick="document.getElementById('itermInput').focus()">
@@ -512,9 +732,9 @@
   <!-- RL Gridworld game -->
   <div class="game-overlay" id="gameOverlay">
     <div class="game-window">
-      <div class="game-bar"><span>RL-GRIDWORLD v1.0 — TRAIN THE ROBOT</span><button class="game-close" id="gameClose">✕ ESC</button></div>
+      <div class="game-bar"><span>RL-GRIDWORLD v1.0 · TRAIN THE ROBOT</span><button class="game-close" id="gameClose">✕ ESC</button></div>
       <div class="game-body">
-        <div class="game-msg" id="gameMsg">Reach the goal ◆. Arrow keys / WASD to move — or press AUTO-TRAIN and watch Q-learning do it.</div>
+        <div class="game-msg" id="gameMsg">Reach the goal ◆. Arrow keys / WASD to move · or press AUTO-TRAIN and watch Q-learning do it.</div>
         <canvas id="gameCanvas" width="480" height="480"></canvas>
         <div class="game-hud">
           <span>EPISODE <b id="hudEp">0</b></span>
@@ -540,7 +760,7 @@
     const cursor=document.getElementById('cursor');
     const ring=document.getElementById('cursorRing');
     let mx=0,my=0,rx=0,ry=0;
-    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.opacity='1';ring.style.opacity='1';cursor.style.left=mx+'px';cursor.style.top=my+'px';});
     (function animRing(){rx+=(mx-rx)*0.1;ry+=(my-ry)*0.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);})();
     document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{ring.style.width='50px';ring.style.height='50px';});el.addEventListener('mouseleave',()=>{ring.style.width='32px';ring.style.height='32px';});});
     const pb=document.getElementById('progressBar');
@@ -556,46 +776,57 @@
     let itermBooted=false,histArr=[],histIdx=-1;
 
     const FILES={
-      'about.txt':`Nalin Agarwal — MSc AI @ University of Edinburgh.
-Specialising in Robotics & Reinforcement Learning.
+      'about.txt':`Nalin Agarwal · Research Assistant @ IPAB, University of Edinburgh.
+Focus: Robotics & Reinforcement Learning.
+MSc Artificial Intelligence, University of Edinburgh (2025-2026), Merit (70.6%).
+India Merit Scholarship (£5,000).
 BTech Engineering Physics, DTU (GPA 9.18/10).
+SLMC group at IPAB, Research Assistant since Oct 2026.
 Research at ISRO, IIT Delhi, C-DAC. IEEE-published.
 Physics-trained. Robot-focused.`,
-      'skills.txt':`Languages : Python, C/C++, JavaScript, MATLAB, SQL, LaTeX
-Robotics  : Pinocchio, RL algorithms, motion planning, SLAM
-Tools     : Git, Linux, Flask, Godot, Silvaco TCAD, PennyLane
-Domains   : RL, robot learning, satellite data, quantum ML`,
-      'projects.txt':`[00] No Eyes, No Problem — blind Baoding on Shadow Hand (MSc dissertation)
+      'skills.txt':`Languages : Python, C/C++, MATLAB, SQL, LaTeX, HTML/CSS, JavaScript
+Robotics  : ROS/ROS2, Isaac Lab, MuJoCo, Pinocchio
+Learning  : PyTorch, RL (PPO, SAC), computer vision
+Hardware  : Arduino, microcontrollers, tactile sensing
+Quantum   : Qiskit, PennyLane, quantum ML
+Tools     : Git, Linux, Flask, Jinja, Godot, Unity, Adobe CC, Silvaco TCAD`,
+      'projects.txt':`[00] No Eyes, No Problem · blind Baoding on Shadow Hand (MSc dissertation)
 [01] Hybrid Quantum CNN for wildfire detection  (C-DAC)
-[02] Novel Double-Gate MOSFET — IEEE published  (DTU)
+[02] Novel Double-Gate MOSFET · IEEE published  (DTU)
 [03] Marine heatwave detection via satellite    (ISRO)
 [04] Seychelles-Chagos ocean analysis           (IIT Delhi)
-[05] Gamer's Paradise — Flask web app
-[06] Cricket Scorecard DBMS — C++
-→ type 'goto projects' to see them on the page`,
-      'contact.txt':`email    : s2749986@ed.ac.uk
+[05] Gamer's Paradise · Flask web app
+[06] Cricket Scorecard DBMS · C++
+[07] MuJoCo box folding and mjbatch controller tuning · SLMC, ongoing
+[08] NEXTAGE ROS2 execution and teleoperation · SLMC, ongoing
+[09] AIREC model integration and controller stabilisation · SLMC, ongoing
+→ type 'goto research' for current work or 'goto projects' for earlier projects`,
+      'contact.txt':`email    : nagarwal@ed.ac.uk
 linkedin : <a href="https://www.linkedin.com/in/nalin-agarwal-b20495203/" target="_blank">linkedin.com/in/nalin-agarwal-b20495203</a>
 github   : <a href="https://github.com/inalinagarwal" target="_blank">github.com/inalinagarwal</a>
 location : Edinburgh, Scotland
-status   : OPEN TO ROBOTICS / RL ROLES`,
+role     : RESEARCH ASSISTANT @ SLMC / IPAB, UoE (Oct 2026-present)`,
       'publications.txt':`[2026] No Eyes, No Problem: What Does Touch Contribute to
        Blind Baoding Ball Manipulation?
        Ayush Deshmukh*, Nalin Agarwal*, Elle Miller, Sethu Vijayakumar
-       *Equal contribution (co-first authors)
-       ICRA 2027 — under review
+       *Equal contribution
+       ICRA 2027 · under review
+       arXiv: <a href="https://arxiv.org/abs/2610.23438" target="_blank" rel="noopener noreferrer">arxiv.org/abs/2610.23438</a>
 [2026] No Eyes, No Problem: Zero-Shot Blind Baoding Ball
        Manipulation with Binary Touch
        Ayush Deshmukh*, Nalin Agarwal*, Elle Miller, Sethu Vijayakumar
-       *Equal contribution (co-first authors)
+       *Equal contribution
        CoRL 2026 workshops:
        3rd Workshop on Dexterous Manipulation: Full-Stack Robotics
-       on Learning and Design — under review
-       Open Problems in Contact-Rich Loco-Manipulation — under review
-       arXiv: coming soon
+       on Learning and Design · under review
+       Open Problems in Contact-Rich Loco-Manipulation · under review
        project page: <a href="https://theundercover01.github.io/ayushdeshmukh/projects/no-eyes-no-problem/#demo" target="_blank">theundercover01.github.io/…/no-eyes-no-problem</a>
-[2024] IEEE ICITEICS — Novel DG Charge-Trapping MOSFET
-       DOI: 10.1109/ICITEICS61368.2024.10625402
-[2022] TROPMET — Marine Heatwaves & Cyclone Activity`,
+[2024] IEEE ICITEICS · Novel DG Charge-Trapping MOSFET
+       Akkshita Swain, Nalin Agarwal, Tanisha Singhal, Rishu Chaujar
+       DOI: <a href="https://doi.org/10.1109/ICITEICS61368.2024.10625402" target="_blank" rel="noopener noreferrer" class="paper-doi">10.1109/ICITEICS61368.2024.10625402</a>
+[2022] TROPMET · Marine Heatwaves & Cyclone Activity
+       Nalin Agarwal, Nitant Dube, Rashmi Sharma
+       IISER Bhopal, Dec 2022`,
       'resume.pdf':'__BINARY__'
     };
 
@@ -605,7 +836,7 @@ status   : OPEN TO ROBOTICS / RL ROLES`,
   <span class="info">ls</span>            list files
   <span class="info">cat</span> &lt;file&gt;    read a file (try: cat about.txt)
   <span class="info">whoami</span>        who is this guy
-  <span class="info">goto</span> &lt;section&gt; navigate: about|skills|projects|blog|contact|top
+  <span class="info">goto</span> &lt;section&gt; navigate: about|research|skills|projects|community|horizon|contact|top
   <span class="info">resume</span>        open resume.pdf
   <span class="info">play</span>          launch RL-Gridworld game
   <span class="info">contact</span>       jump to contact form
@@ -616,7 +847,7 @@ status   : OPEN TO ROBOTICS / RL ROLES`,
   <span class="info">exit</span>          close terminal
 <span class="dim">tip: TAB autocompletes, ↑/↓ browse history</span>`,
       ls:()=>Object.keys(FILES).map(f=>f==='resume.pdf'?`<span class="info">${f}</span>`:`<span class="ok">${f}</span>`).join('  '),
-      whoami:()=>`nalin — robotics & RL grad student. teaches robots to move; occasionally moves himself (table tennis).`,
+      whoami:()=>`Nalin Agarwal · Research Assistant at IPAB, University of Edinburgh. Robotics & reinforcement learning. MSc AI, 2025-2026.`,
       pwd:()=>`/home/nalin/portfolio`,
       neofetch:()=>`<span class="ok">        ▄▄▄▄        </span>  <span class="info">nalin</span>@<span class="info">portfolio</span>
 <span class="ok">      ▄█░░░░█▄      </span>  ─────────────────
@@ -649,28 +880,42 @@ status   : OPEN TO ROBOTICS / RL ROLES`,
       const args=parts.slice(1);
       if(cmd==='sudo'&&args.join(' ')==='hire_me'){
         termPrint(`<span class="warn">[sudo] password for recruiter:</span> ********`);
-        setTimeout(()=>{termPrint(`<span class="ok">ACCESS GRANTED ✓ — redirecting to contact form…</span>`);setTimeout(()=>{closeTerm();location.hash='#contact';},900);},600);
+        setTimeout(()=>{termPrint(`<span class="ok">ACCESS GRANTED ✓ · redirecting to contact form…</span>`);setTimeout(()=>{closeTerm();location.hash='#contact';},900);},600);
         return;
       }
       if(cmd==='cat'){
         if(!args[0]){termPrint(`<span class="warn">cat: missing file. try 'ls'</span>`);return;}
         const f=FILES[args[0]];
         if(f===undefined)termPrint(`<span class="warn">cat: ${args[0]}: no such file</span>`);
-        else if(f==='__BINARY__'){termPrint(`<span class="dim">binary file — opening in viewer…</span>`);window.open('resume.pdf','_blank');}
+        else if(f==='__BINARY__'){termPrint(`<span class="dim">binary file · opening in viewer…</span>`);window.open('resume.pdf','_blank');}
         else termPrint(f,'dim');
         return;
       }
       if(cmd==='goto'||cmd==='cd'){
         const sec=(args[0]||'').replace(/[#/]/g,'');
-        const map={about:'#about',skills:'#skills',projects:'#projects',blog:'#blog',contact:'#contact',top:'#hero',home:'#hero','~':'#hero',log:'#timeline',timeline:'#timeline'};
+        const map={about:'#about',research:'#current-work',community:'#beyond-lab',skills:'#skills',projects:'#projects',blog:'#blog',horizon:'#blog',contact:'#contact',top:'#hero',home:'#hero','~':'#hero',log:'#timeline',timeline:'#timeline'};
         if(map[sec]){termPrint(`<span class="ok">navigating → ${sec}</span>`);closeTerm();location.hash=map[sec];}
-        else termPrint(`<span class="warn">unknown section. try: about|skills|projects|blog|contact|top</span>`);
+        else termPrint(`<span class="warn">unknown section. try: about|research|skills|projects|community|horizon|contact|top</span>`);
         return;
       }
       const fn=CMDS[cmd];
       if(fn){const out=fn(args);if(out!==null&&out!==undefined)termPrint(out);}
-      else termPrint(`<span class="warn">command not found: ${cmd.replace(/</g,'&lt;')}</span> <span class="dim">— type 'help'</span>`);
+      else termPrint(`<span class="warn">command not found: ${cmd.replace(/</g,'&lt;')}</span> <span class="dim">· type 'help'</span>`);
     }
+
+    function readCanvasPalette(){
+      const styles=getComputedStyle(document.documentElement);
+      const color=(name,fallback)=>styles.getPropertyValue(name).trim()||fallback;
+      return{
+        bg:color('--bg','#f5faf8'),bgRgb:color('--bg-rgb','245,250,248'),
+        accent:color('--accent','#116466'),accentRgb:color('--accent-rgb','17,100,102'),
+        accent2:color('--accent2','#805022'),accent3:color('--accent3','#87502d'),
+        text:color('--text','#2c3531'),muted:color('--muted','#52655d'),
+        goal:color('--goal','#345e52'),goalRgb:color('--goal-rgb','52,94,82'),
+        dangerRgb:color('--danger-rgb','135,80,45'),robotEye:color('--robot-eye','#fff')
+      };
+    }
+    let canvasPalette=readCanvasPalette();
 
     function matrixRain(){
       const c=document.createElement('canvas');c.style.cssText='position:fixed;inset:0;z-index:1050;pointer-events:none;';
@@ -678,8 +923,8 @@ status   : OPEN TO ROBOTICS / RL ROLES`,
       const ctx=c.getContext('2d');const cols=Math.floor(c.width/14);const drops=Array(cols).fill(0);
       let frames=0;
       const iv=setInterval(()=>{
-        ctx.fillStyle='rgba(5,5,8,0.1)';ctx.fillRect(0,0,c.width,c.height);
-        ctx.fillStyle='#00ff9d';ctx.font='13px monospace';
+        ctx.fillStyle=`rgba(${canvasPalette.bgRgb},0.1)`;ctx.fillRect(0,0,c.width,c.height);
+        ctx.fillStyle=canvasPalette.accent;ctx.font='13px monospace';
         drops.forEach((y,i)=>{ctx.fillText(String.fromCharCode(0x30A0+Math.random()*96),i*14,y*14);drops[i]=(y*14>c.height&&Math.random()>0.975)?0:y+1;});
         if(++frames>140){clearInterval(iv);c.style.transition='opacity 1s';c.style.opacity='0';setTimeout(()=>c.remove(),1000);}
       },40);
@@ -691,7 +936,7 @@ status   : OPEN TO ROBOTICS / RL ROLES`,
       if(!itermBooted){
         itermBooted=true;
         termPrint(`<span class="ok">╔══════════════════════════════════════════╗</span>`);
-        termPrint(`<span class="ok">║  NALIN_OS v2.5 — portfolio shell          ║</span>`);
+        termPrint(`<span class="ok">║  NALIN_OS v2.5 · portfolio shell          ║</span>`);
         termPrint(`<span class="ok">╚══════════════════════════════════════════╝</span>`);
         termPrint(`<span class="dim">type <span class="info">help</span> to see commands. try <span class="info">sudo hire_me</span>.</span>`);
       }
@@ -753,33 +998,33 @@ status   : OPEN TO ROBOTICS / RL ROLES`,
     function sIdx(x,y){return y*N+x;}
 
     function drawGame(){
-      gtx.fillStyle='#050508';gtx.fillRect(0,0,cv.width,cv.height);
+      gtx.fillStyle=canvasPalette.bg;gtx.fillRect(0,0,cv.width,cv.height);
       for(let y=0;y<N;y++)for(let x=0;x<N;x++){
         // Q-value heatmap
-        if(Q){const best=Math.max(...Q[sIdx(x,y)]);if(best>0){gtx.fillStyle=`rgba(0,255,157,${Math.min(0.35,best/40)})`;gtx.fillRect(x*CELL,y*CELL,CELL,CELL);}}
-        gtx.strokeStyle='rgba(0,255,157,0.12)';gtx.strokeRect(x*CELL,y*CELL,CELL,CELL);
+        if(Q){const best=Math.max(...Q[sIdx(x,y)]);if(best>0){gtx.fillStyle=`rgba(${canvasPalette.accentRgb},${Math.min(0.35,best/40)})`;gtx.fillRect(x*CELL,y*CELL,CELL,CELL);}}
+        gtx.strokeStyle=`rgba(${canvasPalette.accentRgb},0.12)`;gtx.strokeRect(x*CELL,y*CELL,CELL,CELL);
       }
       // best-policy arrows
-      if(Q){gtx.fillStyle='rgba(0,200,255,0.7)';gtx.font='14px monospace';gtx.textAlign='center';gtx.textBaseline='middle';
+      if(Q){gtx.fillStyle=canvasPalette.text;gtx.font='14px monospace';gtx.textAlign='center';gtx.textBaseline='middle';
         for(let y=0;y<N;y++)for(let x=0;x<N;x++){
           if((x===GOAL.x&&y===GOAL.y)||isTrap(x,y))continue;
           const q=Q[sIdx(x,y)];const best=Math.max(...q);
           if(best>0.5)gtx.fillText(['↑','↓','→','←'][q.indexOf(best)],x*CELL+CELL/2,y*CELL+CELL/2);
         }}
       // traps
-      TRAPS.forEach(t=>{gtx.fillStyle='rgba(255,77,106,0.18)';gtx.fillRect(t.x*CELL,t.y*CELL,CELL,CELL);gtx.fillStyle='#ff4d6a';gtx.font='22px monospace';gtx.textAlign='center';gtx.textBaseline='middle';gtx.fillText('✖',t.x*CELL+CELL/2,t.y*CELL+CELL/2);});
+      TRAPS.forEach(t=>{gtx.fillStyle=`rgba(${canvasPalette.dangerRgb},0.18)`;gtx.fillRect(t.x*CELL,t.y*CELL,CELL,CELL);gtx.fillStyle=canvasPalette.accent3;gtx.font='22px monospace';gtx.textAlign='center';gtx.textBaseline='middle';gtx.fillText('✖',t.x*CELL+CELL/2,t.y*CELL+CELL/2);});
       // goal
-      gtx.fillStyle='rgba(0,200,255,0.15)';gtx.fillRect(GOAL.x*CELL,GOAL.y*CELL,CELL,CELL);
-      gtx.fillStyle='#00c8ff';gtx.font='24px monospace';gtx.textAlign='center';gtx.textBaseline='middle';gtx.fillText('◆',GOAL.x*CELL+CELL/2,GOAL.y*CELL+CELL/2);
+      gtx.fillStyle=`rgba(${canvasPalette.goalRgb},0.15)`;gtx.fillRect(GOAL.x*CELL,GOAL.y*CELL,CELL,CELL);
+      gtx.fillStyle=canvasPalette.goal;gtx.font='24px monospace';gtx.textAlign='center';gtx.textBaseline='middle';gtx.fillText('◆',GOAL.x*CELL+CELL/2,GOAL.y*CELL+CELL/2);
       // agent (robot)
       const ax=agent.x*CELL+CELL/2,ay=agent.y*CELL+CELL/2;
-      gtx.fillStyle='#00ff9d';gtx.shadowColor='#00ff9d';gtx.shadowBlur=14;
+      gtx.fillStyle=canvasPalette.accent;gtx.shadowColor=canvasPalette.accent;gtx.shadowBlur=0;
       gtx.fillRect(ax-13,ay-13,26,26);
-      gtx.shadowBlur=0;gtx.fillStyle='#050508';
+      gtx.shadowBlur=0;gtx.fillStyle=canvasPalette.robotEye;
       gtx.fillRect(ax-8,ay-7,5,5);gtx.fillRect(ax+3,ay-7,5,5);gtx.fillRect(ax-6,ay+3,12,3);
       updateHud();
     }
-    function updateHud(){hud.ep.textContent=episode;hud.steps.textContent=steps;hud.reward.textContent=totalR.toFixed(0);hud.eps.textContent=mode==='train'?eps.toFixed(2):'—';hud.mode.textContent=mode==='train'?'Q-LEARNING':'HUMAN';}
+    function updateHud(){hud.ep.textContent=episode;hud.steps.textContent=steps;hud.reward.textContent=totalR.toFixed(0);hud.eps.textContent=mode==='train'?eps.toFixed(2):'·';hud.mode.textContent=mode==='train'?'Q-LEARNING':'HUMAN';}
 
     function stepEnv(a){
       const[dx,dy]=DIRS[a];
@@ -839,7 +1084,7 @@ status   : OPEN TO ROBOTICS / RL ROLES`,
         const s=sIdx(agent.x,agent.y);
         const a=Q[s].indexOf(Math.max(...Q[s]));
         const res=stepEnv(a);drawGame();
-        if(res.done||++guard>60){clearInterval(iv);if(res.win!==undefined&&res.win){gameMsg.textContent=`✓ Trained robot reached goal in ${steps} steps — optimal-ish!`;}resetEp();setTimeout(drawGame,600);}
+        if(res.done||++guard>60){clearInterval(iv);if(res.win!==undefined&&res.win){gameMsg.textContent=`✓ Trained robot reached goal in ${steps} steps · optimal-ish!`;}resetEp();setTimeout(drawGame,600);}
       },140);
     }
     function startTrain(){
@@ -854,8 +1099,8 @@ status   : OPEN TO ROBOTICS / RL ROLES`,
     function closeGame(){gameOverlay.classList.remove('open');stopTrain();if(mode==='train')mode='human';}
 
     document.getElementById('btnTrain').addEventListener('click',()=>{eps=1;episode=0;startTrain();});
-    document.getElementById('btnHuman').addEventListener('click',()=>{stopTrain();mode='human';resetEp();gameMsg.textContent='HUMAN mode — arrows/WASD. Avoid ✖, reach ◆.';gameMsg.style.color='var(--accent2)';drawGame();});
-    document.getElementById('btnReset').addEventListener('click',()=>{stopTrain();Q=null;eps=1;episode=0;totalR=0;mode='human';resetEp();gameMsg.textContent='Fresh start — the robot has forgotten everything.';gameMsg.style.color='var(--accent2)';drawGame();});
+    document.getElementById('btnHuman').addEventListener('click',()=>{stopTrain();mode='human';resetEp();gameMsg.textContent='HUMAN mode · arrows/WASD. Avoid ✖, reach ◆.';gameMsg.style.color='var(--accent2)';drawGame();});
+    document.getElementById('btnReset').addEventListener('click',()=>{stopTrain();Q=null;eps=1;episode=0;totalR=0;mode='human';resetEp();gameMsg.textContent='Fresh start · the robot has forgotten everything.';gameMsg.style.color='var(--accent2)';drawGame();});
     document.getElementById('gameClose').addEventListener('click',closeGame);
     document.getElementById('hintGameBtn').addEventListener('click',openGame);
     gameOverlay.addEventListener('click',e=>{if(e.target===gameOverlay)closeGame();});
@@ -864,6 +1109,10 @@ status   : OPEN TO ROBOTICS / RL ROLES`,
       if(!gameOverlay.classList.contains('open')||mode!=='human')return;
       const km={ArrowUp:0,w:0,W:0,ArrowDown:1,s:1,S:1,ArrowRight:2,d:2,D:2,ArrowLeft:3,a:3,A:3};
       if(km[e.key]!==undefined){e.preventDefault();humanMove(km[e.key]);}
+    });
+    document.addEventListener('portfolio:themechange',()=>{
+      canvasPalette=readCanvasPalette();
+      if(gtx)drawGame();
     });
 
     /* ================= DISSERTATION VIDEO + PENDING LINKS ================= */
@@ -927,13 +1176,13 @@ status   : OPEN TO ROBOTICS / RL ROLES`,
         const p=pos();
         trail.push([p.x2,p.y2]);if(trail.length>90)trail.shift();
         ctx.clearRect(0,0,c.clientWidth,190);
-        for(let i=1;i<trail.length;i++){ctx.strokeStyle=`rgba(0,200,255,${i/trail.length*0.35})`;ctx.beginPath();ctx.moveTo(trail[i-1][0],trail[i-1][1]);ctx.lineTo(trail[i][0],trail[i][1]);ctx.stroke();}
-        ctx.strokeStyle='rgba(0,255,157,0.7)';ctx.lineWidth=1.5;
+        for(let i=1;i<trail.length;i++){ctx.strokeStyle=`rgba(${canvasPalette.goalRgb},${i/trail.length*0.35})`;ctx.beginPath();ctx.moveTo(trail[i-1][0],trail[i-1][1]);ctx.lineTo(trail[i][0],trail[i][1]);ctx.stroke();}
+        ctx.strokeStyle=`rgba(${canvasPalette.accentRgb},0.7)`;ctx.lineWidth=1.5;
         ctx.beginPath();ctx.moveTo(px,py);ctx.lineTo(p.x1,p.y1);ctx.lineTo(p.x2,p.y2);ctx.stroke();
-        ctx.fillStyle='#525270';ctx.fillRect(px-4,py-4,8,8);
-        ctx.fillStyle='#00ff9d';ctx.shadowColor='#00ff9d';ctx.shadowBlur=8;
+        ctx.fillStyle=canvasPalette.muted;ctx.fillRect(px-4,py-4,8,8);
+        ctx.fillStyle=canvasPalette.accent;ctx.shadowColor=canvasPalette.accent;ctx.shadowBlur=0;
         ctx.beginPath();ctx.arc(p.x1,p.y1,7,0,7);ctx.fill();
-        ctx.fillStyle='#00c8ff';ctx.shadowColor='#00c8ff';
+        ctx.fillStyle=canvasPalette.goal;ctx.shadowColor=canvasPalette.goal;
         ctx.beginPath();ctx.arc(p.x2,p.y2,7,0,7);ctx.fill();
         ctx.shadowBlur=0;
         requestAnimationFrame(draw);

@@ -1,0 +1,111 @@
+/* Shared color values used by the interactive canvases and theme switch. */
+:root {
+  --bg-rgb: 245, 250, 248;
+  --accent-rgb: 17, 100, 102;
+  --text-rgb: 44, 53, 49;
+  --warm-rgb: 128, 80, 34;
+  --peach-rgb: 255, 203, 154;
+  --danger-rgb: 135, 80, 45;
+  --goal: #345e52;
+  --goal-rgb: 52, 94, 82;
+  --robot-eye: #ffffff;
+  --button-text: #ffffff;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #121b19;
+  --surface: #192622;
+  --surface2: #20332e;
+  --accent: #91d3c4;
+  --accent2: #e3bd8b;
+  --accent3: #e8a681;
+  --text: #e1eae4;
+  --muted: #b0c2b7;
+  --mint: #243f37;
+  --peach: #493a2c;
+  --sand: #99795a;
+  --ochre: #d4ab70;
+  --border: rgba(145, 211, 196, .24);
+  --border2: rgba(225, 234, 228, .17);
+  --bg-rgb: 18, 27, 25;
+  --accent-rgb: 145, 211, 196;
+  --text-rgb: 225, 234, 228;
+  --warm-rgb: 227, 189, 139;
+  --peach-rgb: 227, 189, 139;
+  --danger-rgb: 232, 166, 129;
+  --goal: #b8d6c1;
+  --goal-rgb: 184, 214, 193;
+  --robot-eye: #152622;
+  --button-text: #152622;
+}
+
+/* The switch remains in the same top-right position in both themes. */
+nav { gap: 1rem; }
+.nav-actions { display: flex; align-items: center; gap: .8rem; flex-shrink: 0; }
+.theme-toggle {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  min-height: 44px; padding: .5rem .7rem; white-space: nowrap;
+  border: 1px solid var(--border); border-radius: 3px;
+  background: var(--surface2); color: var(--accent);
+  font: .8rem/1.4 var(--font-tech); letter-spacing: .02em;
+  transition: background .2s, border-color .2s;
+}
+.theme-toggle:hover { background: var(--mint); border-color: var(--accent); }
+.theme-icon { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+.theme-icon-sun { display: none; }
+[data-theme="dark"] .theme-icon-moon { display: none; }
+[data-theme="dark"] .theme-icon-sun { display: block; }
+.btn-primary { color: var(--button-text); }
+[data-theme="dark"] .btn-primary:hover { background: #b3e5d8; }
+[data-theme="dark"] ::selection { background: #e3bd8b; color: #152622; }
+[data-theme="dark"] .reticle [stroke] { stroke: var(--accent); }
+[data-theme="dark"] .reticle [fill]:not([fill="none"]) { fill: var(--accent); }
+
+/* Match each pastel surface to a dark teal or warm brown counterpart. */
+[data-theme="dark"] #hero { background-image: var(--grid), linear-gradient(125deg, #14211d 35%, #302a22 100%); }
+[data-theme="dark"] #about,
+[data-theme="dark"] #contact { background-color: #172620; }
+[data-theme="dark"] #timeline { background-color: #28261f; }
+[data-theme="dark"] #projects { background-color: #162720; }
+[data-theme="dark"] .current-work { background-color: #19261f; }
+[data-theme="dark"] .beyond-lab { background-color: #19251f; }
+[data-theme="dark"] .research-horizon { background-color: #29271f; }
+[data-theme="dark"] .hero-right .terminal > .terminal-bar,
+[data-theme="dark"] .nav-status { background: #3a3025; }
+[data-theme="dark"] .edu-card:nth-child(2) { background: #332c24; }
+[data-theme="dark"] .edu-card:nth-child(3) { background: #34301f; }
+[data-theme="dark"] .scholarship-card { background: #3b3221; }
+[data-theme="dark"] .skill-group:nth-child(even),
+[data-theme="dark"] .project-card:not(.hero-project):nth-child(3n) { background: #302b24; }
+[data-theme="dark"] .hp-stat:nth-child(2) { background: #3a3125; }
+[data-theme="dark"] .hp-stat:nth-child(3) { background: #413426; }
+[data-theme="dark"] .blog-coming,
+[data-theme="dark"] .horizon-feature { background: #242b23; }
+[data-theme="dark"] .brain-panel { background-image: var(--grid), radial-gradient(ellipse at center, #51412b, #213b32 80%); }
+[data-theme="dark"] .upcoming-card,
+[data-theme="dark"] .lab-card,
+[data-theme="dark"] .community-card { background: #292b23; }
+[data-theme="dark"] .upcoming-card:nth-child(2),
+[data-theme="dark"] .lab-card:nth-child(2),
+[data-theme="dark"] .community-card:nth-child(2) { background: #22382e; }
+[data-theme="dark"] .upcoming-card:nth-child(3),
+[data-theme="dark"] .lab-card:nth-child(3),
+[data-theme="dark"] .leadership-card { background: #382e23; }
+[data-theme="dark"] .lab-pipeline > div:nth-of-type(2) { background: #302b24; }
+[data-theme="dark"] .leadership-roles > div { background: rgba(18, 27, 25, .35); }
+[data-theme="dark"] .game-overlay { background: rgba(4, 10, 8, .75); }
+[data-theme="dark"] .terminal,
+[data-theme="dark"] .game-window { box-shadow: 0 12px 36px rgba(0, 0, 0, .2); }
+
+@media (max-width: 1600px) { .nav-status { display: none; } }
+@media (max-width: 1380px) { .nav-links { display: none; } }
+@media (max-width: 700px) {
+  nav { display: grid; grid-template-columns: 1fr auto; gap: .35rem .75rem; }
+  .nav-logo { grid-column: 1; grid-row: 1; font-size: .9rem; }
+  .nav-actions { grid-column: 2; grid-row: 1; justify-self: end; }
+  .nav-presence { grid-column: 1 / -1; grid-row: 2; justify-self: end; margin-left: 0; gap: .6rem; font-size: .72rem; }
+  .nav-presence .easter-egg { font-size: .7rem; }
+  .theme-toggle { min-height: 42px; font-size: .75rem; padding: .45rem .6rem; }
+}
+@media (prefers-reduced-motion: reduce) { .theme-toggle { transition: none; } }
