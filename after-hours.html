@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="A small, excessively dramatic investigation into Nalin Agarwal's games, writing and design. A playable creative portfolio.">
+  <title>After Hours | A Creative Investigation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Cormorant+Garamond:wght@500;600&family=Libre+Baskerville:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="after-hours.css">
+  <script src="after-hours-story.js" defer></script>
+  <script src="after-hours-credits.js" defer></script>
+  <script src="after-hours-audio.js" defer></script>
+  <script src="after-hours.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#conversation">Skip to dialogue</a>
+  <header class="game-header">
+    <a class="game-brand" href="creative.html" aria-label="After Hours, return to creative portfolio"><span class="brand-mark" aria-hidden="true">A/H</span><span>AFTER HOURS<small>NALIN AGARWAL'S OTHER LIFE</small></span></a>
+    <div class="header-case" aria-hidden="true">CASE 002 <span>/</span> NO ONE ASKED FOR THIS MUCH LORE</div>
+    <div class="header-actions">
+      <button class="quiet-button sound-button" id="soundToggle" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Zm4 3a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg><span id="soundLabel">Sound off</span></button>
+      <a class="plain-exit" href="creative.html">Plain portfolio <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main class="game-layout" id="gameShell">
+    <section class="world" aria-labelledby="roomTitle">
+      <div class="world-heading"><div><span class="eyebrow">LOCATION 01 / THE CREATIVE DEPARTMENT</span><h1 id="roomTitle">A room full of side quests.</h1></div><span class="time-label">00:43 <span>NO GOOD IDEAS SLEEP HERE</span></span></div>
+      <div class="scene-viewport" id="sceneViewport">
+        <div class="scene-art" id="sceneArt">
+          <img id="roomArt" src="media/after-hours/room.webp" width="1800" height="1405" alt="Van Gogh's painted bedroom, reimagined as a room of creative side quests." fetchpriority="high">
+          <div class="scene-light" aria-hidden="true"></div>
+          <button class="hotspot" data-area="desk" style="--x:25%;--y:44%" aria-label="Inspect the desk: games"><span class="hotspot-cross" aria-hidden="true">+</span><span class="hotspot-label"><small>01 / INSPECT</small>The desk</span></button>
+          <button class="hotspot" data-area="manuscript" style="--x:66%;--y:67%" aria-label="Inspect the manuscript: writing"><span class="hotspot-cross" aria-hidden="true">+</span><span class="hotspot-label"><small>02 / READ</small>The manuscript</span></button>
+          <button class="hotspot" data-area="wall" style="--x:70%;--y:20%" aria-label="Inspect the wall: design archive"><span class="hotspot-cross" aria-hidden="true">+</span><span class="hotspot-label"><small>03 / EXAMINE</small>The wall</span></button>
+          <button class="hotspot" data-area="mirror" style="--x:18%;--y:17%" aria-label="Talk to the inner voices"><span class="hotspot-cross" aria-hidden="true">+</span><span class="hotspot-label"><small>04 / LISTEN</small>The voices</span></button>
+          <button class="hotspot" data-area="door" style="--x:95%;--y:47%" aria-label="Inspect the door: contact and ending"><span class="hotspot-cross" aria-hidden="true">+</span><span class="hotspot-label"><small>05 / CONSIDER</small>The door</span></button>
+          <div class="investigator-marker" id="investigatorMarker" style="--x:49%;--y:83%" aria-hidden="true"><i></i><span>YOU, APPARENTLY</span></div>
+          <div class="scene-vignette" aria-hidden="true"></div>
+        </div>
+        <div class="scene-note" id="sceneNote"><span aria-hidden="true">◇</span> Click an object. Your curiosity has the keys.</div>
+        <button class="scene-hint" id="showHotspots" type="button" aria-pressed="true" title="Show or hide object labels">Objects <span aria-hidden="true">⌖</span></button>
+        <span class="art-credit">VAN GOGH, 1889 <span aria-hidden="true">/</span> A ROOM BORROWED FROM ART HISTORY</span>
+      </div>
+      <div class="inner-voices" aria-label="Meet your inner committee">
+        <button class="voice-card" data-voice="maker" type="button"><img src="media/after-hours/portraits/maker.webp" width="320" height="400" alt="" loading="lazy"><span><small>HANDS / ALWAYS BUSY</small><strong>The Builder</strong><em>“It probably compiles.”</em></span><i aria-hidden="true">↗</i></button>
+        <button class="voice-card" data-voice="writer" type="button"><img src="media/after-hours/portraits/writer.webp" width="320" height="400" alt="" loading="lazy"><span><small>STORY / NEVER SIMPLE</small><strong>The Narrator</strong><em>“This is foreshadowing.”</em></span><i aria-hidden="true">↗</i></button>
+        <button class="voice-card" data-voice="critic" type="button"><img src="media/after-hours/portraits/critic.webp" width="320" height="400" alt="" loading="lazy"><span><small>TASTE / UNSUPERVISED</small><strong>The Observer</strong><em>“A bold use of time.”</em></span><i aria-hidden="true">↗</i></button>
+      </div>
+      <nav class="room-nav" aria-label="Room locations"><span>GO TO</span><button data-area="desk" type="button">Desk</button><button data-area="manuscript" type="button">Manuscript</button><button data-area="wall" type="button">Wall</button><button data-area="mirror" type="button">Voices</button><button data-area="door" type="button">Door</button></nav>
+    </section>
+
+    <section class="conversation" id="conversation" aria-labelledby="conversationTitle" tabindex="-1">
+      <header class="conversation-header"><div class="file-square" aria-hidden="true">02</div><div><span class="eyebrow">THE INVESTIGATION</span><h2 id="conversationTitle">You are here. Suspicious.</h2></div><button class="icon-button" id="journalButton" type="button" aria-label="Open case notes" title="Case notes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h13v18H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm0 0v18M9 8h6m-6 4h6"/></svg></button></header>
+      <div class="dialogue-scroll" id="dialogueScroll" tabindex="0" aria-label="Conversation transcript"><div class="dialogue-log" id="dialogueLog" role="log" aria-label="Investigation dialogue" aria-live="polite" aria-relevant="additions"></div></div>
+      <div class="choices-panel"><div class="choice-heading"><span>WHAT DO YOU DO?</span><button id="skipText" class="text-button" type="button" hidden>Skip typing ↓</button></div><div class="dialogue-choices" id="dialogueChoices"></div><p class="choice-help">Choose with the mouse or number keys. Space skips typing.</p></div>
+    </section>
+  </main>
+
+  <footer class="game-footer">
+    <div class="case-progress"><span class="status-light" aria-hidden="true"></span><span id="caseState">INVESTIGATION OPEN</span><span class="progress-divider" aria-hidden="true">/</span><button class="text-button" id="dossierButton" type="button"><span id="dossierCount">0 / 3</span> DOSSIERS</button></div>
+    <div class="footer-flavour" id="footerFlavour">OBJECTIVE: FIND OUT WHAT THIS MAN DOES AFTER WORK.</div>
+    <div class="footer-tools"><button class="text-button" id="creditsButton" type="button">Art & sound credits</button><button class="text-button" id="restartButton" type="button">Start over ↺</button></div>
+  </footer>
+
+  <dialog class="entry-dialog" id="entryDialog" aria-labelledby="entryTitle">
+    <div class="entry-scrim" aria-hidden="true"></div><div class="entry-content"><div class="entry-kicker"><span>CASE FILE 002</span><span>EST. READING TIME: QUESTIONABLE</span></div><h2 id="entryTitle">AFTER<br><span>HOURS.</span></h2><p class="entry-premise">A playable investigation into one person's inability to have a single hobby.</p><p class="entry-aside">The robots are asleep. The side projects are not.<br>You have questions. The furniture has opinions.</p><div class="entry-actions"><button class="button-primary" id="startButton" type="button">Enter the room <span aria-hidden="true">↗</span></button><button class="button-secondary" id="quietStartButton" type="button">Enter quietly</button></div><p class="entry-footnote">A short, freely explorable story. No wrong route. Headphones welcome.</p><a class="entry-back" href="creative.html">Actually, show me the regular portfolio.</a></div>
+  </dialog>
+
+  <dialog class="evidence-dialog" id="evidenceDialog" aria-labelledby="evidenceTitle"><div class="modal-top"><span class="eyebrow">EVIDENCE / NOT JUST FLAVOUR TEXT</span><button class="close-button" type="button" data-close="evidenceDialog" aria-label="Close evidence">✕</button></div><div class="evidence-content" id="evidenceContent"></div></dialog>
+  <dialog class="notes-dialog" id="notesDialog" aria-labelledby="notesTitle"><div class="modal-top"><div><span class="eyebrow">YOUR CASE NOTES</span><h2 id="notesTitle">Evidence of several hobbies.</h2></div><button class="close-button" type="button" data-close="notesDialog" aria-label="Close case notes">✕</button></div><p class="notes-intro">Three dossiers to find. No mandatory order. You may, against all advice, simply enjoy yourself.</p><div id="notesList"></div><div class="notes-bottom"><span id="visitedCount">0 places investigated</span><span>Saved in this browser.</span></div></dialog>
+  <dialog class="credits-dialog" id="creditsDialog" aria-labelledby="creditsTitle"><div class="modal-top"><div><span class="eyebrow">THE PEOPLE WHO ACTUALLY PAINTED THIS</span><h2 id="creditsTitle">Borrowed art. Original nonsense.</h2></div><button class="close-button" type="button" data-close="creditsDialog" aria-label="Close credits">✕</button></div><div id="artCredits" class="art-credits"></div><div class="credit-sound"><h3>Sound & writing</h3><p>Original dialogue, interaction sounds and quiet room ambience made for this portfolio. The sound is synthesized in your browser. No audio or artwork from Disco Elysium is included.</p><p>The room and inner-voice portraits use human-made, public-domain paintings. These historic faces play fictional characters, not Nalin. Full sources and image adaptations are listed above.</p></div></dialog>
+  <dialog class="reset-dialog" id="resetDialog" aria-labelledby="resetTitle"><span class="eyebrow">A CLEAN SLATE. HOW OPTIMISTIC.</span><h2 id="resetTitle">Start a new investigation?</h2><p>Your dialogue and case notes will be cleared. The side projects will remain unfinished on schedule.</p><div class="reset-actions"><button class="button-secondary" type="button" data-close="resetDialog">Keep investigating</button><button class="button-primary" id="confirmRestart" type="button">Start over</button></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <noscript><div class="noscript-note">The playable version needs JavaScript. <a href="creative.html">The regular creative portfolio is here.</a></div></noscript>
+</body>
+</html>
